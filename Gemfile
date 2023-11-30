@@ -81,3 +81,4 @@ gem 'factory_bot', '~> 6.4'
 gem 'rubocop-rails', require: false
 gem 'bootstrap', '~> 5.0'
 gem 'jquery-rails'
+gem 'slim-rails'
