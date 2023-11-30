@@ -1,0 +1,28 @@
+= form_with(model: @category, url: categories_path, local: true, class: "col-3") do |form|
+  .form-group
+    = form.label :name
+    = form.text_field :name, class: "form-control"
+
+  .actions
+    = form.submit "Add Category", class: "btn btn-primary"
+hr
+
+= form_with(model: @product, url: products_path, local: true, class: "col-3") do |form|
+  .form-group
+    = form.label :name
+    = form.text_field :name, class: "form-control"
+
+  .form-group
+    = form.label :description
+    = form.text_area :description, class: "form-control"
+
+  .form-group
+    = form.label :price
+    = form.number_field :price, class: "form-control"
+
+  .form-group
+    = form.label :category_id
+    = form.collection_select :category_id, Category.all, :id, :name, { prompt: "Select a category" }, class: "form-control"
+
+  .actions
+    = form.submit "Create Product", class: "btn btn-primary"
