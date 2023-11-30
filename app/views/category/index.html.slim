@@ -1,3 +1,13 @@
-= @categories.each do |category|
-  - category.name
+.col-12.d-flex.justify-content-center 
+  .col-6.text-center
+   - @categories.each do |category|
+      .h2 = category.name
+      - category.products.each do |product|
+        = link_to products_path(product), class: "text-decoration-none text-dark"
+          .bg-light.p-3.m-3
+            h3 = product.name
+            p = "£#{product.price}"
+          
+
+
 
