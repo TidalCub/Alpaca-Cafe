@@ -82,3 +82,4 @@ gem 'rubocop-rails', require: false
 gem 'bootstrap', '~> 5.0'
 gem 'jquery-rails'
 gem 'slim-rails'
+gem "devise", "~> 4.9"
