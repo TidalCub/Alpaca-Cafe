@@ -6,9 +6,9 @@ class ProductController < ApplicationController
   def create
     @product = Product.new(product_params)
     if @product.save
-      redirect_to manage_path
+      redirect_to manage_index_path
     else
-      render 'new'
+      render manage_index_path,  alert: "An Error occured, product has not been added" 
     end
   end
 

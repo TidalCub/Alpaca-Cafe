@@ -10,8 +10,7 @@ class CategoryController < ApplicationController
   def create
     @category = Category.new(category_params)
     if @category.save
-      
-      redirect_to manage_path, notice: 'Category was successfully created.'
+      redirect_to manage_index_path, notice: 'Category was successfully created.'
     else
       render :new
     end
