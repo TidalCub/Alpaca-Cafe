@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_30_135414) do
+ActiveRecord::Schema[7.0].define(version: 2023_12_05_084049) do
   create_table "categories", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -28,12 +28,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_30_135414) do
   end
 
   create_table "orders", force: :cascade do |t|
-    t.integer "user_id"
     t.integer "status_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id", default: 0, null: false
+    t.integer "users_id"
     t.index ["status_id"], name: "index_orders_on_status_id"
-    t.index ["user_id"], name: "index_orders_on_user_id"
+    t.index ["users_id"], name: "index_orders_on_users_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -53,13 +54,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_30_135414) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "email"
-    t.string "first_name"
-    t.string "last_name"
-    t.date "date_of_birth"
-    t.string "password"
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "order_items", "orders"

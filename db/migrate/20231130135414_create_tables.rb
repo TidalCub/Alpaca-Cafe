@@ -10,15 +10,6 @@ class CreateTables < ActiveRecord::Migration[7.0]
       t.timestamps
     end
 
-    create_table :users do |t|
-      t.string :email
-      t.string :first_name
-      t.string :last_name
-      t.date :date_of_birth
-      t.string :password
-      t.timestamps
-    end
-
     create_table :products do |t|
       t.string :name
       t.string :description
@@ -28,7 +19,7 @@ class CreateTables < ActiveRecord::Migration[7.0]
     end
 
     create_table :orders do |t|
-      t.references :user, foreign_key: true
+      #t.references :user, foreign_key: true
       t.references :status, foreign_key: true
       t.timestamps
     end
