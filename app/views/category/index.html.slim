@@ -7,10 +7,12 @@
           .bg-light.p-3.m-3.rounded
             h3 = product.name
             p = "£#{product.price}"
-            a.btn.btn-primary Add to Basket
-            a.btn.btn-secondary View
+            - if current_user
+              = button_to 'Add to Order', add_to_basket_url(product: product), method: :post
+
+            = link_to products_path(product), class: "btn btn-secondary" 
+              | view
           
 
-h1 User: 
-   #{current_user.orders}
+h1 User:
 

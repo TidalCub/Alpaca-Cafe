@@ -12,7 +12,20 @@ class ProductController < ApplicationController
     end
   end
 
+  def add_to_basket
+    product = Product.find(add_to_basket_params[:product])
+    OrderItem.create(order: get_user_basket, product_id: product.id)
+  end
+
   private
+
+  def get_user_basket
+    current_user.orders.pending.any? ? current_user.orders.pending.last : Order.create(state: :pending, user_id: current_user.id)
+  end
+
+  def add_to_basket_params
+    params.permit(:product, :authenticity_token)
+  end
 
   def product_params
     params.permit(:name, :price, :description, :category_id)
