@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_12_05_084049) do
+ActiveRecord::Schema[7.0].define(version: 2023_12_05_165255) do
   create_table "categories", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -28,12 +28,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_05_084049) do
   end
 
   create_table "orders", force: :cascade do |t|
-    t.integer "status_id"
+    t.integer "state"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id", default: 0, null: false
     t.integer "users_id"
-    t.index ["status_id"], name: "index_orders_on_status_id"
+    t.index ["state"], name: "index_orders_on_state"
     t.index ["users_id"], name: "index_orders_on_users_id"
   end
 
@@ -45,12 +45,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_05_084049) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_products_on_category_id"
-  end
-
-  create_table "statuses", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -67,7 +61,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_05_084049) do
 
   add_foreign_key "order_items", "orders"
   add_foreign_key "order_items", "products"
-  add_foreign_key "orders", "statuses"
   add_foreign_key "orders", "users"
   add_foreign_key "products", "categories"
 end
