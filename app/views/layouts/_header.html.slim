@@ -4,5 +4,9 @@
   .navbar-nav.ps-2
     li.nav-item
 
-    li.nav-item
+    li.nav-item.d-flex.gap-3
       = link_to "Menu", categories_path, class: "text-decoration-none text-light"
+      - if current_user
+        = link_to "Sign Out", destroy_user_session_path, class: "text-decoration-none text-light"
+      - else 
+        = link_to "Sign In", user_session_path, class: "text-decoration-none text-light"

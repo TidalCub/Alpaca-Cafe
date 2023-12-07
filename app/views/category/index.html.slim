@@ -1,5 +1,5 @@
 .col-12.d-flex.justify-content-center 
-  .col-6.text-center
+  .col-11.col-md-11.col-lg-6.text-center
    - @categories.each do |category|
       .h2 = category.name
       - category.products.each do |product|
@@ -7,12 +7,10 @@
           .bg-light.p-3.m-3.rounded
             h3 = product.name
             p = "£#{product.price}"
-            - if current_user
-              = button_to 'Add to Order', add_to_basket_url(product: product), method: :post
 
-            = link_to products_path(product), class: "btn btn-secondary" 
-              | view
-          
-
-h1 User:
+            .d-flex.flex-row.justify-content-center.gap-3
+              - if current_user
+                = button_to 'Add to Order', add_to_basket_url(product: product), method: :post, class: "btn btn-primary"
+              = link_to products_path(product), class: "btn btn-secondary" 
+                | view
 
