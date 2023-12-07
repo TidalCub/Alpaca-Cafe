@@ -1,10 +1,5 @@
 class CreateTables < ActiveRecord::Migration[7.0]
   def change
-    create_table :statuses do |t|
-      t.string :name
-      t.timestamps
-    end
-
     create_table :categories do |t|
       t.string :name
       t.timestamps
@@ -19,8 +14,7 @@ class CreateTables < ActiveRecord::Migration[7.0]
     end
 
     create_table :orders do |t|
-      #t.references :user, foreign_key: true
-      t.references :status, foreign_key: true
+      t.integer :state
       t.timestamps
     end
 
