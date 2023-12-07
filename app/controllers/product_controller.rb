@@ -20,7 +20,7 @@ class ProductController < ApplicationController
   private
 
   def get_user_basket
-    current_user.orders.pending.any? ? current_user.orders.pending.last : Order.create(state: :pending, user_id: current_user.id)
+    current_user.orders.pending.any? ? current_user.orders.pending.last : Order.create(state: :pending, user: current_user)
   end
 
   def add_to_basket_params
