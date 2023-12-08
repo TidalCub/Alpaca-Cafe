@@ -13,13 +13,13 @@ class OrdersController < ApplicationController
 
   def cart
     @items = get_user_basket.order_items
-    @total = calculate_total
+    @total = calculate_total(get_user_basket)
     @recommended_products = Product.order("RANDOM()").limit(5)
   end
 
   def checkout
     @order = get_user_basket
-    @total = calculate_total
+    @total = calculate_total(get_user_basket)
   end
 
   def update

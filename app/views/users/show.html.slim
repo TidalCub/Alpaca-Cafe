@@ -1,0 +1,33 @@
+.d-flex.flex-row.justify-content-between
+  .col-11.col-md-3.col-3.p-2.border-right
+    h1 Your Details
+    hr
+    table.col-10
+      tbody
+        tr
+          td Email:
+          td = @user.email
+        tr
+          td Joined: 
+          td = @user.created_at.strftime("%B %d, %Y")
+    hr
+    .col-12.d-flex.justify-content-center.gap-3
+      = link_to "Log Out", destroy_user_session_path, method: :delete, class: "btn btn-dark"
+      = link_to "Edit Details", edit_user_registration_path, class: "btn btn-dark"
+  .col-11.col-md-9.col-lg-9.p-2
+    h1 Past Orders:
+    table.col-12
+      thead.text-center
+        tr
+          th Order Number
+          th Order Date
+          th Order Total
+          th View Items
+      tbody.text-center
+        - @user.orders.each do |order|
+          tr
+            td = order.id
+            td = order.created_at.strftime("%B %d, %Y")
+            td £#{order.order_items.sum { |item| item.product.price }}
+            td = link_to  order_path(order), class: "btn btn-dark" do 
+              i.fas.fa-eye

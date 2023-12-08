@@ -10,4 +10,5 @@ Rails.application.routes.draw do
   get 'cart', to: 'orders#cart', as: :cart
   get 'complete_order', to: 'orders#complete_order', as: :complete_order
   resources :carts, only: %i[index]
+  get 'account', to: 'users#show', as: :account
 end
