@@ -1,4 +1,4 @@
-.col-12.d-flex.justify-content-center 
+.col-12.d-flex.justify-content-center
   .col-11.col-md-11.col-lg-6.text-center
    - @categories.each do |category|
       .h2 = category.name
@@ -13,4 +13,3 @@
                 = button_to 'Add to Order', add_to_basket_url(product: product), method: :post, class: "btn btn-primary"
               = link_to products_path(product), class: "btn btn-secondary" 
                 | view
-

@@ -1,0 +1,32 @@
+h1 Checkout
+.d-flex.flex-row.justify-content-around
+  .bg-light.col-5.rounder.p-4
+    p Basket Id: #{@order.id}
+
+    h3 Items:
+    hr
+    - @order.order_items.each do |item|
+      p = item.product.name
+
+  .col-5.d-flex.align-items-center.justify-content-center.p-2.gap-3 
+    form action="#{order_path(@order.id)}" method="post" class="col-12"
+      input type="hidden" name="_method" value="patch"
+      input type="hidden" name="authenticity_token" value="#{form_authenticity_token}"
+      .col-12.bg-light.rounder.p-4
+        h4 Payment Method:
+        .form-group.d-flex.flex-row-gap-3.d-flex.justify-content-center.align-items-center.gap-4
+          label
+            input type="radio" name="payment_method" value="google_pay"
+            | Google Pay
+          label
+            input type="radio" name="payment_method" value="card"
+            | Card
+          label
+            input type="radio" name="payment_method" value="paypal"
+            | PayPal
+      .col-12.bg-light.rounder.mt-3.rounder.p-4
+        h4 Select Pickup Time:
+        .form-group.d-flex.flex-row-gap-3.d-flex.flex-column.justify-content-center.align-items-center
+          p Time:
+          input type="time" name="pickup_time"
+      input type="submit" value="Pay" class="btn btn-primary col-12 mt-3"
