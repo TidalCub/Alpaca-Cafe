@@ -9,8 +9,14 @@
     li.nav-item
 
     li.nav-item.d-flex.gap-3
-      = link_to "Menu", categories_path, class: "text-decoration-none text-dark"
+      = link_to categories_path, class: "text-decoration-none text-dark" do 
+        i.fa-solid.fa-list
+        |  Menu
       - if current_user
-        = link_to "Account", account_path, class: "text-decoration-none text-dark"
+        = link_to account_path, class: "text-decoration-none text-dark" do 
+          i.fa-solid.fa-user
+          |  Account
       - else 
-        = link_to "Sign In", user_session_path, class: "text-decoration-none text-light"
+        = link_to user_session_path, class: "text-decoration-none text-dark" do
+          i.fa-solid.fa-sign-in-alt
+          |  Sign In
