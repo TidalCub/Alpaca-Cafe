@@ -4,7 +4,7 @@
       .h2.brand-font = category.name
       - category.products.each do |product|
         = link_to products_path(product), class: "text-decoration-none text-dark"
-          .bg-light.p-3.m-3.rounded
+          .bg-light.p-3.m-3.rounded.shadow
             h3.brand-font = product.name
             p = "£#{product.price}"
 

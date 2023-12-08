@@ -1,6 +1,6 @@
 .brand-font.ps-3.display-3 Checkout
 .d-flex.flex-row.justify-content-around.flex-wrap
-  .bg-light.col-11.col-md-11.col-lg-5.rounder.p-4
+  .bg-light.col-11.col-md-11.col-lg-5.rounder.p-4.shadow
     p Basket Id: #{@order.id}
 
     h3 Items:
@@ -8,12 +8,12 @@
     - @order.order_items.each do |item|
       h5 = item.product.name
 
-  .col-11.col-md-11.col-lg-5.d-flex.align-items-center.justify-content-center.p-2.gap-3 
+  .col-11.col-md-11.col-lg-5.d-flex.align-items-center.justify-content-center.p-2.gap-3
     form action="#{order_path(@order.id)}" method="post" class="col-12"
       input type="hidden" name="_method" value="patch"
       input type="hidden" name="authenticity_token" value="#{form_authenticity_token}"
       h5 Chose Payment Method:
-      .col-12.bg-light.rounder.pb-4
+      .col-12.bg-light.rounder.pb-4.shadow
         .form-group.d-flex.flex-row-gap-3.d-flex.justify-content-center.align-items-center.gap-4
           label.col-2
             input type="radio" name="payment_method" value="google_pay" class="hidden-radio"
@@ -25,7 +25,7 @@
             input type="radio" name="payment_method" value="paypal" class="hidden-radio"
             = image_tag "card.svg", height: "50%"
       h5.pt-2 Verify Details:
-      .col-12.bg-light.rounder.mt-3.rounder.p-4
+      .col-12.bg-light.rounder.mt-3.rounder.p-4.shadow
         h4 Delivery Method:
         h2.col-12.text-center Pickup
         hr
@@ -36,4 +36,4 @@
         h4 Total: 
         h2.col-12.text-center £#{@total}
       h5.pt-2 Pay:
-      input type="submit" value="Pay" class="btn btn-primary col-12 mt-3"
+      input type="submit" value="Pay" class="btn btn-primary col-12 mt-3 shadow"
