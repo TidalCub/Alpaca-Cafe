@@ -16,6 +16,11 @@
 
  @import "bootstrap";
 
+ .btn-primary {
+  background-color: #ED6A5A !important;
+  border-color: #ED6A5A !important;
+ }
+
 .bg-primary {
   background-color: #ED6A5A !important;
 }
@@ -23,3 +28,38 @@
 .bg-secondary {
   background-color: #F4A259 !important;
 }
+
+.brand-font{
+  font-family: 'Koulen', Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.normal-font{
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.no-h-padding{
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
+  line-height: 1 !important;
+  margin: 0 !important;
+}
+
+.cart-icon{
+  font-size: 1.5em;
+  color: #ED6A5A;
+}
+
+.hidden-radio[type=radio] {
+  opacity: 0;
+}
+
+
+.hidden-radio[type=radio]:checked + img {
+
+  background-color: #ED6A5A;
+  color: white;
+  border-color: #ED6A5A;
+  padding: 5px;
+  border-radius: 5px;
+}
+

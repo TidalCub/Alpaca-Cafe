@@ -10,6 +10,6 @@
         - order.order_items.each do |order_item|
           h3 = order_item.product.name
       .col-12.p-2.bg-dark
-        = link_to "Complete Order", complete_order_path(id: order.id)
+        = link_to "Complete Order", complete_order_path(id: order.id), class: "btn btn-primary"
         
        

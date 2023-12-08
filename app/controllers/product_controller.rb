@@ -15,6 +15,7 @@ class ProductController < ApplicationController
   def add_to_basket
     product = Product.find(add_to_basket_params[:product])
     OrderItem.create(order: get_user_basket, product_id: product.id)
+    redirect_back(fallback_location: categories_path)
   end
 
   private

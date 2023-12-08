@@ -6,14 +6,20 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
+    unless @order.user == current_user
+      redirect_to orders_path, alert: "You don't have permission to view this order."
+    end
   end
 
   def cart
     @items = get_user_basket.order_items
+    @total = calculate_total
+    @recommended_products = Product.order("RANDOM()").limit(5)
   end
 
   def checkout
     @order = get_user_basket
+    @total = calculate_total
   end
 
   def update
@@ -29,4 +35,5 @@ class OrdersController < ApplicationController
     @order.save
     redirect_to orders_path
   end
+
 end

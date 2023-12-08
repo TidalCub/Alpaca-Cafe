@@ -1,4 +1,28 @@
-- @items.each do |item|
-  p = item.product.name
-
-= link_to 'Checkout', checkout_path, class: "btn btn-primary"
+.col-12.d-flex.flex-row.justify-content-around.align-items-center.gap-3.flex-wrap
+  .col-11.col-md-11.col-lg-5.text-center.bg-light.rouder.p-5.pb-3
+    - if @items.empty?
+      .h2.brand-font Your cart is empty
+    - else
+      .h1.brand-font Your cart
+      hr
+      - @items.each do |item|
+        h3 = item.product.name
+      hr
+      .h4.brand-font Total: £#{@total}
+      = link_to checkout_path, class: "btn btn-primary display-3" do
+        h4
+          | Continue To Checkout  
+          i.fa-solid.fa-arrow-right
+      
+  .col-11.col-md-11.col-lg-4.text-center.p-5.pb-3
+    h1 Recomended for you
+    hr
+    - @recommended_products.each do |product|
+      .bg-light.p-3.m-3.rounded
+        h3 = product.name
+        p = "£#{product.price}"
+        .d-flex.flex-row.gap-3.col-12.aligh-items-center.justify-content-center
+          = button_to 'Add to Order', add_to_basket_url(product: product), method: :post, class: "btn btn-primary"
+          = link_to products_path(product), class: "btn btn-secondary" 
+            | view
+    hr
