@@ -1,1 +1,15 @@
-h1 Order Index
+
+.d-flex.flex-row.flex-wrap.gap-2
+  - @orders.each do |order|
+    .col-3.bg-info
+      .col-12.bg-dark.d-flex.flex-row.justify-content-around.text-light
+        . ID: #{order.id}
+        . = order.state
+        . = order.updated_at
+      .col-12.p-2
+        - order.order_items.each do |order_item|
+          h3 = order_item.product.name
+      .col-12.p-2.bg-dark
+        = link_to "Complete Order", complete_order_path(id: order.id)
+        
+       

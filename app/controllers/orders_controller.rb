@@ -1,5 +1,9 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
+  def index 
+    @orders = Order.all.paid
+  end
+
   def show
     @order = Order.find(params[:id])
   end
@@ -17,5 +21,12 @@ class OrdersController < ApplicationController
     @order.state = 'paid'
     @order.save
     redirect_to @order
+  end
+
+  def complete_order
+    @order = Order.find(params[:id])
+    @order.state = 'completed'
+    @order.save
+    redirect_to orders_path
   end
 end

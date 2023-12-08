@@ -10,8 +10,8 @@ html
     = javascript_importmap_tags
 
   body
-    
-    = render 'layouts/header'
+    - unless controller_name == 'orders' && action_name == 'index'
+      = render 'layouts/header'
     p.notice = notice 
     p.alery = alert
     = yield
