@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   root 'category#index'
-  resources :products, controller: 'product', only: %i[index new create]
+  resources :products, controller: 'product', only: %i[index new create show]
   post 'add_to_basket', to: 'product#add_to_basket', as: :add_to_basket
   resources :manage, only: %i[index]
   resources :categories, controller: 'category', only: %i[index new create]

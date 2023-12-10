@@ -9,11 +9,15 @@
 
 OrderItem.destroy_all
 Order.destroy_all
-
+Recipe.destroy_all
+Product.destroy_all
+Category.destroy_all
+Ingredient.destroy_all
+IngredientGroup.destroy_all
 User.destroy_all
 User.create!(email: "customer@alpaca.com", password: "password", password_confirmation: "password")
 
-Category.destroy_all
+
 Category.create!([{
     name: "Slow Roasted Coffee"
   },
@@ -25,7 +29,7 @@ Category.create!([{
   }
 ])
 
-Product.destroy_all
+
 Product.create!([{
     name: "Latte",
     description: "A latte is a coffee drink made with espresso and steamed milk.",
@@ -46,18 +50,17 @@ Product.create!([{
   }
 ])
 
-IngredientGroup.destroy_all
-IngredientGroup.create!([{#
+IngredientGroup.create!([{
     name: "Milk",
   },
   {
     name: "Coffee",
   },
   {
-    name: "Topings",
+    name: "Toppings",
   }])
 
-Ingredient.destroy_all
+
 Ingredient.create!([{
     name: "Whole Milk",
     ingredient_group_id: IngredientGroup.find_by(name: "Milk").id,  
@@ -80,35 +83,17 @@ Ingredient.create!([{
   },
   {
     name: "Cream",
-    ingredient_group_id: IngredientGroup.find_by(name: "Topings").id,0
+    ingredient_group_id: IngredientGroup.find_by(name: "Toppings").id,
   }])
 
-Recipe.destroy_all
-Recipe.create!([{
-    product_id: Product.find_by(name: "Latte").id,
-    ingredient_group_id: IngredientGroup.find_by(name: "Milk").id,
-},{
-    product_id: Product.find_by(name: "Latte").id,
-    ingredient_group_id: IngredientGroup.find_by(name: "Coffee").id,
-}, {
-    product_id: Product.find_by(name: "Lattee").id,
-    ingredient_group_id: IngredientGroup.find_by(name: "Topings").id,
-},{
-    product_id: Product.find_by(name: "Cappuccino").id,
-    ingredient_group_id: IngredientGroup.find_by(name: "Milk").id,
-},{
-    product_id: Product.find_by(name: "Cappuccino").id,
-    ingredient_group_id: IngredientGroup.find_by(name: "Coffee").id,
-},{
-    product_id: Product.find_by(name: "Cappuccino").id,
-    ingredient_group_id: IngredientGroup.find_by(name: "Topings").id,
-},{
-    product_id: Product.find_by(name: "Iced Latte").id,
-    ingredient_group_id: IngredientGroup.find_by(name: "Milk").id,
-},{
-    product_id: Product.find_by(name: "Iced Latte").id,
-    ingredient_group_id: IngredientGroup.find_by(name: "Coffee").id,
-},{
-    product_id: Product.find_by(name: "Iced Latte").id,
-    ingredient_group_id: IngredientGroup.find_by(name: "Topings").id,
-}])
+  Recipe.create!([{
+      product_id: Product.find_by(name: "Latte").id,
+      ingredient_group_id: IngredientGroup.find_by(name: "Milk").id,
+  },{
+      product_id: Product.find_by(name: "Latte").id,
+      ingredient_group_id: IngredientGroup.find_by(name: "Coffee").id,
+    },{
+      product_id: Product.find_by(name: "Latte").id,
+      ingredient_group_id: IngredientGroup.find_by(name: "Toppings").id,
+    },
+  ])

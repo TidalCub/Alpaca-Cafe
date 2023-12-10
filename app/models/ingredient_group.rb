@@ -1,4 +1,4 @@
 class IngredientGroup < ApplicationRecord
-  belongs_to :recipe
+  has_many :recipes
   has_many :ingredients
 end

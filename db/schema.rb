@@ -62,12 +62,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_10_163413) do
   end
 
   create_table "recipes", force: :cascade do |t|
-    t.integer "products_id"
+    t.integer "product_id"
     t.integer "ingredient_group_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["ingredient_group_id"], name: "index_recipes_on_ingredient_group_id"
-    t.index ["products_id"], name: "index_recipes_on_products_id"
+    t.index ["product_id"], name: "index_recipes_on_product_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -88,5 +88,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_10_163413) do
   add_foreign_key "orders", "users"
   add_foreign_key "products", "categories"
   add_foreign_key "recipes", "ingredient_groups"
-  add_foreign_key "recipes", "products", column: "products_id"
+  add_foreign_key "recipes", "products"
 end

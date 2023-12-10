@@ -1,0 +1,8 @@
+= @product.name
+br 
+br
+- @product.recipes.each do |recipie_group|
+  - recipie_group.ingredient_group.ingredients.each do |ingredient|
+    = ingredient.name
+    br
+  br
