@@ -45,3 +45,70 @@ Product.create!([{
     category_id: Category.find_by(name: "Iced Coffee").id
   }
 ])
+
+IngredientGroup.destroy_all
+IngredientGroup.create!([{#
+    name: "Milk",
+  },
+  {
+    name: "Coffee",
+  },
+  {
+    name: "Topings",
+  }])
+
+Ingredient.destroy_all
+Ingredient.create!([{
+    name: "Whole Milk",
+    ingredient_group_id: IngredientGroup.find_by(name: "Milk").id,  
+  },
+  {
+    name: "Oat Milk",
+    ingredient_group_id: IngredientGroup.find_by(name: "Milk").id,
+  },
+  {
+    name: "Almond Milk",
+    ingredient_group_id: IngredientGroup.find_by(name: "Milk").id,
+  },
+  {
+    name: "Espresso",
+    ingredient_group_id: IngredientGroup.find_by(name: "Coffee").id,
+  },
+  {
+    name: "Double Espresso",
+    ingredient_group_id: IngredientGroup.find_by(name: "Coffee").id,
+  },
+  {
+    name: "Cream",
+    ingredient_group_id: IngredientGroup.find_by(name: "Topings").id,0
+  }])
+
+Recipe.destroy_all
+Recipe.create!([{
+    product_id: Product.find_by(name: "Latte").id,
+    ingredient_group_id: IngredientGroup.find_by(name: "Milk").id,
+},{
+    product_id: Product.find_by(name: "Latte").id,
+    ingredient_group_id: IngredientGroup.find_by(name: "Coffee").id,
+}, {
+    product_id: Product.find_by(name: "Lattee").id,
+    ingredient_group_id: IngredientGroup.find_by(name: "Topings").id,
+},{
+    product_id: Product.find_by(name: "Cappuccino").id,
+    ingredient_group_id: IngredientGroup.find_by(name: "Milk").id,
+},{
+    product_id: Product.find_by(name: "Cappuccino").id,
+    ingredient_group_id: IngredientGroup.find_by(name: "Coffee").id,
+},{
+    product_id: Product.find_by(name: "Cappuccino").id,
+    ingredient_group_id: IngredientGroup.find_by(name: "Topings").id,
+},{
+    product_id: Product.find_by(name: "Iced Latte").id,
+    ingredient_group_id: IngredientGroup.find_by(name: "Milk").id,
+},{
+    product_id: Product.find_by(name: "Iced Latte").id,
+    ingredient_group_id: IngredientGroup.find_by(name: "Coffee").id,
+},{
+    product_id: Product.find_by(name: "Iced Latte").id,
+    ingredient_group_id: IngredientGroup.find_by(name: "Topings").id,
+}])

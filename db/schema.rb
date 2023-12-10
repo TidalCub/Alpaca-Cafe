@@ -10,11 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_12_05_084049) do
+ActiveRecord::Schema[7.0].define(version: 2023_12_10_163413) do
   create_table "categories", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "ingredient_groups", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "ingredients", force: :cascade do |t|
+    t.string "name"
+    t.integer "ingredient_group_id"
+    t.boolean "is_default", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ingredient_group_id"], name: "index_ingredients_on_ingredient_group_id"
   end
 
   create_table "order_items", force: :cascade do |t|
@@ -46,6 +61,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_05_084049) do
     t.index ["category_id"], name: "index_products_on_category_id"
   end
 
+  create_table "recipes", force: :cascade do |t|
+    t.integer "products_id"
+    t.integer "ingredient_group_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ingredient_group_id"], name: "index_recipes_on_ingredient_group_id"
+    t.index ["products_id"], name: "index_recipes_on_products_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -58,8 +82,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_05_084049) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "ingredients", "ingredient_groups"
   add_foreign_key "order_items", "orders"
   add_foreign_key "order_items", "products"
   add_foreign_key "orders", "users"
   add_foreign_key "products", "categories"
+  add_foreign_key "recipes", "ingredient_groups"
+  add_foreign_key "recipes", "products", column: "products_id"
 end
