@@ -58,12 +58,15 @@ IngredientGroup.create!([{
   },
   {
     name: "Toppings",
+  },
+  { name: "Syurp" 
   }])
 
 
 Ingredient.create!([{
     name: "Whole Milk",
-    ingredient_group_id: IngredientGroup.find_by(name: "Milk").id,  
+    ingredient_group_id: IngredientGroup.find_by(name: "Milk").id,
+    is_default: true
   },
   {
     name: "Oat Milk",
@@ -76,6 +79,7 @@ Ingredient.create!([{
   {
     name: "Espresso",
     ingredient_group_id: IngredientGroup.find_by(name: "Coffee").id,
+    is_default: true
   },
   {
     name: "Double Espresso",
@@ -84,6 +88,10 @@ Ingredient.create!([{
   {
     name: "Cream",
     ingredient_group_id: IngredientGroup.find_by(name: "Toppings").id,
+  },
+  {
+    name: "Carmal",
+    ingredient_group_id: IngredientGroup.find_by(name: "Syurp").id,
   }])
 
   Recipe.create!([{
@@ -95,5 +103,8 @@ Ingredient.create!([{
     },{
       product_id: Product.find_by(name: "Latte").id,
       ingredient_group_id: IngredientGroup.find_by(name: "Toppings").id,
-    },
+    },{
+      product_id: Product.find_by(name: "Latte").id,
+      ingredient_group_id: IngredientGroup.find_by(name: "Syurp").id,
+    }
   ])

@@ -2,7 +2,11 @@
 br 
 br
 - @product.recipes.each do |recipie_group|
+  h1 = recipie_group.ingredient_group.name
+  br
   - recipie_group.ingredient_group.ingredients.each do |ingredient|
-    = ingredient.name
-    br
+    
+    - if ingredient.is_default?
+      = ingredient.name
+      br
   br
