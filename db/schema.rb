@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_12_10_163413) do
+ActiveRecord::Schema[7.0].define(version: 2023_12_10_200925) do
   create_table "categories", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -51,6 +51,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_10_163413) do
     t.index ["users_id"], name: "index_orders_on_users_id"
   end
 
+  create_table "product_modifyers", force: :cascade do |t|
+    t.integer "order_item_id", null: false
+    t.integer "ingredient_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ingredient_id"], name: "index_product_modifyers_on_ingredient_id"
+    t.index ["order_item_id"], name: "index_product_modifyers_on_order_item_id"
+  end
+
   create_table "products", force: :cascade do |t|
     t.string "name"
     t.string "description"
@@ -86,6 +95,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_10_163413) do
   add_foreign_key "order_items", "orders"
   add_foreign_key "order_items", "products"
   add_foreign_key "orders", "users"
+  add_foreign_key "product_modifyers", "ingredients"
+  add_foreign_key "product_modifyers", "order_items"
   add_foreign_key "products", "categories"
   add_foreign_key "recipes", "ingredient_groups"
   add_foreign_key "recipes", "products"
