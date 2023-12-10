@@ -1,12 +1,26 @@
-= @product.name
-br 
-br
-- @product.recipes.each do |recipie_group|
-  h1 = recipie_group.ingredient_group.name
-  br
-  - recipie_group.ingredient_group.ingredients.each do |ingredient|
-    
-    - if ingredient.is_default?
-      = ingredient.name
-      br
-  br
+hr
+.col-12.d-flex.flex-row.flex-wrap.justify-content-between
+  .col-11.col-md-4.col-lg-4.bg-dark
+    h1 Image goes here
+
+  .col-11.col-md-8.col-lg-8.text-center
+    h1 = @product.name
+    h2 = @product.description
+    h4 Customise your product
+    hr
+    .col-12.flex-column.justify-content-center
+      - @product.recipes.each do |recipie_group|
+        .col-12
+          div.d-flex.align-items-center.justify-content-center
+            = link_to "#", id: "#{recipie_group.ingredient_group.name}", class: "font-weight-bold h4 me-2 " do
+              = recipie_group.ingredient_group.name
+              //i.fa-solid.fa-chevron-down
+          .col-12.d-flex.justify-content-center
+            table
+              tbody
+                - recipie_group.ingredient_group.ingredients.each do |ingredient|
+                  tr
+                    td.pe-3
+                      = ingredient.name
+                    td
+                      i class=(ingredient.is_default? ? "fa-regular fa-square-check" : "fa-regular fa-square")
