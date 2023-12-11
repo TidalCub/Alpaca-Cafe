@@ -52,14 +52,12 @@ Product.create!([{
 
 IngredientGroup.create!([{
     name: "Milk",
-  },
-  {
+  },{
     name: "Coffee",
-  },
-  {
+  },{
     name: "Toppings",
-  },
-  { name: "Syurp" 
+  },{ 
+    name: "Syurp" 
   }])
 
 
@@ -106,5 +104,30 @@ Ingredient.create!([{
     },{
       product_id: Product.find_by(name: "Latte").id,
       ingredient_group_id: IngredientGroup.find_by(name: "Syurp").id,
-    }
+    },{
+      product_id: Product.find_by(name: "Cappuccino").id,
+      ingredient_group_id: IngredientGroup.find_by(name: "Milk").id,
+  },{
+      product_id: Product.find_by(name: "Cappuccino").id,
+      ingredient_group_id: IngredientGroup.find_by(name: "Coffee").id,
+    },{
+      product_id: Product.find_by(name: "Cappuccino").id,
+      ingredient_group_id: IngredientGroup.find_by(name: "Toppings").id,
+    },{
+      product_id: Product.find_by(name: "Cappuccino").id,
+      ingredient_group_id: IngredientGroup.find_by(name: "Syurp").id,
+    },{
+      product_id: Product.find_by(name: "Iced Latte").id,
+      ingredient_group_id: IngredientGroup.find_by(name: "Milk").id,
+  },{
+      product_id: Product.find_by(name: "Iced Latte").id,
+      ingredient_group_id: IngredientGroup.find_by(name: "Coffee").id,
+    },{
+      product_id: Product.find_by(name: "Iced Latte").id,
+      ingredient_group_id: IngredientGroup.find_by(name: "Toppings").id,
+    },{
+      product_id: Product.find_by(name: "Iced Latte").id,
+      ingredient_group_id: IngredientGroup.find_by(name: "Syurp").id,
+    },
+    
   ])
