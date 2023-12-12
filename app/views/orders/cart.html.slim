@@ -7,9 +7,11 @@
       hr
       - @items.each do |item|
         h3 = item.product.name
-        - item.product_modifyers.each do |mod|
-          = mod.ingredient.name
-          br
+        .col-12.d-flex.gap-2.text-muted.justify-content-center
+          - item.product_modifyers.each do |mod|
+            | |
+            div = mod.ingredient.name 
+            | |
       hr
       .h4.brand-font Total: £#{@total}
       = link_to checkout_path, class: "btn btn-primary display-3" do
