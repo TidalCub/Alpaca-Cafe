@@ -11,16 +11,28 @@ hr
     .col-12.d-flex.justify-content-center.flex-wrap
       .col-11.col-lg-4.col-md-11.flex-column.justify-content-center.shadow.p-3.bg-light
         h4 Customise your product
-        - @product.recipes.each do |recipie_group|
-          hr
-          .col-12.dropdown-wrapper
-            div.d-flex.align-items-center.justify-content-center
-              h4.dropdown-title.brand-font id= "#{recipie_group.ingredient_group.name.parameterize}" = recipie_group.ingredient_group.name
-            .col-12.dropdown-container
-              .col-12.d-flex.justify-content-center.gap-2
-                - recipie_group.ingredient_group.ingredients.each do |ingredient|
-                    .btn class = "#{ingredient.is_default ? "btn-primary" : "btn-secondary"}"
-                      = ingredient.name
+        form#CustomizeForm action="#{add_to_basket_url(product: @product)}" method="POST"
+          - @product.recipes.each do |recipie_group|
+            hr
+            .col-12
+              div.d-flex.align-items-center.justify-content-center
+                h4.brand-font = recipie_group.ingredient_group.name
+              .col-12
+                .col-12.d-flex.flex-row.flex-wrap.justify-content-center.gap-1
+                  - recipie_group.ingredient_group.ingredients.each do |ingredient|
+                    label
+                      - if ingredient.is_default
+                        input type="radio" name="#{recipie_group.ingredient_group.name}" value="#{ingredient.id}" class="hidden-radio" checked=""
+                      - else
+                        input type="radio" name="#{recipie_group.ingredient_group.name}" value="#{ingredient.id}" class="hidden-radio" 
+                      .btn.btn-secondary = ingredient.name
       .col-12.mt-4
-        .col-6.btn.btn-primary 
-          .h1.brand-font.no-h-padding  Save and Add to Basket
+        .col-6
+          button.btn.btn-primary.brand-font onclick="submitform()"  Save and Add to Basket
+
+
+script
+  | function submitform(){
+  | document.getElementById("CustomizeForm").submit();
+  |}
+  | 

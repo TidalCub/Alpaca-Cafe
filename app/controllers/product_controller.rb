@@ -1,4 +1,5 @@
 class ProductController < ApplicationController
+  skip_before_action :verify_authenticity_token
   def index
     @products = Product.all
   end
@@ -17,12 +18,22 @@ class ProductController < ApplicationController
   end
 
   def add_to_basket
+    basket = get_user_basket
     product = Product.find(add_to_basket_params[:product])
-    OrderItem.create(order: get_user_basket, product_id: product.id)
+    order_item = OrderItem.create(order: basket, product_id: product.id)
+    product_modifyer(params, order_item)
     redirect_back(fallback_location: categories_path)
   end
 
   private
+
+  def product_modifyer(params, order_item)
+    IngredientGroup.all.each do |ingredient_group|
+      unless Ingredient.find(params[ingredient_group.name]).is_default
+        ProductModifyer.create(order_item_id: order_item.id, ingredient_id: Ingredient.find(params[ingredient_group.name]).id)
+      end
+    end
+  end
 
   def add_to_basket_params
     params.permit(:product, :authenticity_token)

@@ -3,13 +3,12 @@
    - @categories.each do |category|
       .h2.brand-font = category.name
       - category.products.each do |product|
-        = link_to product_path(product), class: "text-decoration-none text-dark"
-          .bg-light.p-3.m-3.shadow.rounded-normal
-            h3.brand-font = product.name
-            p = "£#{product.price}"
+        .bg-light.p-3.m-3.shadow.rounded-normal
+          h3.brand-font = product.name
+          p = "£#{product.price}"
 
-            .d-flex.flex-row.justify-content-center.gap-3.brand-font
-              - if current_user
-                = button_to 'Add to Order', add_to_basket_url(product: product), method: :post, class: "btn btn-primary"
-              = link_to product_path(product), class: "btn btn-secondary" 
-                | view
+          .d-flex.flex-row.justify-content-center.gap-3.brand-font
+            - if current_user
+              = button_to 'Add to Order', add_to_basket_url(product: product), method: :post, class: "btn btn-primary"
+            = link_to product_path(product), class: "btn btn-secondary" 
+              | view

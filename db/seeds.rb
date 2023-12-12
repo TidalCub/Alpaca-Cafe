@@ -88,13 +88,21 @@ Ingredient.create!([{
   {
     name: "Cream",
     ingredient_group_id: IngredientGroup.find_by(name: "Toppings").id,
-  },
-  {
+  },{
+    name: "None",
+    ingredient_group_id: IngredientGroup.find_by(name: "Toppings").id,
+    is_default: true
+  },{
     name: "Carmal",
     ingredient_group_id: IngredientGroup.find_by(name: "Syurp").id,
   },{
+    name: "None",
+    ingredient_group_id: IngredientGroup.find_by(name: "Syurp").id,
+    is_default: true
+  },{
     name: "Regular",
     ingredient_group_id: IngredientGroup.find_by(name: "Blend").id,
+    is_default: true
   },{
     name: "Decaf",
     ingredient_group_id: IngredientGroup.find_by(name: "Blend").id,
