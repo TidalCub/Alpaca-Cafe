@@ -7,6 +7,13 @@
     hr
     - @order.order_items.each do |item|
       h5 = item.product.name
+      .col-12.d-flex.gap-2.text-muted
+        - item.product_modifyers.each do |mod|
+          div = mod.ingredient.name 
+          | |
+          
+          
+      
 
   .col-11.col-md-11.col-lg-5.d-flex.align-items-center.justify-content-center.p-2.gap-3
     form action="#{order_path(@order.id)}" method="post" class="col-12"
