@@ -4,23 +4,23 @@ hr
     h1 Image goes here
 
   .col-11.col-md-8.col-lg-8.text-center
-    h1 = @product.name
-    h2 = @product.description
-    h4 Customise your product
+    h1.brand-font = @product.name
+    p = @product.description
     hr
-    .col-12.flex-column.justify-content-center
-      - @product.recipes.each do |recipie_group|
-        .col-12
-          div.d-flex.align-items-center.justify-content-center
-            = link_to "#", id: "#{recipie_group.ingredient_group.name}", class: "font-weight-bold h4 me-2 " do
-              = recipie_group.ingredient_group.name
-              //i.fa-solid.fa-chevron-down
-          .col-12.d-flex.justify-content-center
-            table
-              tbody
+    
+    .col-12.d-flex.justify-content-center.flex-wrap
+      .col-11.col-lg-4.col-md-11.flex-column.justify-content-center.shadow.p-3.bg-light
+        h4 Customise your product
+        - @product.recipes.each do |recipie_group|
+          hr
+          .col-12.dropdown-wrapper
+            div.d-flex.align-items-center.justify-content-center
+              h4.dropdown-title.brand-font id= "#{recipie_group.ingredient_group.name.parameterize}" = recipie_group.ingredient_group.name
+            .col-12.dropdown-container
+              .col-12.d-flex.justify-content-center.gap-2
                 - recipie_group.ingredient_group.ingredients.each do |ingredient|
-                  tr
-                    td.pe-3
+                    .btn class = "#{ingredient.is_default ? "btn-primary" : "btn-secondary"}"
                       = ingredient.name
-                    td
-                      i class=(ingredient.is_default? ? "fa-regular fa-square-check" : "fa-regular fa-square")
+      .col-12.mt-4
+        .col-6.btn.btn-primary 
+          .h1.brand-font.no-h-padding  Save and Add to Basket
