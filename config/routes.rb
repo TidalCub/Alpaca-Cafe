@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
+  get 'cart', to: 'orders#cart', as: :cart
   root 'category#index'
   resources :products, controller: 'product', only: %i[index new create show]
   post 'add_to_basket', to: 'product#add_to_basket', as: :add_to_basket
@@ -7,7 +8,6 @@ Rails.application.routes.draw do
   resources :categories, controller: 'category', only: %i[index new create]
   resources :orders
   get 'checkout', to: 'orders#checkout', as: :checkout
-  get 'cart', to: 'orders#cart', as: :cart
   get 'complete_order', to: 'orders#complete_order', as: :complete_order
   resources :carts, only: %i[index]
   get 'account', to: 'users#show', as: :account
