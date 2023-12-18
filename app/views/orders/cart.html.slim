@@ -6,12 +6,16 @@
       .h1.brand-font Your cart
       hr
       - @items.each do |item|
-        h3 = item.product.name
-        .col-12.d-flex.gap-2.text-muted.justify-content-center
-          - item.product_modifyers.each do |mod|
-            | |
-            div = mod.ingredient.name 
-            | |
+        .col-12
+          .col-12.d-flex
+            .h3.text-start = item.product.name
+            = button_to order_item_path(item), method: :delete, class: "btn-none ms-2", title: "Delete" do
+              i.fa-solid.fa-x.decrease
+          .col-12.d-flex.gap-2.text-muted.justify-content-start.flex-wra-
+            - item.product_modifyers.each do |mod|
+              | |
+              div = mod.ingredient.name 
+              | |
       hr
       .h4.brand-font Total: £#{@total}
       = link_to checkout_path, class: "btn btn-primary display-3" do

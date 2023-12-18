@@ -98,3 +98,20 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
 .fa-cart-shopping{
   transform: scaleX(-1);
 }
+
+.decrease{
+  transition: all 0.3s;
+  color: rgba(33, 37, 41, 0.75);
+}
+
+.decrease:hover {
+  @extend .text-danger
+}
+
+.btn-none{
+  background-color: transparent;
+  border: none;
+  color: #ED6A5A;
+  text-align: middle;
+  padding-top: 6px;
+}
