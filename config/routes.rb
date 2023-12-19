@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   get 'cart', to: 'orders#cart', as: :cart
-  root 'category#index'
+  root 'home#index'
   resources :products, controller: 'product', only: %i[index new create show]
   post 'add_to_basket', to: 'product#add_to_basket', as: :add_to_basket
   resources :manage, only: %i[index]
@@ -12,4 +12,5 @@ Rails.application.routes.draw do
   resources :carts, only: %i[index]
   get 'account', to: 'users#show', as: :account
   resources :order_items
+  resources :home, only: %i[index]
 end
