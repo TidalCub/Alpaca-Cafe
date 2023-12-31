@@ -46,7 +46,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_10_200925) do
     t.integer "state"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user", default: 0, null: false
     t.integer "user_id", default: 0, null: false
     t.integer "users_id"
     t.index ["users_id"], name: "index_orders_on_users_id"

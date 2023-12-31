@@ -29,8 +29,10 @@ class ProductController < ApplicationController
 
   def product_modifyer(params, order_item)
     IngredientGroup.all.each do |ingredient_group|
-      unless Ingredient.find(params[ingredient_group.name]).is_default
-        ProductModifyer.create(order_item_id: order_item.id, ingredient_id: Ingredient.find(params[ingredient_group.name]).id)
+      if params[ingredient_group].present?
+        unless Ingredient.find(params[ingredient_group.name]).is_default 
+          ProductModifyer.create(order_item_id: order_item.id, ingredient_id: Ingredient.find(params[ingredient_group.name]).id)
+        end
       end
     end
   end
