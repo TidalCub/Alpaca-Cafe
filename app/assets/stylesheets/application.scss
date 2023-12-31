@@ -116,14 +116,48 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
   padding-top: 6px;
 }
 
+.hero{
+  position:relative
+}
+.landing-image{
+  width:100%;
+  height:auto;
+  position: absolute;
+}
 .hero-img{
   margin-top:-20px;
 }
 
-.wavy-devider{
-  margin-top: -300px;;
+.wav-devider{
+  margin-bottom: 0;
+  position: absolute;
+  bottom:0;
+  width:100%;
+}
+
+.wavy-devider-reverse{
+  transform: scaley(-1);
+  margin-top:-10px;
+}
+
+.secondary-section{
+  margin-top:-300px;
 }
 
 .bg-green{
   background-color: #519D54;
+}
+
+.btn-organge{
+  background-color: #F4A259;
+  border-color: #F4A259;
+}
+
+.btn-organge:hover{
+  background-color: #F4A259;
+  border-color: #F4A259;
+}
+
+.buffer-zone{
+   padding-top:100px;
 }

@@ -1,7 +1,36 @@
-.col-12
-  = image_tag  "hero.png", class: "img-fluid hero-img"
-.col-12
-  = image_tag "green-wavy-devider.svg", class: "img-fluid col-12 wavy-devider"
+.hero
+  .landing-page
+    = image_tag  "hero.png", class: "img-fluid hero-img"
+    .wav-devider
+      = image_tag "green-wavy-devider.svg", class: "wavy-devider", width:"100%"
 
-.col-12.bg-green.pb-5
-  h1.brand-font.text-light.text-center Welcome to Alpaca Peruleon Cafe
+.col-12
+  
+  
+  .col-12.bg-green.pb-5
+    h1.brand-font.text-light.text-center Welcome to Alpaca Peruleon Cafe
+    .col-12.d-flex.justify-content-center.align-items-center
+      hr.text-light.border-3.shadow.col-8
+    .col-12.d-flex.flex-row.flex-wrap.justify-content-between
+      .col-12.col-md-6.col-lg-6.d-flex.justify-content-center
+        .col-12.d-flex.flex-column.justify-content-center.align-items-center
+          .display-3.brand-font.text-light.text-center
+            | Start your day right
+          = link_to "Order Now", categories_path, class: "btn btn-organge btn-lg btn-block mt-3 col-6 brand-font text-light text-center"
+          = link_to "View Our Menu", categories_path, class: "text-light"
+
+      .col-12.col-md-6.col-lg-6.d-flex.justify-content-center
+        .col-8.d-flex.flex-column.justify-content-center.align-items-center
+          h1.brand-font.text-light May we tempt you with
+          - @recommended_products.each do |product|
+            .bg-light.p-3.m-3.col-11.rounded-normal.shadow
+              h3.text-center = product.name
+              p.text-center = "£#{product.price}"
+              .d-flex.flex-row.gap-3.col-12.aligh-items-center.justify-content-center
+                = button_to 'Add to Order', add_to_basket_url(product: product), method: :post, class: "btn btn-primary"
+                = link_to products_path(product), class: "btn btn-secondary" 
+                  | view
+    .col-12.d-flex.justify-content-center.align-items-center
+      hr.text-light.border-3.shadow.col-8
+.col-12
+  = image_tag "green-wavy-devider.svg", class: "img-fluid col-12 wavy-devider-reverse"
