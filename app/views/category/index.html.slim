@@ -12,5 +12,7 @@
             .d-flex.flex-row.justify-content-center.gap-3.brand-font
               - if current_user
                 = button_to 'Add to Order', add_to_basket_url(product: product), method: :post, class: "btn btn-primary"
-              = link_to product_path(product), class: "btn btn-secondary" 
-                | view & Customise  
+              = link_to product_path(product), class: "btn btn-secondary flex-fill" 
+                | view 
+                - if current_user
+                    | & Customise

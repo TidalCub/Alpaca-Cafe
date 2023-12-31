@@ -14,7 +14,7 @@ class OrdersController < ApplicationController
   def cart
     @items = get_user_basket.order_items
     @total = calculate_total(get_user_basket)
-    @recommended_products = Product.order("RANDOM()").limit(5)
+    @recommended_products = Product.order("RANDOM()").limit(2)
   end
 
   def checkout

@@ -6,6 +6,7 @@ hr
   .col-12.col-md-8.col-lg-8.text-center
     h1.brand-font = @product.name
     p = @product.description
+    h4 = "£#{@product.price}"
     hr
     
     .col-12.d-flex.justify-content-center.flex-wrap
@@ -26,9 +27,10 @@ hr
                       - else
                         input type="radio" name="#{recipie_group.ingredient_group.name}" value="#{ingredient.id}" class="hidden-radio" 
                       .btn.btn-secondary = ingredient.name
-      .col-12.mt-4
+      .col-12.mt-4.d-flex.justify-content-center.align-items-center
         .col-6
-          button.btn.btn-primary.brand-font onclick="submitform()"  Save and Add to Basket
+          button.btn.btn-primary.brand-font onclick="submitform()"  
+            h3.pt-2 Save and Add to Basket
 
 
 script

@@ -26,12 +26,18 @@
   .col-11.col-md-11.col-lg-4.text-center.p-5.pb-3
     h1 Recomended for you
     hr
-    - @recommended_products.each do |product|
-      .bg-light.p-3.m-3.rounded-normal.shadow
-        h3 = product.name
-        p = "£#{product.price}"
-        .d-flex.flex-row.gap-3.col-12.aligh-items-center.justify-content-center
-          = button_to 'Add to Order', add_to_basket_url(product: product), method: :post, class: "btn btn-primary"
-          = link_to products_path(product), class: "btn btn-secondary" 
-            | view
+    .col-12.d-flex.flex-row.justify-content-center
+      - @recommended_products.each do |product|
+        .bg-light.p-3.m-3.shadow.rounded-normal.col-5
+                = image_tag product.image, class: "img-fluid rounded lazyload"
+                h3.brand-font = product.name
+                p = "£#{product.price}"
+
+                .d-flex.flex-row.justify-content-center.gap-3.brand-font
+                  - if current_user
+                    = button_to 'Add to Order', add_to_basket_url(product: product), method: :post, class: "btn btn-primary"
+                  = link_to product_path(product), class: "btn btn-secondary flex-fill" 
+                    | view 
+                    - if current_user
+                      | & Customise
     hr
