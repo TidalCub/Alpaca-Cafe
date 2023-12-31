@@ -1,54 +1,57 @@
-Given('There is an item') do
-  FactoryBot.create(:product)
+Given('I am loged in') do
+  visit new_user_session_path
+  fill_in 'user_email', with: "example@alpaca.com"
+  fill_in 'user_password', with: "password"
+  click_button 'Log in'
+  expect(page).to have_content('Signed in successfully.')
 end
 
-Given('Im on the menu page') do
+When('I go to the menu page') do
   visit categories_path
 end
 
-When('I click {string}') do |string|
-  click_on string
+Given('There is a product') do
+  FactoryBot.create(:product)
 end
 
-Then('I should see the item in my Cart') do
-  expect(page).to have_content(Product.last.name)
+Then('There is one product') do
+  expect(Product.count).to eq(1)
 end
 
-Then('I should see the checkout page') do
-  expect(page).to have_content("Checkout")
+Then('I can see it') do
+  expect(page).to have_content(Product.first.name)
 end
 
-Then('I should see the order confirmation page') do
-  expect(page).to have_content("Your Order Number is:")
+When('I order it') do
+  click_on "Add to Order"
+end
+
+Then('I have one product') do
+  expect(Order.first.order_items.count).to eq(1)
 end
 
 Given('There is a user') do
   FactoryBot.create(:user)
 end
 
-Given('I am logged in') do
-  click_on "Sign In"
-  fill_in "Email", with: "example@alpaca.com"
-  fill_in "Password", with: "password"
-  click_on "Log in"
+When('I go to my cart') do
+  visit cart_path
 end
 
-Then('The order should have the status {string}') do |string|
-  expect(Order.last.state).to eq(string)
+Then('I click {string}') do |string|
+  click_on string
 end
 
-Then('I cant see {string}') do |string|
-  expect(page).to_not have_content(string)
-end
-
-Then('I should see the ingridients i can change') do
-  expect(page).to have_content("Customise your product")
-end
-
-When('I change the {string} to {string}') do |string, string2|
-  click_on Ingredient.where(name: string2).id
-end
-
-Then('I should see the {string} in the ingridients') do |string|
+Then('I should see {string}') do |string|
   expect(page).to have_content(string)
+end
+
+When('Chose {string}') do |string|
+  div_element = find('.btn', text: string)
+  div_element.click
+end
+
+Then('I have one product with {string}') do |string|
+  
+  expect(Order.first.order_items.first.product_modifyers.first.ingredient.name).to eq(string)
 end
