@@ -1,14 +1,16 @@
 .col-12.d-flex.justify-content-center
-  .col-11.col-md-11.col-lg-6.text-center
+  .col-11.col-md-11.col-lg-11.text-center
    - @categories.each do |category|
-      .h2.brand-font = category.name
-      - category.products.each do |product|
-        .bg-light.p-3.m-3.shadow.rounded-normal
-          h3.brand-font = product.name
-          p = "£#{product.price}"
+      .h1.brand-font = category.name
+      .col-12.d-flex.flex-wrap.justify-content-center
+        - category.products.each do |product|
+          .bg-light.p-3.m-3.shadow.rounded-normal.col-5.col-md-4.col-lg-2
+            = image_tag product.image, class: "img-fluid rounded"
+            h3.brand-font = product.name
+            p = "£#{product.price}"
 
-          .d-flex.flex-row.justify-content-center.gap-3.brand-font
-            - if current_user
-              = button_to 'Add to Order', add_to_basket_url(product: product), method: :post, class: "btn btn-primary"
-            = link_to product_path(product), class: "btn btn-secondary" 
-              | view & Customise  
+            .d-flex.flex-row.justify-content-center.gap-3.brand-font
+              - if current_user
+                = button_to 'Add to Order', add_to_basket_url(product: product), method: :post, class: "btn btn-primary"
+              = link_to product_path(product), class: "btn btn-secondary" 
+                | view & Customise  
