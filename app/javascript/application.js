@@ -5,3 +5,5 @@ import "jquery"
 import "popper.js"
 import "bootstrap"
 //= require bootstrap
+//= require lazyload
+import "lazyload"

@@ -4,8 +4,8 @@
       .h1.brand-font = category.name
       .col-12.d-flex.flex-wrap.justify-content-center
         - category.products.each do |product|
-          .bg-light.p-3.m-3.shadow.rounded-normal.col-5.col-md-4.col-lg-2
-            = image_tag product.image, class: "img-fluid rounded"
+          .bg-light.p-3.m-3.shadow.rounded-normal.col-11.col-sm-5.col-md-4.col-lg-2
+            = image_tag product.image, class: "img-fluid rounded lazyload"
             h3.brand-font = product.name
             p = "£#{product.price}"
 

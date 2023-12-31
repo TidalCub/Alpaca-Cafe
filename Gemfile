@@ -85,3 +85,4 @@ gem 'jquery-rails'
 gem 'slim-rails'
 gem "devise", "~> 4.9"
 gem 'pg', '~> 1.5', '>= 1.5.4', group: :production
+gem 'lazyload-rails'
