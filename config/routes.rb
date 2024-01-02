@@ -13,4 +13,5 @@ Rails.application.routes.draw do
   get 'account', to: 'users#show', as: :account
   resources :order_items
   resources :home, only: %i[index]
+  resources :admin
 end
