@@ -10,6 +10,7 @@ require 'cucumber/rails'
 require 'capybara/cucumber'
 require 'selenium-webdriver'
 require 'capybara-screenshot/cucumber'
+require 'faker'
 
 Capybara.register_driver :selenium do |app|
   options = Selenium::WebDriver::Chrome::Options.new(args: %w[headless disable-gpu window-size=1920,1080])
