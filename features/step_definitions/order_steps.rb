@@ -54,4 +54,15 @@ end
 Then('I have one product with {string}') do |string|
   
   expect(Order.first.order_items.first.product_modifyers.first.ingredient.name).to eq(string)
+Then('The order should apear on the screen') do
+  visit orders_path
+  expect(page).to have_content("Order")
+end
+
+When('I click complete') do
+  click_on "Complete Order"
+end
+
+Then('The order is completed') do
+  expect(Order.last.state).to eq("completed")
 end

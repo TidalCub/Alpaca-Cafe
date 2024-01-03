@@ -1,5 +1,6 @@
 Feature: The admin reporting page
 
+#Tests requierment F-10
 @javascript
 Scenario: Seing total order
   Given there are products
