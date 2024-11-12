@@ -13,7 +13,7 @@ class ProductController < ApplicationController
     if @product.save
       redirect_to manage_index_path
     else
-      render manage_index_path,  alert: "An Error occured, product has not been added" 
+      render manage_index_path, alert: 'An Error occured, product has not been added'
     end
   end
 
@@ -29,10 +29,9 @@ class ProductController < ApplicationController
 
   def product_modifyer(params, order_item)
     IngredientGroup.all.each do |ingredient_group|
-      if params[ingredient_group.name].present?
-        unless Ingredient.find(params[ingredient_group.name]).is_default 
-          ProductModifyer.create(order_item_id: order_item.id, ingredient_id: Ingredient.find(params[ingredient_group.name]).id)
-        end
+      if params[ingredient_group.name].present? && !Ingredient.find(params[ingredient_group.name]).is_default
+        ProductModifyer.create(order_item_id: order_item.id,
+                               ingredient_id: Ingredient.find(params[ingredient_group.name]).id)
       end
     end
   end
