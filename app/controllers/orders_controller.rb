@@ -12,18 +12,18 @@ class OrdersController < ApplicationController
   end
 
   def cart
-    @items = get_user_basket.order_items
-    @total = calculate_total(get_user_basket)
+    @items = current_user.basket.order_items
+    @total = current_user.basket.total
     @recommended_products = Product.order('RANDOM()').limit(2)
   end
 
   def checkout
-    @order = get_user_basket
-    @total = calculate_total(get_user_basket)
+    @order = current_user.basket
+    @total = current_user.basket.total
   end
 
   def update
-    @order = get_user_basket
+    @order = current_user.basket
     @order.state = 'paid'
     @order.save
     redirect_to @order

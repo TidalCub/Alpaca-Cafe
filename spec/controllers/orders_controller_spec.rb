@@ -40,7 +40,7 @@ RSpec.describe OrdersController, type: :controller do
 
   describe 'GET #cart' do
     before do
-      allow(controller).to receive(:get_user_basket).and_return(basket)
+      allow(user).to receive(:basket).and_return(basket)
       allow(basket).to receive(:order_items).and_return([order_item])
     end
     it 'assigns @items and @total' do
@@ -51,7 +51,7 @@ RSpec.describe OrdersController, type: :controller do
 
   describe 'GET #checkout' do
     before do
-      allow(controller).to receive(:get_user_basket).and_return(basket)
+      allow(user).to receive(:basket).and_return(basket)
     end
 
     it 'assigns @order and @total' do

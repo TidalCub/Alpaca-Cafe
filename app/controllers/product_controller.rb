@@ -18,7 +18,7 @@ class ProductController < ApplicationController
   end
 
   def add_to_basket
-    basket = get_user_basket
+    basket = current_user.basket
     product = Product.find(add_to_basket_params[:product])
     order_item = OrderItem.create(order: basket, product_id: product.id)
     product_modifyer(params, order_item)
