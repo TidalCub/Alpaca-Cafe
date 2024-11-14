@@ -82,6 +82,7 @@ group :test do
   gem 'selenium-webdriver'
 end
 
+gem 'aasm', '~> 5.5'
 gem 'bootstrap', '~> 5.0'
 gem 'cucumber'
 gem 'devise', '~> 4.9'
