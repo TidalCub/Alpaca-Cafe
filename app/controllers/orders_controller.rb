@@ -24,15 +24,13 @@ class OrdersController < ApplicationController
 
   def update
     @order = current_user.basket
-    @order.state = 'paid'
-    @order.save
+    @order.paid!
     redirect_to @order
   end
 
   def complete_order
     @order = Order.find(params[:id])
-    @order.state = 'completed'
-    @order.save
+    @order.complete!
     redirect_to orders_path
   end
 end
