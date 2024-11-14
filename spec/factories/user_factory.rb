@@ -1,7 +1,8 @@
-# spec/factories/products.rb
+require 'faker'
+
 FactoryBot.define do
   factory :user do
-    email { "example@alpaca.com"}
-    password { "password" }
+    email { Faker::Internet.email }
+    password { 'password' }
   end
 end

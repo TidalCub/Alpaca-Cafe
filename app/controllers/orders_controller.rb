@@ -1,20 +1,20 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
-  def index 
+  def index
     @orders = Order.all.paid
   end
 
   def show
     @order = Order.find(params[:id])
-    unless @order.user == current_user
-      redirect_to orders_path, alert: "You don't have permission to view this order."
-    end
+    return if @order.user == current_user
+
+    redirect_to orders_path, alert: "You don't have permission to view this order."
   end
 
   def cart
     @items = get_user_basket.order_items
     @total = calculate_total(get_user_basket)
-    @recommended_products = Product.order("RANDOM()").limit(2)
+    @recommended_products = Product.order('RANDOM()').limit(2)
   end
 
   def checkout
@@ -35,5 +35,4 @@ class OrdersController < ApplicationController
     @order.save
     redirect_to orders_path
   end
-
 end
