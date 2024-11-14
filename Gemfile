@@ -87,6 +87,7 @@ gem 'cucumber'
 gem 'devise', '~> 4.9'
 gem 'faker'
 gem 'jquery-rails'
+gem 'kamal', require: false
 gem 'lazyload-rails'
 gem 'pg', '~> 1.5', '>= 1.5.4', group: :production
 gem 'rubocop-rails', require: false
