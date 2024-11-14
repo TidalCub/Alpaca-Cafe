@@ -3,15 +3,15 @@ class Order < ApplicationRecord
   belongs_to :user
   has_many :order_items
 
-  enum :state, { pending: 0, paid: 1, completed: 2 }
+  enum :state, { new_order: 0, pending: 1, on_checkout: 2, paid: 3, payment_failed: 4, completed: 5, expired: 6 }
 
   def total
     order_items.sum { |item| item.product.price }
   end
 
   aasm column: :state, enum: true do
-    state :pending, initial: true
-    state :paid, :completed
+    state :new_order, initial: true
+    state :pending, :on_checkout, :paid, :completed, :expired, :payment_failed
 
     event :pay do
       transitions from: :pending, to: :paid
