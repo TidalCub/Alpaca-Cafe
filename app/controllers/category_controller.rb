@@ -1,7 +1,10 @@
 class CategoryController < ApplicationController
   def index
+    return redirect_to store_index_path if current_user.basket.store.nil?
+
     @categories = Category.all
   end
+
   def new
     @category = Category.new
   end

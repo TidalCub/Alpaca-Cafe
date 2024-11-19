@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_11_19_100557) do
+ActiveRecord::Schema[8.0].define(version: 2024_11_19_103101) do
   create_table "adress", force: :cascade do |t|
     t.integer "number"
     t.string "street"
@@ -62,6 +62,8 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_19_100557) do
     t.integer "user", default: 0, null: false
     t.integer "user_id", default: 0, null: false
     t.integer "users_id"
+    t.integer "store_id"
+    t.index ["store_id"], name: "index_orders_on_store_id"
     t.index ["users_id"], name: "index_orders_on_users_id"
   end
 
@@ -117,6 +119,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_19_100557) do
   add_foreign_key "ingredients", "ingredient_groups"
   add_foreign_key "order_items", "orders"
   add_foreign_key "order_items", "products"
+  add_foreign_key "orders", "stores"
   add_foreign_key "orders", "users"
   add_foreign_key "product_modifyers", "ingredients"
   add_foreign_key "product_modifyers", "order_items"

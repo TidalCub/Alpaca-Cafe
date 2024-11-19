@@ -1,7 +1,8 @@
 class Order < ApplicationRecord
   include AASM
   belongs_to :user
-  has_many :order_items, dependent: :delete
+  belongs_to :store
+  has_many :order_items, dependent: :destroy
 
   enum :state, { new_order: 0, pending: 1, on_checkout: 2, paid: 3, payment_failed: 4, completed: 5, expired: 6 }
 
