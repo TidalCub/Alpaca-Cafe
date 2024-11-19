@@ -19,6 +19,7 @@ class OrdersController < ApplicationController
 
   def checkout
     @order = current_user.basket
+    @order.checkout!
     @total = current_user.basket.total
   end
 
