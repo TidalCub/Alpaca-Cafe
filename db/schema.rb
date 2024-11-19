@@ -10,7 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_14_145925) do
+ActiveRecord::Schema[8.0].define(version: 2024_11_19_100557) do
+  create_table "adress", force: :cascade do |t|
+    t.integer "number"
+    t.string "street"
+    t.string "city"
+    t.string "postcode"
+    t.string "county"
+    t.string "country"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "store_id"
+    t.index ["store_id"], name: "index_adress_on_store_id"
+  end
+
   create_table "categories", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -79,6 +92,14 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_14_145925) do
     t.datetime "updated_at", null: false
     t.index ["ingredient_group_id"], name: "index_recipes_on_ingredient_group_id"
     t.index ["product_id"], name: "index_recipes_on_product_id"
+  end
+
+  create_table "stores", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "adress_id"
+    t.index ["adress_id"], name: "index_stores_on_adress_id"
   end
 
   create_table "users", force: :cascade do |t|
