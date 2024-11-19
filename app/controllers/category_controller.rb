@@ -4,6 +4,7 @@ class CategoryController < ApplicationController
   def index
     return redirect_to store_name_menu_index_url(current_user.basket.store.slug) if user_signed_in? && current_user.basket.store.present?
 
+    current_user.basket.pending!
     @categories = Category.all
   end
 
