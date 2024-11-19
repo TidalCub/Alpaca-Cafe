@@ -1,2 +1,12 @@
-h1 Store#index
-p Find me in app/views/store/index.html.slim
+.col-12.d-flex.justify-content-center
+  .col-11.col-md-8.col-md-5.p-3.rounded.blured.shadow.p-3
+    h1.brand-font.text-center Select a Store
+    hr
+    .p-3
+      - @stores.each do |store|
+        .col-12.shadow.p-3.rounded.d-lg-flex.d-md-flex.justify-content-between
+          .col.flex-fill
+            h2.brand-font = store.name
+            p.text-muted = "#{store.address.number} #{store.address.street}, #{store.address.city}, #{store.address.postcode}"
+          .d-flex.flex-column.justify-content-end
+            = button_to "Select Store", select_store_path(store.id), class: "btn btn-primary col-12"

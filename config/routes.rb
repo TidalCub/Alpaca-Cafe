@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get 'account', to: 'users#show', as: :account
 
   post 'add_to_basket', to: 'product#add_to_basket', as: :add_to_basket
+  post 'select_store/:id', to: 'store#select_store', as: :select_store
 
   resources :products, controller: 'product', only: %i[index new create show]
   resources :categories, controller: 'category', only: %i[index new create]

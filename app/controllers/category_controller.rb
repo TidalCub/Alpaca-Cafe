@@ -1,4 +1,5 @@
 class CategoryController < ApplicationController
+  before_action :authenticate_user!
   def index
     return redirect_to store_index_path if current_user.basket.store.nil?
 
