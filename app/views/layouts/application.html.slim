@@ -17,3 +17,6 @@ html
     p.notice = notice 
     p.alery = alert
     = yield
+    - if current_user
+      - if current_user.basket.order_items.count > 0
+        = render 'layouts/basket'

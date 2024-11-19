@@ -20,8 +20,8 @@
         - else 
           = link_to user_session_path, class: "text-decoration-none text-dark" do
             h5  Sign In
-  .d-flex.pb-1.justify-content-end.flex-fill.pe-3
-    .brand-font.d-flex.flex-column.aling-items-end.justify-content-end
+  .d-flex.justify-content-end.flex-fill.pe-3.gap-3
+    .brand-font.d-flex.flex-column.aling-items-end.justify-content-end.pb-1
       - if current_user
         - unless current_user.basket.store.nil?
           = link_to store_index_path, class: "text-decoration-none text-dark" do
@@ -29,3 +29,7 @@
               | Store: 
               = current_user.basket.store.name
               i.fa-solid.fa-caret-down.ps-2
+    .brand-font.d-flex.flex-column.aling-items-end.justify-content-end
+      = link_to checkout_path, class: "text-decoration-none text-dark" do
+        h2
+          i.fa-solid.fa-shopping-basket
