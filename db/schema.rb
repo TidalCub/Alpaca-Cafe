@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_12_05_113128) do
+ActiveRecord::Schema[8.0].define(version: 2024_11_19_150843) do
   create_table "addresses", force: :cascade do |t|
     t.integer "number"
     t.string "street"
@@ -82,6 +82,8 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_05_113128) do
     t.integer "user_id", default: 0, null: false
     t.integer "users_id"
     t.integer "store_id"
+    t.string "payment_intent"
+    t.string "client_secret"
     t.index ["store_id"], name: "index_orders_on_store_id"
     t.index ["users_id"], name: "index_orders_on_users_id"
   end
