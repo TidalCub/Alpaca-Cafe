@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get "stock/index"
+  get "stock/show"
   root 'home#index'
 
   devise_for :users
@@ -21,4 +23,5 @@ Rails.application.routes.draw do
   resources :home, only: %i[index]
   resources :admin
   resources :store, only: %i[index]
+  resources :stock, only: %i[index show]
 end

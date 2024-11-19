@@ -1,0 +1,20 @@
+- @stores.each do |store|
+  .col-12.d-flex.justify-content-center.mt-4
+    .col-10.bg-light.p-2.rounded.border
+      h1 = store.name
+      hr
+      table.table
+        thead
+          tr
+            th Ingredient
+            th In Stock?
+        tbody
+          - @ingredient_group.each do |group|
+            tr
+              td.text-center.fw-bold.bg-light colspan="2" = group.name
+            - store.stock.joins(:ingredient).where(ingredients: { ingredient_group_id: group.id }).each do |stock|
+              tr
+                td = stock.ingredient.name
+                td = stock.in_stock? ? 'Yes' : 'No'
+        
+          
