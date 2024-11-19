@@ -19,10 +19,13 @@ IngredientGroup.destroy_all
 User.destroy_all
 User.create!(email: 'customer@alpaca.com', password: 'password', password_confirmation: 'password')
 Store.destroy_all
-Store.create!(name: 'Alpaca Coffee')
+Store.create!(name: 'Colchester')
+Store.create!(name: 'Ipswitch')
 Address.destroy_all
 Address.create!(store_id: Store.first.id, number: '224', street: 'High St.', city: 'Colchester', postcode: 'CO1 1TH',
                 county: 'Essex', country: 'United Kingdom')
+Address.create!(store_id: Store.second.id, number: '112', street: 'Main St.', city: 'Ipswitch', postcode: 'IP1 1TH',
+                county: 'Suffolk', country: 'United Kingdom')
 
 Category.create!([{
                    name: 'Slow Roasted Coffee'

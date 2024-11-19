@@ -4,7 +4,7 @@
     hr
     .p-3
       - @stores.each do |store|
-        .col-12.shadow.p-3.rounded.d-lg-flex.d-md-flex.justify-content-between
+        .col-12.shadow.p-3.rounded.d-lg-flex.d-md-flex.justify-content-between.mb-3
           .col.flex-fill
             h2.brand-font = store.name
             p.text-muted = "#{store.address.number} #{store.address.street}, #{store.address.city}, #{store.address.postcode}"
