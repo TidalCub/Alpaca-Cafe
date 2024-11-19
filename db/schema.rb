@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_11_19_113314) do
+ActiveRecord::Schema[8.0].define(version: 2024_11_19_185306) do
   create_table "addresses", force: :cascade do |t|
     t.integer "number"
     t.string "street"
@@ -33,7 +33,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_19_113314) do
   create_table "ingredient_groups", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "updated_at", null: false 
   end
 
   create_table "ingredients", force: :cascade do |t|
@@ -59,7 +59,6 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_19_113314) do
     t.integer "state"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user", default: 0, null: false
     t.integer "user_id", default: 0, null: false
     t.integer "users_id"
     t.integer "store_id"
@@ -96,6 +95,16 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_19_113314) do
     t.index ["product_id"], name: "index_recipes_on_product_id"
   end
 
+  create_table "stocks", force: :cascade do |t|
+    t.integer "store_id", null: false
+    t.integer "ingredient_id", null: false
+    t.boolean "in_stock", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ingredient_id"], name: "index_stocks_on_ingredient_id"
+    t.index ["store_id"], name: "index_stocks_on_store_id"
+  end
+
   create_table "stores", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -126,4 +135,6 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_19_113314) do
   add_foreign_key "products", "categories"
   add_foreign_key "recipes", "ingredient_groups"
   add_foreign_key "recipes", "products"
+  add_foreign_key "stocks", "ingredients"
+  add_foreign_key "stocks", "stores"
 end

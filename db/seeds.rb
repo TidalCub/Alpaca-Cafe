@@ -303,3 +303,11 @@ Recipe.create!([{
                   product_id: Product.find_by(name: 'Flat White').id,
                   ingredient_group_id: IngredientGroup.find_by(name: 'Milk').id
                 }])
+
+Stock.destroy_all
+
+Store.all.each do |store|
+  Ingredient.all.each do |ingredient|
+    Stock.create!(store_id: store.id, ingredient_id: ingredient.id, in_stock: true)
+  end
+end
