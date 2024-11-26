@@ -1,0 +1,10 @@
+.col-12.d-flex.justify-content-center
+  .col-11.col-md-11.col-lg-11.text-center
+   - @products_by_category.each do |category, menu_items|
+      .h1.brand-font = category.name
+      .col-12.d-flex.flex-wrap.justify-content-center
+        - menu_items.each do |menu_item|
+          - if menu_item.available
+            = render 'menu/product_card', menu_item: menu_item
+          - else
+            = render 'menu/unavaliable_product_card', menu_item: menu_item

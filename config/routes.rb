@@ -20,5 +20,9 @@ Rails.application.routes.draw do
   resources :manage, only: %i[index]
   resources :home, only: %i[index]
   resources :admin
-  resources :store, only: %i[index]
+  resources :store, only: %i[index show]
+
+  scope ':store_name', as: 'store_name' do
+    resources :menu, only: %i[index]
+  end
 end

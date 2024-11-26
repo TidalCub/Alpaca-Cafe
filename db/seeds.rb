@@ -19,12 +19,12 @@ IngredientGroup.destroy_all
 User.destroy_all
 User.create!(email: 'customer@alpaca.com', password: 'password', password_confirmation: 'password')
 Store.destroy_all
-Store.create!(name: 'Colchester')
-Store.create!(name: 'Ipswitch')
+Store.create!(name: 'Colchester', slug: 'colchester')
+Store.create!(name: 'Ipswich', slug: 'ipswitch')
 Address.destroy_all
 Address.create!(store_id: Store.first.id, number: '224', street: 'High St.', city: 'Colchester', postcode: 'CO1 1TH',
                 county: 'Essex', country: 'United Kingdom')
-Address.create!(store_id: Store.second.id, number: '112', street: 'Main St.', city: 'Ipswitch', postcode: 'IP1 1TH',
+Address.create!(store_id: Store.second.id, number: '112', street: 'Main St.', city: 'Ipswich', postcode: 'IP1 1TH',
                 county: 'Suffolk', country: 'United Kingdom')
 
 Category.create!([{
@@ -303,3 +303,10 @@ Recipe.create!([{
                   product_id: Product.find_by(name: 'Flat White').id,
                   ingredient_group_id: IngredientGroup.find_by(name: 'Milk').id
                 }])
+
+Menu.destroy_all
+Product.all.each do |product|
+  Store.all.each do |store|
+    Menu.create!(store_id: store.id, product_id: product.id, available: true)
+  end
+end
