@@ -1,7 +1,8 @@
 class CategoryController < ApplicationController
-  before_action :authenticate_user!
   def index
-    return redirect_to store_name_menu_index_url(current_user.basket.store.slug) if current_user.basket.store.present?
+    if user_signed_in? && current_user.basket.store.present?
+      return redirect_to store_name_menu_index_url(current_user.basket.store.slug)
+    end
 
     @categories = Category.all
   end

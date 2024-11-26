@@ -9,9 +9,10 @@ class MenuController < ApplicationController
 
   def store
     @store = Store.find_by(slug: params[:store_name].downcase)
-    redirect_to root_path if @store.nil?
-    # return unless current_user.basket.store_id != @store.id
-
-    # redirect_to store_name_menu_index_url(@store.name)
+    if @store.nil?
+      redirect_to root_path if @store.nil?
+    elsif current_user.basket.store_id != @store.id
+      redirect_to store_name_menu_index_url(@store.name)
+    end
   end
 end

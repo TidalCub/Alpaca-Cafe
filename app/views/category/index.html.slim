@@ -8,3 +8,5 @@
             = image_tag product.image, class: "img-fluid rounded lazyload"
             h3.brand-font = product.name
             p = "£#{product.price}"
+            .col-12
+              = link_to "Choose Store & Order", store_index_path(), class: "btn btn-secondary col-12"
