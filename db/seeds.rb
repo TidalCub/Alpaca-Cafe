@@ -310,3 +310,10 @@ Product.all.each do |product|
     Menu.create!(store_id: store.id, product_id: product.id, available: true)
   end
 end
+
+IngredientStock.destroy_all
+Ingredient.all.each do |ingredient|
+  Store.all.each do |store|
+    IngredientStock.create!(store_id: store.id, ingredient_id: ingredient.id, available: true)
+  end
+end

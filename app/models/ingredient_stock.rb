@@ -1,0 +1,2 @@
+class IngredientStock < ApplicationRecord
+end
