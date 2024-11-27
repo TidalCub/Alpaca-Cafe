@@ -1,24 +1,43 @@
-# README
+# Alpaca Cafe
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A dissertation project.
 
-Things you may want to cover:
 
-* Ruby version
+## Infrastructure
 
-* System dependencies
+![Infrastructure](non-app-related/diagrams/Infrastructure.svg)
 
-* Configuration
+For redundancy, HaProxy will be used, with two instances of the application.
 
-* Database creation
+Postgres will be configured in a master-slave relationship for redundancy.
 
-* Database initialization
+### Scalability
+This setup allows for more instances of the application to be deployed quickly to meet potential demand. 
 
-* How to run the test suite
+The master-slave postgres setup allows for additional postgres instances if needed.
 
-* Services (job queues, cache servers, search engines, etc.)
+### Reliability
+HaProxy performs health checks on servers and will route accordingly 
 
-* Deployment instructions
+The web servers will be configured with both postgres instances, in the event of the master going down, the web servers will then try to establish a connection with the next available slave. Example:
 
-* ...
+```yaml
+production:
+  primary:
+    database: primary_database
+    username: root
+    password: <%= ENV['ROOT_PASSWORD'] %>
+    adapter: mysql2
+  primary_replica:
+    database: primary_database
+    username: root
+    password: <%= ENV['ROOT_READONLY'] %>
+    adapter: mysql2
+    replica: true
+```
+
+This will allow for automatic failover of databases without intervention.
+
+Some notes:
+- Primary_replica is read and write so features can continue.
+- It may be of use for more reliability that a third read-only database be set up, in the event of two failed databases, something is properly very wrong, and this will preserve data. 
