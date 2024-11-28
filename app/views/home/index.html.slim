@@ -19,22 +19,22 @@
           = link_to "Order Now", categories_path, class: "btn btn-organge btn-lg btn-block mt-3 col-6 brand-font text-light text-center"
           = link_to "View Our Menu", categories_path, class: "text-light"
 
-      .col-12.col-md-6.col-lg-6.d-flex.justify-content-center
-        .col-8.d-flex.flex-column.justify-content-center.align-items-center
-          h1.brand-font.text-light May we tempt you with
-          - @recommended_products.each do |product|
-            .bg-light.p-3.m-3.shadow.rounded-normal.col-8
-              = image_tag product.image, class: "img-fluid rounded lazyload"
-              h3.brand-font = product.name
-              p = "£#{product.price}"
+      / .col-12.col-md-6.col-lg-6.d-flex.justify-content-center
+      /   .col-8.d-flex.flex-column.justify-content-center.align-items-center
+      /     h1.brand-font.text-light May we tempt you with
+      /     - @recommended_products.each do |product|
+      /       .bg-light.p-3.m-3.shadow.rounded-normal.col-8
+      /         = image_tag product.image, class: "img-fluid rounded lazyload"
+      /         h3.brand-font = product.name
+      /         p = "£#{product.price}"
 
-              .d-flex.flex-row.justify-content-center.gap-3.brand-font
-                - if current_user
-                  = button_to 'Add to Order', add_to_basket_url(product: product), method: :post, class: "btn btn-primary"
-                = link_to product_path(product), class: "btn btn-secondary flex-fill" 
-                  | view 
-                  - if current_user
-                    | & Customise
+      /         .d-flex.flex-row.justify-content-center.gap-3.brand-font
+      /           - if current_user
+      /             = button_to 'Add to Order', add_to_basket_url(product: product), method: :post, class: "btn btn-primary"
+      /           = link_to product_path(product), class: "btn btn-secondary flex-fill" 
+      /             | view 
+      /             - if current_user
+      /               | & Customise
 
     .col-12.d-flex.justify-content-center.align-items-center
       hr.text-light.border-3.shadow.col-8

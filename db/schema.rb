@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_11_19_113314) do
+ActiveRecord::Schema[8.0].define(version: 2024_11_26_154803) do
   create_table "addresses", force: :cascade do |t|
     t.integer "number"
     t.string "street"
@@ -36,6 +36,16 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_19_113314) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "ingredient_stocks", force: :cascade do |t|
+    t.integer "ingredient_id", null: false
+    t.integer "store_id", null: false
+    t.boolean "available", default: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ingredient_id"], name: "index_ingredient_stocks_on_ingredient_id"
+    t.index ["store_id"], name: "index_ingredient_stocks_on_store_id"
+  end
+
   create_table "ingredients", force: :cascade do |t|
     t.string "name"
     t.integer "ingredient_group_id"
@@ -43,6 +53,16 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_19_113314) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["ingredient_group_id"], name: "index_ingredients_on_ingredient_group_id"
+  end
+
+  create_table "menus", force: :cascade do |t|
+    t.integer "store_id", null: false
+    t.integer "product_id", null: false
+    t.boolean "available", default: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_menus_on_product_id"
+    t.index ["store_id"], name: "index_menus_on_store_id"
   end
 
   create_table "order_items", force: :cascade do |t|
@@ -63,6 +83,8 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_19_113314) do
     t.integer "user_id", default: 0, null: false
     t.integer "users_id"
     t.integer "store_id"
+    t.string "payment_intent"
+    t.string "client_secret"
     t.index ["store_id"], name: "index_orders_on_store_id"
     t.index ["users_id"], name: "index_orders_on_users_id"
   end
@@ -96,11 +118,22 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_19_113314) do
     t.index ["product_id"], name: "index_recipes_on_product_id"
   end
 
+  create_table "stocks", force: :cascade do |t|
+    t.integer "store_id", null: false
+    t.integer "ingredient_id", null: false
+    t.boolean "in_stock", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ingredient_id"], name: "index_stocks_on_ingredient_id"
+    t.index ["store_id"], name: "index_stocks_on_store_id"
+  end
+
   create_table "stores", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "adress_id"
+    t.string "slug"
     t.index ["adress_id"], name: "index_stores_on_adress_id"
   end
 
@@ -116,7 +149,11 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_19_113314) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "ingredient_stocks", "ingredients"
+  add_foreign_key "ingredient_stocks", "stores"
   add_foreign_key "ingredients", "ingredient_groups"
+  add_foreign_key "menus", "products"
+  add_foreign_key "menus", "stores"
   add_foreign_key "order_items", "orders"
   add_foreign_key "order_items", "products"
   add_foreign_key "orders", "stores"
@@ -126,4 +163,6 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_19_113314) do
   add_foreign_key "products", "categories"
   add_foreign_key "recipes", "ingredient_groups"
   add_foreign_key "recipes", "products"
+  add_foreign_key "stocks", "ingredients"
+  add_foreign_key "stocks", "stores"
 end

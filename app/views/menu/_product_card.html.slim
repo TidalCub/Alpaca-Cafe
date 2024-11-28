@@ -1,0 +1,11 @@
+.bg-light.p-3.m-3.shadow.rounded-normal.col-11.col-sm-5.col-md-4.col-lg-2
+  = image_tag menu_item.product.image, class: "img-fluid rounded lazyload"
+  h3.brand-font = menu_item.product.name
+  p = "£#{menu_item.product.price}"
+  .brand-font.col-12
+    - if current_user
+      = button_to 'Add to Order', add_to_basket_url(product: menu_item.product), method: :post, class: "btn btn-primary col-12 mb-2"
+    = link_to store_name_product_path(store_name: current_user.basket.store.slug, id: menu_item.product.id), class: "btn btn-secondary col-12" 
+      | view 
+      - if current_user
+          | & Customise

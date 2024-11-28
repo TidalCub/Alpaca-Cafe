@@ -12,29 +12,15 @@ hr
     .col-12.d-flex.justify-content-center.flex-wrap
       .col-11.col-lg-4.col-md-11.flex-column.justify-content-center.shadow.p-3.bg-light
         h4 Customise your product
-        form#CustomizeForm action="#{add_to_basket_url(product: @product)}" method="POST"
-          - @product.recipes.each do |recipie_group|
-            hr
-            .col-12
-              div.d-flex.align-items-center.justify-content-center
-                h4.brand-font = recipie_group.ingredient_group.name
-              .col-12
-                .col-12.d-flex.flex-row.flex-wrap.justify-content-center.gap-1
-                  - recipie_group.ingredient_group.ingredients.each do |ingredient|
-                    label
-                      - if ingredient.is_default
-                        input type="radio" name="#{recipie_group.ingredient_group.name}" value="#{ingredient.id}" class="hidden-radio" checked=""
-                      - else
-                        input type="radio" name="#{recipie_group.ingredient_group.name}" value="#{ingredient.id}" class="hidden-radio" 
-                      .btn.btn-secondary = ingredient.name
-      .col-12.mt-4.d-flex.justify-content-center.align-items-center
-        .col-6
-          button.btn.btn-primary.brand-font onclick="submitform()"  
-            h3.pt-2 Save and Add to Basket
+        = render "customize_form", product: @product, ingredients: @ingredients
+    .col-12.mt-4.d-flex.justify-content-center.align-items-center
+      .col-6
+        button.btn.btn-primary.brand-font onclick="submitform()"  
+          h3.pt-2 Save and Add to Basket
+
+javascript:
+  function submitform(){
+    document.getElementById("CustomizeForm").submit();
+  }
 
 
-script
-  | function submitform(){
-  | document.getElementById("CustomizeForm").submit();
-  |}
-  | 
