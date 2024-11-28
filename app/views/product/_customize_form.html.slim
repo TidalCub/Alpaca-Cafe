@@ -1,0 +1,7 @@
+- @ingredients.each do |category, ingredient_stocks|
+  h1 = category.name
+  - ingredient_stocks.each do |ingredient_stock|
+    - if ingredient_stock.available
+      p = ingredient_stock.ingredient.name
+    - else
+      p.text-decoration-line-through = ingredient_stock.ingredient.name

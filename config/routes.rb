@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   post 'add_to_basket', to: 'product#add_to_basket', as: :add_to_basket
   post 'select_store/:id', to: 'store#select_store', as: :select_store
 
-  resources :products, controller: 'product', only: %i[index new create show]
+  resources :products, controller: 'product', only: %i[index new create]
   resources :categories, controller: 'category', only: %i[index new create]
   resources :orders
   resources :order_items
@@ -24,5 +24,6 @@ Rails.application.routes.draw do
 
   scope ':store_name', as: 'store_name' do
     resources :menu, only: %i[index]
+    resources :product, only: %i[show]
   end
 end

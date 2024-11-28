@@ -4,4 +4,7 @@ class Product < ActiveRecord::Base
   has_many :recipes, dependent: :destroy
   has_many :menus, dependent: :destroy
   has_many :store, through: :menu
+  has_many :ingredient_groups, through: :recipes
+  has_many :ingredients, through: :ingredient_groups
+  has_many :ingredient_stocks, through: :ingredients
 end
