@@ -1,0 +1,96 @@
+.blend {
+  &-decaf {
+    background-image: url('icons/blend-decaf.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    display: inline-block;
+    width: 72px;
+    height: 72px;
+  }
+  &-regular {
+    background-image: url('icons/blend-regular.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+  }
+}
+.milk{
+  &-whole {
+    background-image: url('icons/milk-whole.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+  }
+  &-oat{
+    background-image: url('icons/milk-oat.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+  }
+  &-soy{
+    background-image: url('icons/milk-soy.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+  }
+}
+.espresso{
+  &-single{
+    background-image: url('icons/espresso-single.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+  }
+  &-double{
+    background-image: url('icons/espresso-double.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+  }
+}
+.syrup{
+  &-vanilla{
+    background-image: url('icons/syrup-vanilla.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+  }
+  &-caramel{
+    background-image: url('icons/syrup-caramel.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+  }
+  &-hazelnut{
+    background-image: url('icons/syrup-hazelnut.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+  }
+  &-gingerbread{
+    background-image: url('icons/syrup-gingerbread.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+  }
+}

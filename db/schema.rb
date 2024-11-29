@@ -79,12 +79,9 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_26_154803) do
     t.integer "state"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user", default: 0, null: false
     t.integer "user_id", default: 0, null: false
     t.integer "users_id"
     t.integer "store_id"
-    t.string "payment_intent"
-    t.string "client_secret"
     t.index ["store_id"], name: "index_orders_on_store_id"
     t.index ["users_id"], name: "index_orders_on_users_id"
   end

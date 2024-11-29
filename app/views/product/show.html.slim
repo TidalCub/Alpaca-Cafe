@@ -7,6 +7,7 @@ hr
     h1.brand-font = @product.name
     p = @product.description
     h4 = "£#{@product.price}"
+    /i.blend-decaf
     hr
     
     .col-12.d-flex.justify-content-center.flex-wrap
@@ -17,6 +18,7 @@ hr
       .col-6
         button.btn.btn-primary.brand-font onclick="submitform()"  
           h3.pt-2 Save and Add to Basket
+
 
 javascript:
   function submitform(){

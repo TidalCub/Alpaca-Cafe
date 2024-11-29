@@ -12,9 +12,11 @@
  *
  *= require_tree .
  *= require_self
+ *= require icons
  */
 
- @import "bootstrap";
+@import "bootstrap";
+@import "icons";
 
  body{
   background-color: #ffffff;
