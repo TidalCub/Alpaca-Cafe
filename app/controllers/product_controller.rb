@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ProductController < ApplicationController
   skip_before_action :verify_authenticity_token
   before_action :set_store
@@ -30,10 +32,8 @@ class ProductController < ApplicationController
   private
 
   def product_modifyer(params, order_item)
-    IngredientGroup.all.find_each do |ingredient_group|
-      if params[ingredient_group.name].present? && !Ingredient.find(params[ingredient_group.name]).is_default
-        order_item.product_modifyers.create(ingredient_id: Ingredient.find(params[ingredient_group.name]).id)
-      end
+    IngredientGroup.find_each do |ingredient_group|
+      order_item.product_modifyers.create(ingredient_id: Ingredient.find(params[ingredient_group.name]).id) if params[ingredient_group.name].present? && !Ingredient.find(params[ingredient_group.name]).is_default
     end
   end
 

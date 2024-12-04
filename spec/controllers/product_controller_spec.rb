@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe ProductController, type: :controller do # rubocop:disable Metrics/BlockLength
-  describe 'POST #add_to_basket' do # rubocop:disable Metrics/BlockLength
+RSpec.describe ProductController, type: :controller do
+  describe 'POST #add_to_basket' do
     let(:user) { create(:user) }
     let(:product) { create(:product) }
     let(:store) { create(:store) }

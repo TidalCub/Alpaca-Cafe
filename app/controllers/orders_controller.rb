@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class OrdersController < ApplicationController
   before_action :authenticate_user!
   def index
@@ -8,7 +10,7 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
     return if @order.user == current_user
 
-    redirect_to orders_path, alert: "You don't have permission to view this order."
+    redirect_to orders_path, alert: t('orders.alert.no_permission')
   end
 
   def cart

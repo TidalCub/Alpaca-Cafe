@@ -1,8 +1,8 @@
+# frozen_string_literal: true
+
 class CategoryController < ApplicationController
   def index
-    if user_signed_in? && current_user.basket.store.present?
-      return redirect_to store_name_menu_index_url(current_user.basket.store.slug)
-    end
+    return redirect_to store_name_menu_index_url(current_user.basket.store.slug) if user_signed_in? && current_user.basket.store.present?
 
     @categories = Category.all
   end
@@ -14,7 +14,7 @@ class CategoryController < ApplicationController
   def create
     @category = Category.new(category_params)
     if @category.save
-      redirect_to manage_index_path, notice: 'Category was successfully created.'
+      redirect_to manage_index_path, notice: t('notices.category.created')
     else
       render :new
     end

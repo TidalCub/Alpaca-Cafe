@@ -305,15 +305,15 @@ Recipe.create!([{
                 }])
 
 Menu.destroy_all
-Product.all.each do |product|
-  Store.all.each do |store|
+Product.find_each do |product|
+  Store.find_each do |store|
     Menu.create!(store_id: store.id, product_id: product.id, available: true)
   end
 end
 
 IngredientStock.destroy_all
-Ingredient.all.each do |ingredient|
-  Store.all.each do |store|
+Ingredient.find_each do |ingredient|
+  Store.find_each do |store|
     IngredientStock.create!(store_id: store.id, ingredient_id: ingredient.id, available: true)
   end
 end
