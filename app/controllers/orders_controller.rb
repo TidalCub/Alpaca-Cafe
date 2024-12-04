@@ -10,7 +10,7 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
     return if @order.user == current_user
 
-    redirect_to orders_path, alert: t('orders.alert.no_permission')
+    redirect_to orders_path, alert: t('orders.alerts.no_permission')
   end
 
   def cart

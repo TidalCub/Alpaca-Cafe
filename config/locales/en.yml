@@ -34,6 +34,6 @@ en:
   notices:
       category:
         created: "Category was successfully created."
-  alerts:
-    orders:
+  orders:
+    alerts:
       no_permission: "You don't have permission to view this order."
