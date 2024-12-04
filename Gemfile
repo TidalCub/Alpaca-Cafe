@@ -77,14 +77,12 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem 'capybara'
   gem 'capybara-screenshot'
-  gem 'cucumber-rails', require: false
   gem 'database_cleaner'
   gem 'selenium-webdriver'
 end
 
 gem 'aasm', '~> 5.5'
 gem 'bootstrap', '~> 5.0'
-gem 'cucumber'
 gem 'devise', '~> 4.9'
 gem 'jquery-rails'
 gem 'kamal', require: false
