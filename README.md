@@ -1,3 +1,8 @@
+![Tests](https://img.shields.io/github/actions/workflow/status/TidalCub/Alpaca-Cafe/rubyonrails.yml?branch=main&label=Tests&style=flat-square) ![Linting](https://img.shields.io/github/actions/workflow/status/TidalCub/Alpaca-Cafe/linting.yml?branch=main&label=Linting&style=flat-square) ![Security](https://img.shields.io/github/actions/workflow/status/TidalCub/Alpaca-Cafe/rubyonrails.yml?branch=main&label=Security%20Audit&style=flat-square)
+
+![Closed Issues](https://img.shields.io/github/issues-search/TidalCub/Alpaca-Cafe?query=is%3Aopen&style=flat-square&label=Open%20Issues&color=dfb317) ![Closed Issues](https://img.shields.io/github/issues-search/TidalCub/Alpaca-Cafe?query=is%3Aclosed&style=flat-square&label=Closed%20Issues&color=44cc11)
+
+
 # Alpaca Cafe
 
 A dissertation project.
