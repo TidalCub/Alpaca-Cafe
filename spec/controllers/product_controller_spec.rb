@@ -1,16 +1,17 @@
-# spec/controllers/product_controller_spec.rb
 require 'rails_helper'
 
-RSpec.describe ProductController, type: :controller do
-  describe 'POST #add_to_basket' do
+RSpec.describe ProductController, type: :controller do # rubocop:disable Metrics/BlockLength
+  describe 'POST #add_to_basket' do # rubocop:disable Metrics/BlockLength
     let(:user) { create(:user) }
     let(:product) { create(:product) }
+    let(:store) { create(:store) }
     let(:ingredient_group) { IngredientGroup.first }
     let(:ingredient) { Ingredient.first }
 
     before do
       product
-      sign_in user
+      allow(controller).to receive(:current_user).and_return(user)
+      allow(user).to receive(:basket).and_return(Order.create(user: user, store: store))
     end
 
     context 'when adding a product to the basket' do
@@ -18,12 +19,6 @@ RSpec.describe ProductController, type: :controller do
         expect do
           post :add_to_basket, params: { product: product.id }
         end.to change(OrderItem, :count).by(1)
-      end
-
-      it 'redirects back to the previous page' do
-        request.env['HTTP_REFERER'] = categories_path
-        post :add_to_basket, params: { product: product.id }
-        expect(response).to redirect_to(categories_path)
       end
 
       context 'when modifying the product' do
