@@ -6,9 +6,49 @@
 
 
 # Alpaca Cafe
-
 A dissertation project.
 
+An online ordering for in-person collection for a medium sized, multi store coffee shop system.
+
+This system has support for multi store menus with independent product availability. Allows for customer customization of drinks.
+
+## Running the System yourself
+
+If you would like to have a local version, for whatever reason (which is odd because why?), heres how.
+
+You'll first need `ruby 3.2.2`
+
+Clone the repo to a suitable location.
+
+```bash
+git clone https://github.com/TidalCub/Alpaca-Cafe
+```
+
+Install dependencies
+
+```bash
+bundle install
+```
+
+Then run seed
+
+```bash
+bundle exec db:seed
+```
+
+And your good to go! Run the server
+```bash
+rails s
+```
+
+# An overview of the project
+
+The project is a slightly complicated interlocking system.
+
+## Database
+
+![Database](non-app-related/diagrams/database.svg)
+_Correct as of Commit 9cad37_
 
 ## Infrastructure
 
