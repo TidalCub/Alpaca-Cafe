@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_12_05_105150) do
+ActiveRecord::Schema[8.0].define(version: 2024_12_05_112353) do
   create_table "addresses", force: :cascade do |t|
     t.integer "number"
     t.string "street"
@@ -117,6 +117,14 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_05_105150) do
     t.index ["product_id"], name: "index_recipes_on_product_id"
   end
 
+  create_table "roles", force: :cascade do |t|
+    t.string "name"
+    t.string "UUID", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["UUID"], name: "index_roles_on_UUID", unique: true
+  end
+
   create_table "stocks", force: :cascade do |t|
     t.integer "store_id", null: false
     t.integer "ingredient_id", null: false
@@ -134,6 +142,15 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_05_105150) do
     t.integer "adress_id"
     t.string "slug"
     t.index ["adress_id"], name: "index_stores_on_adress_id"
+  end
+
+  create_table "use_roles", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "role_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["role_id"], name: "index_use_roles_on_role_id"
+    t.index ["user_id"], name: "index_use_roles_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -164,4 +181,6 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_05_105150) do
   add_foreign_key "recipes", "products"
   add_foreign_key "stocks", "ingredients"
   add_foreign_key "stocks", "stores"
+  add_foreign_key "use_roles", "roles"
+  add_foreign_key "use_roles", "users"
 end
