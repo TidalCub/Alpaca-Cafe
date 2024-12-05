@@ -3,6 +3,6 @@
 FactoryBot.define do
   factory :role do
     name { Faker::Name.name }
-    UUID { '' }
+    uuid { '' }
   end
 end

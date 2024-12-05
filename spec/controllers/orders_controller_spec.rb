@@ -14,7 +14,7 @@ RSpec.describe OrdersController, type: :controller do
   end
 
   describe 'GET #index' do
-    let(:store_manager_role) { create(:role, UUID: 'store:manager') }
+    let(:store_manager_role) { create(:role, uuid: 'store:manager') }
 
     before do
       user.roles << store_manager_role
