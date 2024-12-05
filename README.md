@@ -47,7 +47,7 @@ The project is a slightly complicated interlocking system.
 
 ## Database
 
-![Database](non-app-related/diagrams/database.svg)
+![Database](non-app-related/diagrams/Database.svg)
 _Correct as of Commit 068fc40_
 
 ## Infrastructure
