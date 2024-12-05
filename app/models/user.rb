@@ -6,7 +6,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_many :orders, dependent: :nullify
-  has_many :user_roles
+  has_many :user_roles, dependent: :destroy
+  has_many :roles, through: :user_roles
+  
   def basket
     orders.pending.last || orders.create(state: :pending)
   end
