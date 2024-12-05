@@ -9,4 +9,9 @@ class Product < ApplicationRecord
   has_many :ingredient_groups, through: :recipes
   has_many :ingredients, through: :ingredient_groups
   has_many :ingredient_stocks, through: :ingredients
+  after_create :create_slug
+
+  def create_slug
+    update(slug: name.parameterize)
+  end
 end

@@ -3,13 +3,13 @@
 class ProductController < ApplicationController
   skip_before_action :verify_authenticity_token
   before_action :set_store
+  before_action :set_product, only: %i[show]
 
   def index
     @products = Product.all
   end
 
   def show
-    @product = Product.find(params[:id])
     @ingredients = @product.ingredient_stocks.where(store_id: @store).group_by(&:ingredient_group)
   end
 
@@ -47,5 +47,9 @@ class ProductController < ApplicationController
 
   def set_store
     @store = Store.find_by(slug: params[:store_name])
+  end
+
+  def set_product
+    @product = Product.find_by(slug: params[:product_name].parameterize)
   end
 end

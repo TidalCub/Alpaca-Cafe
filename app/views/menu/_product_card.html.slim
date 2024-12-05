@@ -5,7 +5,7 @@
   .brand-font.col-12
     - if current_user
       = button_to 'Add to Order', add_to_basket_url(product: menu_item.product), method: :post, class: "btn btn-primary col-12 mb-2"
-    = link_to store_name_product_path(store_name: current_user.basket.store.slug, id: menu_item.product.id), class: "btn btn-secondary col-12" 
+    = link_to store_name_product_path(store_name: current_user.basket.store.slug, product_name: menu_item.product.slug), class: "btn btn-secondary col-12" 
       | view 
       - if current_user
           | & Customise
