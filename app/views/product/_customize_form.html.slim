@@ -10,9 +10,9 @@ form#CustomizeForm action="#{add_to_basket_url(product: @product)}" method="POST
           label
             - if ingredient_stock.available
               - if ingredient_stock.ingredient.is_default
-                input type="radio" name="#{category}" value="#{ingredient_stock.ingredient.id}" class="hidden-radio" checked="" 
+                input type="radio" name="#{category.name}" value="#{ingredient_stock.ingredient.id}" class="hidden-radio" checked="" 
               - else
-                input type="radio" name="#{category}" value="#{ingredient_stock.ingredient.id}" class="hidden-radio" 
+                input type="radio" name="#{category.name}" value="#{ingredient_stock.ingredient.id}" class="hidden-radio" 
               .btn.btn-secondary = ingredient_stock.ingredient.name
             - else
               .btn.btn-secondary.disabled.text-decoration-line-through = ingredient_stock.ingredient.name
