@@ -14,6 +14,12 @@ RSpec.describe OrdersController, type: :controller do
   end
 
   describe 'GET #index' do
+    let(:store_manager_role) { create(:role, UUID: 'store:manager') }
+
+    before do
+      user.roles << store_manager_role
+    end
+
     it 'assigns @orders' do
       get :index
       expect(assigns(:orders)).to eq([order])
@@ -34,8 +40,8 @@ RSpec.describe OrdersController, type: :controller do
 
       it 'redirects to orders path with an alert' do
         get :show, params: { id: other_order.id }
-        expect(response).to redirect_to(orders_path)
-        expect(flash[:alert]).to eq("You don't have permission to view this order.")
+        expect(response).to redirect_to(root_path)
+        expect(flash[:alert]).to eq("You don't have permission to view this page.")
       end
     end
   end

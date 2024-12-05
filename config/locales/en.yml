@@ -32,8 +32,11 @@
 en:
   hello: "Hello world"
   notices:
-      category:
-        created: "Category was successfully created."
+    category:
+      created: "Category was successfully created."
   orders:
     alerts:
       no_permission: "You don't have permission to view this order."
+  application:
+    alerts:
+      no_permission: "You don't have permission to view this page."
