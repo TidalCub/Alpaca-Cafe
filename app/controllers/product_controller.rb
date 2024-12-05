@@ -4,6 +4,7 @@ class ProductController < ApplicationController
   skip_before_action :verify_authenticity_token
   before_action :set_store
   before_action :set_product, only: %i[show]
+  before_action :authorize!
 
   def index
     @products = Product.all
@@ -15,6 +16,7 @@ class ProductController < ApplicationController
 
   def create
     @product = Product.new(product_params)
+    authorize! @product
     if @product.save
       redirect_to manage_index_path
     else

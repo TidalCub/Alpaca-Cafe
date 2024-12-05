@@ -16,11 +16,20 @@ Product.destroy_all
 Category.destroy_all
 Ingredient.destroy_all
 IngredientGroup.destroy_all
+
+Role.destroy_all
+Role.create!(name: 'customer', UUID: 'customer')
+
 User.destroy_all
 User.create!(email: 'customer@alpaca.com', password: 'password', password_confirmation: 'password')
+
+UserRole.destroy_all
+UserRole.create(user_id: User.first.id, role_id: Role.first.id)
+
 Store.destroy_all
 Store.create!(name: 'Colchester', slug: 'colchester')
 Store.create!(name: 'Ipswich', slug: 'ipswitch')
+
 Address.destroy_all
 Address.create!(store_id: Store.first.id, number: '224', street: 'High St.', city: 'Colchester', postcode: 'CO1 1TH',
                 county: 'Essex', country: 'United Kingdom')
