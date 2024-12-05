@@ -6,11 +6,14 @@
     h3 Items:
     hr
     - @order.order_items.each do |item|
-      h5 = item.product.name
+      .d-flex.gap-2
+        h5 = item.product.name
+        = button_to "x", order_item_path(item), method: :delete, class: "btn-none p-0 fw-bold"
       .col-12.d-flex.gap-2.text-muted
         - item.product_modifyers.each do |mod|
           div = mod.ingredient.name 
           | |
+      
           
           
       
