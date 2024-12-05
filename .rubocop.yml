@@ -2,19 +2,20 @@ require: rubocop-rails
 AllCops:
   NewCops: enable
   Exclude:
-    - 'db/migrate/**/*'
-    - 'bin/*'
-    - 'node_modules/**/*'
-    - 'vendor/**/*'
-    - 'db/seed.rb'
+    - "db/migrate/**/*"
+    - "bin/*"
+    - "node_modules/**/*"
+    - "vendor/**/*"
+    - "db/seed.rb"
+    - "db/schema.rb"
 Rails/ThreeStateBooleanColumn:
   Exclude:
-    - 'db/schema.rb'
+    - "db/schema.rb"
 Layout/LineLength:
   Max: 220
 Metrics/BlockLength:
   Exclude:
-    - 'spec/**/*'
-    - 'db/schema.rb'
+    - "spec/**/*"
+    - "db/schema.rb"
 Style/Documentation:
   Enabled: false
