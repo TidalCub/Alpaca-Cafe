@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_12_05_112353) do
+ActiveRecord::Schema[8.0].define(version: 2024_12_05_113128) do
   create_table "addresses", force: :cascade do |t|
     t.integer "number"
     t.string "street"
@@ -144,13 +144,13 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_05_112353) do
     t.index ["adress_id"], name: "index_stores_on_adress_id"
   end
 
-  create_table "use_roles", force: :cascade do |t|
+  create_table "user_roles", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "role_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["role_id"], name: "index_use_roles_on_role_id"
-    t.index ["user_id"], name: "index_use_roles_on_user_id"
+    t.index ["role_id"], name: "index_user_roles_on_role_id"
+    t.index ["user_id"], name: "index_user_roles_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -181,6 +181,6 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_05_112353) do
   add_foreign_key "recipes", "products"
   add_foreign_key "stocks", "ingredients"
   add_foreign_key "stocks", "stores"
-  add_foreign_key "use_roles", "roles"
-  add_foreign_key "use_roles", "users"
+  add_foreign_key "user_roles", "roles"
+  add_foreign_key "user_roles", "users"
 end
