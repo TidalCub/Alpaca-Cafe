@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class OrderPolicy < ApplicationPolicy
   def index?
     user.roles.pluck(:uuid).include?('store:manager')

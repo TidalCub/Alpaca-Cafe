@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class StorePolicy < ApplicationPolicy
   def index?
     true
