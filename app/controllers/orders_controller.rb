@@ -25,8 +25,8 @@ class OrdersController < ApplicationController
   def checkout
     @order = current_user.basket
     authorize! @order
-    @order.checkout!
     @total = current_user.basket.total
+    @order.checkout!
   end
 
   def update
