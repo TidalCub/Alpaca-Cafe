@@ -3,7 +3,7 @@
 # spec/factories/products.rb
 FactoryBot.define do
   factory :product do
-    name { 'Test Product' }
+    name { Faker::Name.name }
     description { 'This is a test product' }
     price { 9.99 }
     category { association :category }
