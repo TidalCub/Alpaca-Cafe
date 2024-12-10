@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
+require 'vcr'
 
 RSpec.describe OrdersController, type: :controller do
   let(:user) { create(:user) }
@@ -11,6 +12,7 @@ RSpec.describe OrdersController, type: :controller do
 
   before do
     sign_in user
+    order_item
   end
 
   describe 'GET #index' do
@@ -63,9 +65,11 @@ RSpec.describe OrdersController, type: :controller do
     end
 
     it 'assigns @order and @total' do
-      get :checkout
-      expect(assigns(:order)).to eq(basket)
-      expect(assigns(:total)).to eq(basket.order_items.sum(&:price))
+      VCR.use_cassette('order-checkout-stripe') do
+        get :checkout
+        expect(assigns(:order)).to eq(basket)
+        expect(assigns(:total)).to eq(product.price)
+      end
     end
   end
 

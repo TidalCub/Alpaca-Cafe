@@ -92,3 +92,5 @@ gem 'pg', '~> 1.5', '>= 1.5.4', group: :production
 gem 'rubocop-rails', require: false
 gem 'slim-rails'
 gem 'stripe'
+gem 'vcr'
+gem 'webmock'
