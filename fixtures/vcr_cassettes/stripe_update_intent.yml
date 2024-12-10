@@ -10,7 +10,7 @@ http_interactions:
         User-Agent:
           - Stripe/v1 RubyBindings/13.1.2
         Authorization:
-          - Bearer sk_test_51QMsP1FWpgsj4fDKsFnEmd0V2MbHbpnZSTxp8ZWfjNPxNk1amjxt0jr68fAWryudaxaDxakEFmt2oGFfHDCRn0cA00jWOXWIae
+          - Bearer <stripe_secret>
         X-Stripe-Client-Telemetry:
           - '{"last_request_metrics":{"request_id":"req_4hYFVzbOoPW0Wq","request_duration_ms":1}}'
         Idempotency-Key:
