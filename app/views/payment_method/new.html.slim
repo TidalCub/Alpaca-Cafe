@@ -1,0 +1,6 @@
+h1 Add a new payment method
+.col-12.d-flex.justify-content-center
+  .col-11.col-md-6.col-lg-4
+    = content_tag :div, '', data: { controller: 'stripe-elements', stripe_elements_client_secret: @setup_intent.client_secret, published_key: @public_key }
+      div id="payment-element"
+      btn.btn.btn-primary.btn-block.mt-3 data-action="click->stripe-elements#confirmSetupIntent" Save

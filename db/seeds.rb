@@ -22,6 +22,7 @@ Role.create!(name: 'customer', uuid: 'customer')
 
 # User.destroy_all
 # User.create!(email: 'customer@alpaca.com', password: 'password', password_confirmation: 'password')
+User.find_by(email: 'customer@alpaca.com').update(stripe_id: 'cus_RNzSxzNYWd2eZ4')
 
 UserRole.destroy_all
 UserRole.create(user_id: User.first.id, role_id: Role.first.id)

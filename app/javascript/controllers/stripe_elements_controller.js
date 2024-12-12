@@ -3,13 +3,13 @@ import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
   connect() {
-    var stripe = Stripe(this.element.dataset.publishedKey);
+    this.stripe = Stripe(this.element.dataset.publishedKey);
 
-    const elements = stripe.elements({
+    this.elements = this.stripe.elements({
       clientSecret: this.element.dataset.stripeElementsClientSecret
     })
 
-    let paymentElement = elements.create('payment', {
+    let paymentElement = this.elements.create('payment', {
       layout: {
         type: 'accordion',
         defaultCollapsed: false
@@ -17,5 +17,21 @@ export default class extends Controller {
     })
 
     paymentElement.mount('#payment-element')
+  }
+
+  confirmSetupIntent() {
+    const elements = this.elements;
+
+    this.stripe.confirmSetup({
+      elements,
+      confirmParams: {
+        return_url: 'https://example.com',
+      },
+    })
+    .then(function(result) {
+      if (result.error) {
+        // Inform the customer that there was an error.
+      }
+    });
   }
 }
