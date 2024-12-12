@@ -1,5 +1,6 @@
-require 'devise'
-Devise # make sure it's already loaded
+# frozen_string_literal: true
+
+require 'devise' # make sure it's already loaded
 
 module Devise
   def self.mappings
