@@ -4,7 +4,13 @@
 require 'rails_helper'
 
 RSpec.describe StripePaymentintentService, type: :service do
-  let(:user) { create(:user, email: 'test@example.com') }
+  before do
+    VCR.use_cassette('stripe_customer_create') do
+      @user = create(:user,  email: 'test@example.com')
+    end
+  end
+
+  let(:user) { @user }
   let(:booking) { double('Booking', user: user) }
   let(:amount) { 1000 }
   let(:service) { described_class.new(amount, user, booking) }
