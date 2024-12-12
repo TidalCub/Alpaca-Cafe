@@ -76,4 +76,5 @@ Rails.application.configure do
   # Define a global variable for Stripe public key
 end
 
+Stripe.api_key = Rails.application.credentials.dig(:development, :stripe, :secret_key)
 STRIPE_PUBLIC_KEY = Rails.application.credentials.dig(:development, :stripe, :published_key)

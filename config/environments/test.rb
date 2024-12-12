@@ -55,8 +55,9 @@ Rails.application.configure do
   VCR.configure do |vcr_config|
     vcr_config.cassette_library_dir = 'fixtures/vcr_cassettes'
     vcr_config.hook_into :webmock
-    vcr_config.filter_sensitive_data('<stripe_secret>') { Rails.application.credentials.dig(:development, :stripe, :secret_key) }
+    vcr_config.filter_sensitive_data('<stripe_secret>') { "Test_secret_key" }
   end
 end
 
-STRIPE_PUBLIC_KEY = Rails.application.credentials.dig(:development, :stripe, :published_key)
+Stripe.api_key = "Test_secret_key"
+STRIPE_PUBLIC_KEY = "Test_public_key"
