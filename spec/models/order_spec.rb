@@ -4,6 +4,14 @@ require 'rails_helper'
 
 RSpec.describe Order, type: :model do
   let(:user) { create(:user) }
+  
+
+  before do
+    VCR.use_cassette('stripe_customer_creation') do
+      user
+    end
+  end
+
   let(:order) { create(:order, user:, state: 'pending') }
 
   describe 'state transitions' do

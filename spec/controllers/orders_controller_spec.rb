@@ -4,16 +4,20 @@ require 'rails_helper'
 require 'vcr'
 
 RSpec.describe OrdersController, type: :controller do
-  let(:user) { create(:user) }
+  include Devise::Test::ControllerHelpers
+
+  before do
+    VCR.use_cassette('stripe_customer_create') do
+      @user = create(:user)
+    end
+    sign_in @user
+  end
+
+  let(:user) { @user }
   let(:order) { create(:order, user:, state: 'paid') }
   let(:basket) { create(:order, user:, state: 'pending') }
   let(:product) { create(:product) }
-  let(:order_item) { create(:order_item, order: basket, product:) }
-
-  before do
-    sign_in user
-    order_item
-  end
+  let!(:order_item) { create(:order_item, order: basket, product:) }
 
   describe 'GET #index' do
     let(:store_manager_role) { create(:role, uuid: 'store:manager') }
