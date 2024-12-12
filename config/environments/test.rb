@@ -58,3 +58,5 @@ Rails.application.configure do
     vcr_config.filter_sensitive_data('<stripe_secret>') { Rails.application.credentials.dig(:development, :stripe, :secret_key) }
   end
 end
+
+STRIPE_PUBLIC_KEY = Rails.application.credentials.dig(:development, :stripe, :published_key)

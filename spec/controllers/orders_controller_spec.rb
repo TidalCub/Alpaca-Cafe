@@ -41,7 +41,13 @@ RSpec.describe OrdersController, type: :controller do
     end
 
     context 'when the user does not own the order' do
-      let(:other_user) { create(:user) }
+      before do
+        VCR.use_cassette('stripe_customer_create') do
+          @another_user = create(:user)
+        end
+      end
+
+      let(:other_user) { @another_user }
       let(:other_order) { create(:order, user: other_user, state: 'paid') }
 
       it 'redirects to orders path with an alert' do
