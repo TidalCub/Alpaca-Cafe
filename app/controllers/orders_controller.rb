@@ -2,6 +2,8 @@
 
 class OrdersController < ApplicationController
   before_action :authenticate_user!
+  before_action :stripe_public_key, only: :checkout
+
   def index
     @orders = Order.all.paid
     authorize! @orders
@@ -23,7 +25,7 @@ class OrdersController < ApplicationController
   end
 
   def checkout
-    @order = current_user.basket
+    @order = current_user.orders.last
     authorize! @order
     @total = current_user.basket.total
     @order.checkout!
@@ -41,5 +43,11 @@ class OrdersController < ApplicationController
     authorize! @order
     @order.complete!
     redirect_to orders_path
+  end
+
+  private
+
+  def stripe_public_key
+    @public_key = STRIPE_PUBLIC_KEY
   end
 end
