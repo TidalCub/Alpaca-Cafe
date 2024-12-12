@@ -1,6 +1,16 @@
-h1 Add a new payment method
 .col-12.d-flex.justify-content-center
   .col-11.col-md-6.col-lg-4
+    .col-12.d-flex 
+      h1 Add a new payment method
+      button.btn-none data-controller="info-dialog" data-action="click->info-dialog#open" data-body="Adding a payment method allows you to pay for your orders without having to enter your card details each time. <br> You can add multiple payment methods and choose which one to use when you place an order." data-title="What is a payment method?"
+        i.fa-regular.fa-circle-question.ps-2.h5 
     = content_tag :div, '', data: { controller: 'stripe-elements', stripe_elements_client_secret: @setup_intent.client_secret, published_key: @public_key }
-      div id="payment-element"
-      btn.btn.btn-primary.btn-block.mt-3 data-action="click->stripe-elements#confirmSetupIntent" Save
+      div.p-2 id="payment-element"
+      btn.btn.btn-primary.btn-block.mt-3.col-12 data-action="click->stripe-elements#confirmSetupIntent" Save
+    hr
+      p.text-center 
+        | Powered by
+        br
+        = link_to 'https://stripe.com', target: '_blank'
+          i.fa-brands.fa-stripe.h1
+

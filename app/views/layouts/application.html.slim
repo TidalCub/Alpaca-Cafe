@@ -22,3 +22,11 @@ html
     - if current_user
       - if current_user.basket.order_items.count > 0
         = render 'layouts/basket'
+
+  dialog#info-dialog class="bg-light rounded-3 border border-none"
+    div class="modal-content"
+      div class="modal-header d-flex justify-content-between"
+        h2 class="modal-title" id="info-dialog-title"
+        button type="button" class="btn-close" onclick="document.getElementById('info-dialog').close()" aria-label="Close"
+      hr
+      div class="modal-body" id="info-dialog-body"
