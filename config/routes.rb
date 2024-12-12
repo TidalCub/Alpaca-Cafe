@@ -10,6 +10,9 @@ Rails.application.routes.draw do
   get 'checkout', to: 'orders#checkout', as: :checkout
   get 'complete_order', to: 'orders#complete_order', as: :complete_order
   get 'account', to: 'users#show', as: :account
+  namespace :users do
+    resources :payment_method
+  end
 
   post 'add_to_basket', to: 'product#add_to_basket', as: :add_to_basket
   post 'select_store/:id', to: 'store#select_store', as: :select_store
