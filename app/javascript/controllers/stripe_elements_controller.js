@@ -25,7 +25,7 @@ export default class extends Controller {
     this.stripe.confirmSetup({
       elements,
       confirmParams: {
-        return_url: 'https://example.com',
+        return_url: 'http://localhost:3000/payment_method',
         payment_method_data: {
           allow_redisplay: 'always',
         },
