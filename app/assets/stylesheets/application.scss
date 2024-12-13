@@ -27,6 +27,10 @@
   border-color: #ED6A5A !important;
  }
 
+ .border-primary {
+  border-color: #ED6A5A !important;
+}
+
  .btn-primary:hover {
   background-color: #EE5C4A !important;
   border-color: #EE5C4A !important;
@@ -166,4 +170,11 @@
 
 .blured{
   backdrop-filter: blur(50px);
+}
+
+.payment-card{
+  width: 400px;
+  height: 200px;
+  border-radius: 15px;
+  padding: 20px;
 }

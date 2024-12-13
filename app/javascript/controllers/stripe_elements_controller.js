@@ -26,6 +26,9 @@ export default class extends Controller {
       elements,
       confirmParams: {
         return_url: 'https://example.com',
+        payment_method_data: {
+          allow_redisplay: 'always',
+        },
       },
     })
     .then(function(result) {

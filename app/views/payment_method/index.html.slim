@@ -1,0 +1,19 @@
+.col-12.d-flex.justify-content-center.gap-3
+  - @payment_methods.each do |payment_method|
+      = render "payment_method", payment_method: payment_method
+  div
+    = link_to new_payment_method_path, class: " btn-none text-decoration-none"
+      .border.border-primary.border-4.rounded.p-1.payment-card.d-flex.flex-column.justify-content-between.shadow.bg-white
+        .row
+          h6.text-center.text-dark Add Payment Method
+        .row.flex-fill
+          .col-12.display-2.text-center.d-flex.flex-column.justify-content-center.h-100
+            div + 
+        .row.text-dark
+          .col.text-start
+              | Exp:
+              br
+              span.fw-bold xx/xx
+          .col.d-flex.flex-column.justify-content-end
+            .text-end
+              i class="h3 fa-regular fa-credit-card" style="line-height: 0"

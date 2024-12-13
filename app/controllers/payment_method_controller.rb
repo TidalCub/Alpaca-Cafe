@@ -3,6 +3,9 @@ class PaymentMethodController < ApplicationController
   before_action :stripe_public_key
   
   def index
+    @payment_methods = Stripe::PaymentMethod.list({
+      customer: current_user.stripe_id
+    })
   end
 
   def new

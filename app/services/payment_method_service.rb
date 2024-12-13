@@ -8,6 +8,6 @@ class PaymentMethodService
   end
 
   def list
-    Stripe::Customer.list_payment_methods(user.stripe_id)
+    Stripe::Customer.list_payment_methods(@user.stripe_id)
   end
 end
