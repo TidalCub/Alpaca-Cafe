@@ -14,14 +14,14 @@ html
     script src="https://js.stripe.com/v3/"
     
   body
-    - unless controller_name == 'orders' && action_name == 'index'
-      = render 'layouts/header'
-    p.notice = notice 
-    p.alery = alert
-    = yield
-    - if current_user
-      - if current_user.basket.order_items.count > 0
-        = render 'layouts/basket'
+      .d-flex.flex-column style="height: 100svh"
+        - unless controller_name == 'orders' && action_name == 'index'
+          = render 'layouts/header'
+        
+        = yield
+        - if current_user
+          - if current_user.basket.order_items.count > 0
+            = render 'layouts/basket'
 
   dialog#info-dialog class="bg-light rounded-3 border border-none"
     div class="modal-content"
@@ -30,3 +30,6 @@ html
         button type="button" class="btn-close" onclick="document.getElementById('info-dialog').close()" aria-label="Close"
       hr
       div class="modal-body" id="info-dialog-body"
+
+/ p.notice = notice 
+      / p.alery = alert

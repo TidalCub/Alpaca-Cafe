@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  get "payment/create"
   root 'home#index'
 
   devise_for :users

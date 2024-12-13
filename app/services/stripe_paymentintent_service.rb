@@ -3,10 +3,10 @@
 require 'stripe'
 
 class StripePaymentintentService
-  def initialize(amount, current_user, booking)
+  def initialize(amount, current_user, order)
     @amount = amount
     @current_user = current_user
-    @booking = booking
+    @order = order
   end
 
   def create
@@ -26,8 +26,10 @@ class StripePaymentintentService
     {
       amount: @amount,
       currency: 'gbp',
-      receipt_email: @booking.user.email,
-      automatic_payment_methods: { enabled: true }
+      receipt_email: @order.user.email,
+      customer: @order.user.stripe_id,
+      automatic_payment_methods: { enabled: true },
+      setup_future_usage: 'off_session'
     }.compact
   end
 
@@ -35,7 +37,7 @@ class StripePaymentintentService
     {
       amount: @amount,
       currency: 'gbp',
-      receipt_email: @booking.user.email
+      receipt_email: @order.user.email
     }.compact
   end
 end

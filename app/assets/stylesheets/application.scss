@@ -178,3 +178,18 @@
   border-radius: 15px;
   padding: 20px;
 }
+
+
+.hidden-radio {
+  display: none;
+}
+
+.payment-option {
+  cursor: pointer;
+}
+
+.hidden-radio:checked + .payment-option {
+  background-color: #F4A259; // Change to your desired color
+  border-color: #F4A259; // Change to your desired color
+  // Add any other styles you want to apply when the radio button is selected
+}

@@ -3,6 +3,7 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
   before_action :stripe_public_key, only: :checkout
+  before_action :payment_methods, only: :checkout
 
   def index
     @orders = Order.all.paid
@@ -49,5 +50,9 @@ class OrdersController < ApplicationController
 
   def stripe_public_key
     @public_key = STRIPE_PUBLIC_KEY
+  end
+
+  def payment_methods
+    @payment_methods = PaymentMethodService.new(current_user).list
   end
 end
