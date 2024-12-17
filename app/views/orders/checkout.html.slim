@@ -20,7 +20,7 @@
 /   /     div id="payment-element"
       
 
-.col-12.d-flex.flex-wrap.flex-lg-fill
+.col-12.d-flex.flex-wrap.flex-fill
   .col-12.col-mg-12.col-lg-6.mb-3
     .brand-font.display-3 Checkout
     .d-flex.flex-column.col-12.justify-content-center
@@ -37,17 +37,42 @@
               - item.product_modifyers.each do |mod|
                 div = mod.ingredient.name 
                 | |
-  .col-12.col-md-12.col-lg-6.bg-white.shadow
-    .brand-font.h1.text-center Payment Details
-    .col-12.d-flex.justify-content-center
-      .col-11.col-md-8.text-center
-        = form_with url: payment_create_path, method: :post do |f|
-          .d-flex.flex-row.gap-2.justify-content-center
-            - @payment_methods.each do |payment_method|
-              = render "payment_options", payment_method: payment_method, f: f
-            
-          .text-muted.text-center
-            | You can manage your payment methods in your account
+  .col-12.col-md-12.col-lg-6.bg-white.shadow.p-3 style="height:100%"
+    .brand-font.h1.text-center Order Details
+    hr
+    .col-12.text-center.mb-5
+      h5 Pickup Store
+      h1 = @order.store.name
+      .text-muted.fst-italic
+        | Change
+    .col-12.d-flex.justify-content-center.position-relative style="height:90%"
+      = form_with url: payment_create_path,:html => {:class => 'h-100 col-12'}, method: :post do |f|
+        .d-flex.flex-row.justify-content-center
+          .d-flex.flex-column.gap-2.justify-content-center.col-12.text-center
+            = f.label :payment_method_id, "Payment Method", {class: "h5"}
+            .col-12.d-flex.justify-content-center
+              .col-11.col-mg-7.col-lg-6
+                = f.select :payment_method_id, options_from_collection_for_select(@payment_methods, :id, ->(pm) { "#{pm.card.brand.capitalize}  **** #{pm.card.last4} #{Date.new(pm.card.exp_year, pm.card.exp_month).strftime('%d/%y')}" }), {}, {class: "form-select shadow"}
+        .text-muted.text-center.mb-5
+          | You can manage your payment methods in your account
+        
+        .text-muted.mt-5.text-center
+          | You will not be charged until you check into the store. By continuing and placing an order, you authorize us to charge your selected payment method.
+        hr
+        .col-12.d-flex.justify-content-between
+          h2 Total:
+          h2 = number_to_currency(@order.total, unit: "£")
+        hr
+    
+        .col-12
+          .col-12.d-flex.justify-content-center
+            button.btn.btn-primary.col-11 type="submit"
+              | Continue and Order
+          .col-12.d-flex.justify-content-center
+            .text-muted.text-center
+              | Payment powered by stripe, see strips T&C's
+              br
+              | Orders are subject to our T&Cs.
 
 
   
