@@ -26,7 +26,7 @@ export default class extends Controller {
     this.stripe.confirmPayment({
       elements,
       confirmParams: {
-        return_url: 'https://example.com',
+        return_url: 'http://localhost:3000/payments',
       },
     })
   }

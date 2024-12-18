@@ -1,0 +1,16 @@
+.col-12.d-flex.justify-content-center.mt-5
+  .col-11.col-md-6.col-lg-4.bg-white.shadow.p-3
+    h1.text-center Order Confirmed!
+    hr
+    h3.text-center Head to the store and then check in below.
+    p.text-center Once your here, well start making it.
+    hr
+    .col-12.text-center.text-muted
+      = "Order Reference ##{@order.id}"
+    .col-12.d-flex.justify-content-center
+      button.btn.btn-warning
+        | Check In
+    .col-12.text-muted.text-center.pt-3.fine-print
+      = "We will charge your card the order total: £#{@order.total} when you check in"
+      br
+      | You have not yet been charged

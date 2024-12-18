@@ -1,14 +1,17 @@
 require 'stripe'
 
 class PaymentsController < ApplicationController
+  before_action :find_order
+
   def create
-    debugger
-    @order = current_user.orders.last
-    puts @order.payment_intent
-    if @order
-      StripePaymentintentService.new(nil, current_user, @order, payment_params["payment_method_id"]).confirm
-    end
-    redirect_to root_path
+
+  end
+
+  def index
+    stripe_status = StripePaymentintentService.new(nil, current_user, @order).status
+    @order.requires_capture! if stripe_status =="requires_capture"
+
+    redirect_to check_in_order_path(@order)
   end
 
   def show
@@ -17,7 +20,12 @@ class PaymentsController < ApplicationController
 
   private
 
+  def find_order
+    @order = Order.find_by(payment_intent: payment_params["payment_intent"])
+    redirect_to index_path unless @order.user == current_user || @order.present?
+  end
+
   def payment_params
-    params.require(:payment).permit(:payment_method_id)
+    params.permit("payment_intent")
   end
 end

@@ -13,8 +13,12 @@ class OrdersController < ApplicationController
   def show
     @order = Order.find(params[:id])
     authorize! @order
+    #redirect_to orders_path, alert: t('orders.alerts.no_permission')
+  end
 
-    redirect_to orders_path, alert: t('orders.alerts.no_permission')
+  def check_in
+    @order = Order.find(params[:id])
+    
   end
 
   def cart
@@ -26,10 +30,10 @@ class OrdersController < ApplicationController
   end
 
   def checkout
-    @customer_session_client_secret = CustomerSessionService.new(current_user).create_session.client_secret
-    debugger
-    @payment = Payment.new
     @order = current_user.orders.last
+    redirect_to order_path(@order) if @order.state == "requires_capture"
+    @customer_session_client_secret = CustomerSessionService.new(current_user).create_session.client_secret
+    @payment = Payment.new
     authorize! @order
     @total = current_user.basket.total
     @order.checkout!

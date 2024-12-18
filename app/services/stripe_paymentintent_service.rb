@@ -3,11 +3,10 @@
 require 'stripe'
 
 class StripePaymentintentService
-  def initialize(amount, current_user, order, payment_method)
+  def initialize(amount, current_user, order)
     @amount = amount
     @current_user = current_user
     @order = order
-    @payment_method = payment_method
   end
 
   def create
@@ -21,17 +20,17 @@ class StripePaymentintentService
     )
   end
 
-  def confirm
-    Stripe::PaymentIntent.confirm(
-    @order.payment_intent,
-    {
-      payment_method: @payment_method,
-      return_url: 'https://www.example.com',
-    },
-  )
+  def status
+    Stripe::PaymentIntent.retrieve(
+      @order.payment_intent
+    ).status
   end
 
   private
+
+  def retrieve
+    
+  end
 
   def create_params
     {

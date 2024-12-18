@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   get 'complete_order', to: 'orders#complete_order', as: :complete_order
   get 'account', to: 'users#show', as: :account
 
-  resources :payments, only: [:new, :create]
+  resources :payments, only: [:new, :create, :index]
   resources :payment_method
 
 
@@ -20,7 +20,11 @@ Rails.application.routes.draw do
 
   resources :products, controller: 'product', only: %i[index new create]
   resources :categories, controller: 'category', only: %i[index new create]
-  resources :orders
+  resources :orders do
+    member do
+      get 'check_in'
+    end
+  end
   resources :order_items
   resources :carts, only: %i[index]
   resources :manage, only: %i[index]

@@ -6,7 +6,7 @@ class Order < ApplicationRecord
   belongs_to :store
   has_many :order_items, dependent: :destroy
 
-  enum :state, { new_order: 0, pending: 1, on_checkout: 2, paid: 3, payment_failed: 4, completed: 5, expired: 6 }
+  enum :state, { new_order: 0, pending: 1, on_checkout: 2, requires_capture: 3, paid: 4, payment_failed: 5, completed: 6, expired: 7 }
 
   def total
     order_items.sum { |item| item.product.price }
@@ -14,7 +14,7 @@ class Order < ApplicationRecord
 
   aasm column: :state, enum: true do
     state :new_order, initial: true
-    state :pending, :on_checkout, :paid, :completed, :expired, :payment_failed
+    state :pending, :on_checkout, :paid, :completed, :expired, :payment_failed, :requires_capture
 
     event :pending do
       transitions from: %i[new_order pending checkout], to: :pending
@@ -23,9 +23,11 @@ class Order < ApplicationRecord
     event :checkout do
       transitions from: %i[new_order pending on_checkout], to: :on_checkout
       after do
-        stripe_payment_intent = StripePaymentintentService.new(stripe_total_price, user, self, nil)
+        stripe_payment_intent = StripePaymentintentService.new(stripe_total_price, user, self)
         if payment_intent.present? && client_secret.present?
-          stripe_payment_intent.update(payment_intent)
+          if stripe_payment_intent.status != "requires_capture"
+            stripe_payment_intent.update(payment_intent)
+          end
         else
           payment_intent = stripe_payment_intent.create
           self.payment_intent = payment_intent.id
@@ -33,6 +35,10 @@ class Order < ApplicationRecord
           save
         end
       end
+    end
+
+    event :requires_capture do
+      transitions from: %i[on_checkout], to: :requires_capture
     end
 
     event :pay do
