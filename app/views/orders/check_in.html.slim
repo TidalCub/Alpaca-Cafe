@@ -2,8 +2,11 @@
   .col-11.col-md-6.col-lg-4.bg-white.shadow.p-3
     h1.text-center Order Confirmed!
     hr
-    h3.text-center Head to the store and then check in below.
-    p.text-center Once your here, well start making it.
+    .fs-3.text-center Head to:
+    .fs-2.text-center.fw-bold = "#{@order.store.name} Store"
+    .text-center.text-muted = "#{@order.store.address.number} #{@order.store.address.street} #{@order.store.address.postcode}"
+    .fs-4.text-center.mt-3
+      | and then check in below.
     hr
     .col-12.text-center.text-muted
       = "Order Reference ##{@order.id}"
