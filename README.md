@@ -50,6 +50,10 @@ The project is a slightly complicated interlocking system.
 ![Database](non-app-related/diagrams/Database.svg)
 _Correct as of Commit 068fc40_
 
+## Payment
+![Payment Flow](non-app-related/diagrams/Payment%20Flow.svg)
+The Stripe payment flow
+
 ## Infrastructure
 
 ![Infrastructure](non-app-related/diagrams/Infrastructure.svg)
