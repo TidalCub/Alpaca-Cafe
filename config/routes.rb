@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  get "payment/create"
   root 'home#index'
 
   devise_for :users
@@ -12,6 +11,7 @@ Rails.application.routes.draw do
   get 'complete_order', to: 'orders#complete_order', as: :complete_order
   get 'account', to: 'users#show', as: :account
 
+  resources :payments, only: [:new, :create]
   resources :payment_method
 
 

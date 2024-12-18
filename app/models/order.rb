@@ -23,7 +23,7 @@ class Order < ApplicationRecord
     event :checkout do
       transitions from: %i[new_order pending on_checkout], to: :on_checkout
       after do
-        stripe_payment_intent = StripePaymentintentService.new(stripe_total_price, user, self)
+        stripe_payment_intent = StripePaymentintentService.new(stripe_total_price, user, self, nil)
         if payment_intent.present? && client_secret.present?
           stripe_payment_intent.update(payment_intent)
         else

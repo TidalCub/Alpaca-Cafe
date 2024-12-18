@@ -8,7 +8,14 @@ class CustomerSessionService
   def create_session
     Stripe::CustomerSession.create({
       customer: @user.stripe_id,
-      components: { payment_element: { enabled: true } },
+      components: { 
+        payment_element: {
+           enabled: true,
+           features: {
+            payment_method_redisplay: "enabled",
+           }
+          } 
+      },
     })
   end
 end

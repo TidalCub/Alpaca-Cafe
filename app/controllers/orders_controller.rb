@@ -26,6 +26,9 @@ class OrdersController < ApplicationController
   end
 
   def checkout
+    @customer_session_client_secret = CustomerSessionService.new(current_user).create_session.client_secret
+    debugger
+    @payment = Payment.new
     @order = current_user.orders.last
     authorize! @order
     @total = current_user.basket.total

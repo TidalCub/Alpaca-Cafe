@@ -6,7 +6,9 @@ export default class extends Controller {
     this.stripe = Stripe(this.element.dataset.publishedKey);
 
     this.elements = this.stripe.elements({
-      clientSecret: this.element.dataset.stripeElementsClientSecret
+      clientSecret: this.element.dataset.stripeElementsClientSecret,
+      customerSessionClientSecret: this.element.dataset.customerSessionClientSecret,
+
     })
 
     let paymentElement = this.elements.create('payment', {
@@ -17,6 +19,16 @@ export default class extends Controller {
     })
 
     paymentElement.mount('#payment-element')
+  }
+
+  confirmPaymentIntent() {
+    const elements = this.elements;
+    this.stripe.confirmPayment({
+      elements,
+      confirmParams: {
+        return_url: 'https://example.com',
+      },
+    })
   }
 
   confirmSetupIntent() {
@@ -31,10 +43,10 @@ export default class extends Controller {
         },
       },
     })
-    .then(function(result) {
-      if (result.error) {
-        // Inform the customer that there was an error.
-      }
-    });
+      .then(function (result) {
+        if (result.error) {
+          // Inform the customer that there was an error.
+        }
+      });
   }
 }

@@ -3,10 +3,11 @@
 require 'stripe'
 
 class StripePaymentintentService
-  def initialize(amount, current_user, order)
+  def initialize(amount, current_user, order, payment_method)
     @amount = amount
     @current_user = current_user
     @order = order
+    @payment_method = payment_method
   end
 
   def create
@@ -20,6 +21,16 @@ class StripePaymentintentService
     )
   end
 
+  def confirm
+    Stripe::PaymentIntent.confirm(
+    @order.payment_intent,
+    {
+      payment_method: @payment_method,
+      return_url: 'https://www.example.com',
+    },
+  )
+  end
+
   private
 
   def create_params
@@ -29,7 +40,8 @@ class StripePaymentintentService
       receipt_email: @order.user.email,
       customer: @order.user.stripe_id,
       automatic_payment_methods: { enabled: true },
-      setup_future_usage: 'off_session'
+      setup_future_usage: 'off_session',
+      capture_method: 'manual'
     }.compact
   end
 
@@ -37,7 +49,8 @@ class StripePaymentintentService
     {
       amount: @amount,
       currency: 'gbp',
-      receipt_email: @order.user.email
+      receipt_email: @order.user.email,
+      payment_method: @payment_method
     }.compact
   end
 end
