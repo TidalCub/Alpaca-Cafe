@@ -12,6 +12,7 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
+    redirect_to check_in_order_path(@order) if @order.state == "requires_capture"
     authorize! @order
     #redirect_to orders_path, alert: t('orders.alerts.no_permission')
   end
