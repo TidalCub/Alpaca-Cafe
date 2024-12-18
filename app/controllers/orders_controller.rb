@@ -11,14 +11,13 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
-    redirect_to check_in_order_path(@order) if @order.state == "requires_capture"
+    redirect_to check_in_order_path(@order) if @order.state == 'requires_capture'
     authorize! @order
-    #redirect_to orders_path, alert: t('orders.alerts.no_permission')
+    # redirect_to orders_path, alert: t('orders.alerts.no_permission')
   end
 
   def check_in
     @order = Order.find(params[:id])
-    
   end
 
   def cart
@@ -31,7 +30,7 @@ class OrdersController < ApplicationController
 
   def checkout
     @order = current_user.orders.last
-    redirect_to order_path(@order) if @order.state == "requires_capture"
+    redirect_to order_path(@order) if @order.state == 'requires_capture'
     @customer_session_client_secret = CustomerSessionService.new(current_user).create_session.client_secret
     @payment = Payment.new
     authorize! @order
@@ -40,11 +39,9 @@ class OrdersController < ApplicationController
   end
 
   def update
-    @order = Order.find(update_params["id"])
+    @order = Order.find(update_params['id'])
     redirect_to index_path unless @order.user == current_user
-    if update_params["action_type"] == "check_in"
-      @order.check_in!
-    end
+    @order.check_in! if update_params['action_type'] == 'check_in'
     redirect_to order_path(@order)
   end
 

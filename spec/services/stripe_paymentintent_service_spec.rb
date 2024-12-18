@@ -6,7 +6,7 @@ require 'rails_helper'
 RSpec.describe StripePaymentintentService, type: :service do
   before do
     VCR.use_cassette('stripe_customer_create') do
-      @user = create(:user,  email: 'test@example.com')
+      @user = create(:user, email: 'test@example.com')
     end
   end
 
@@ -25,11 +25,11 @@ RSpec.describe StripePaymentintentService, type: :service do
       expect(Stripe::PaymentIntent).to have_received(:create).with(
         amount: amount,
         automatic_payment_methods: { enabled: true },
-        :capture_method=>"manual",
+        capture_method: 'manual',
         currency: 'gbp',
-        customer: "cus_RO4kYXL8E8Symo",
+        customer: 'cus_RO4kYXL8E8Symo',
         receipt_email: user.email,
-        :setup_future_usage=>"off_session"
+        setup_future_usage: 'off_session'
       )
       expect(result).to eq(payment_intent)
     end

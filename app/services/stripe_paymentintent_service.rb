@@ -34,9 +34,7 @@ class StripePaymentintentService
 
   private
 
-  def retrieve
-    
-  end
+  def retrieve; end
 
   def create_params
     {
@@ -54,7 +52,7 @@ class StripePaymentintentService
     {
       amount: @amount,
       currency: 'gbp',
-      receipt_email: @order.user.email,
+      receipt_email: @order.user.email
     }.compact
   end
 end

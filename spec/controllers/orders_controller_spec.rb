@@ -8,7 +8,7 @@ RSpec.describe OrdersController, type: :controller do
 
   before do
     VCR.use_cassette('stripe_customer_create') do
-      @user = create(:user, stripe_id: "cus_RNzSxzNYWd2eZ4")
+      @user = create(:user, stripe_id: 'cus_RNzSxzNYWd2eZ4')
     end
     sign_in @user
   end
@@ -86,11 +86,11 @@ RSpec.describe OrdersController, type: :controller do
   end
 
   describe 'PATCH #update' do
-    let!(:order) { create(:order, state: "requires_capture", user: user, payment_intent: "pi_3QXMmnFWpgsj4fDK2CNTkBBl")}
+    let!(:order) { create(:order, state: 'requires_capture', user: user, payment_intent: 'pi_3QXMmnFWpgsj4fDK2CNTkBBl') }
 
     it 'updates the order state to paid' do
-      VCR.use_cassette("payment_capture") do
-        patch :update, params: { id: order.id, action_type: "check_in" }
+      VCR.use_cassette('payment_capture') do
+        patch :update, params: { id: order.id, action_type: 'check_in' }
         order.reload
         expect(order.state).to eq('paid')
       end

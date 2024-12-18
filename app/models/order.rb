@@ -25,9 +25,7 @@ class Order < ApplicationRecord
       after do
         stripe_payment_intent = StripePaymentintentService.new(stripe_total_price, user, self)
         if payment_intent.present? && client_secret.present?
-          if stripe_payment_intent.status != "requires_capture"
-            stripe_payment_intent.update(payment_intent)
-          end
+          stripe_payment_intent.update(payment_intent) if stripe_payment_intent.status != 'requires_capture'
         else
           payment_intent = stripe_payment_intent.create
           self.payment_intent = payment_intent.id

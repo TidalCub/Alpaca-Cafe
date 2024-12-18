@@ -4,7 +4,6 @@ require 'rails_helper'
 
 RSpec.describe ProductController, type: :controller do
   describe 'POST #add_to_basket' do
-
     before do
       VCR.use_cassette('stripe_customer_create') do
         @user = create(:user)

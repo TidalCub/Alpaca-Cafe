@@ -11,9 +11,8 @@ Rails.application.routes.draw do
   get 'complete_order', to: 'orders#complete_order', as: :complete_order
   get 'account', to: 'users#show', as: :account
 
-  resources :payments, only: [:new, :create, :index]
+  resources :payments, only: %i[new create index]
   resources :payment_method
-
 
   post 'add_to_basket', to: 'product#add_to_basket', as: :add_to_basket
   post 'select_store/:id', to: 'store#select_store', as: :select_store

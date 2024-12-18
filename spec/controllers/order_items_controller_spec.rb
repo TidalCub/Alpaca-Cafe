@@ -12,7 +12,7 @@ RSpec.describe OrderItemsController, type: :controller do
         user
       end
     end
-    
+
     let(:order) { create(:order, user: user) }
     let(:order_item) { create(:order_item, order:) }
 
