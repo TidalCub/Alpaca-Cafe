@@ -55,7 +55,6 @@ class StripePaymentintentService
       amount: @amount,
       currency: 'gbp',
       receipt_email: @order.user.email,
-      payment_method: @payment_method
     }.compact
   end
 end

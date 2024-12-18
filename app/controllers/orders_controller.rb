@@ -3,7 +3,6 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
   before_action :stripe_public_key, only: :checkout
-  before_action :payment_methods, only: :checkout
 
   def index
     @orders = Order.all.paid
@@ -43,7 +42,7 @@ class OrdersController < ApplicationController
   def update
     @order = Order.find(update_params["id"])
     redirect_to index_path unless @order.user == current_user
-    if update_params["action_type"]
+    if update_params["action_type"] == "check_in"
       @order.check_in!
     end
     redirect_to order_path(@order)
@@ -60,10 +59,6 @@ class OrdersController < ApplicationController
 
   def stripe_public_key
     @public_key = STRIPE_PUBLIC_KEY
-  end
-
-  def payment_methods
-    @payment_methods = PaymentMethodService.new(current_user).list
   end
 
   def update_params

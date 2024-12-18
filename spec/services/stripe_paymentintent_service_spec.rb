@@ -24,9 +24,12 @@ RSpec.describe StripePaymentintentService, type: :service do
 
       expect(Stripe::PaymentIntent).to have_received(:create).with(
         amount: amount,
+        automatic_payment_methods: { enabled: true },
+        :capture_method=>"manual",
         currency: 'gbp',
+        customer: "cus_RO4kYXL8E8Symo",
         receipt_email: user.email,
-        automatic_payment_methods: { enabled: true }
+        :setup_future_usage=>"off_session"
       )
       expect(result).to eq(payment_intent)
     end

@@ -1,0 +1,123 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.stripe.com/v1/customer_sessions
+    body:
+      encoding: UTF-8
+      string: customer=cus_RNzSxzNYWd2eZ4&components[payment_element][enabled]=true&components[payment_element][features][payment_method_redisplay]=enabled
+    headers:
+      User-Agent:
+      - Stripe/v1 RubyBindings/13.1.2
+      Authorization:
+      - Bearer <stripe_secret>
+      X-Stripe-Client-Telemetry:
+      - '{"last_request_metrics":{"request_id":"req_zp6MYGvvXnd203","request_duration_ms":2}}'
+      Idempotency-Key:
+      - a961dcd8-0738-489b-bd90-f6e333c89353
+      Stripe-Version:
+      - 2024-10-28.acacia
+      X-Stripe-Client-User-Agent:
+      - '{"bindings_version":"13.1.2","lang":"ruby","lang_version":"3.2.2 p53 (2023-03-30)","platform":"x86_64-darwin23","engine":"ruby","publisher":"stripe","uname":"Darwin
+        BTM-K4DW71QC57 23.5.0 Darwin Kernel Version 23.5.0: Wed May  1 20:12:58 PDT
+        2024; root:xnu-10063.121.3~5/RELEASE_ARM64_T6000 x86_64","hostname":"BTM-K4DW71QC57"}'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Wed, 18 Dec 2024 15:12:33 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '738'
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Methods:
+      - GET, HEAD, PUT, PATCH, POST, DELETE
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - Request-Id, Stripe-Manage-Version, Stripe-Should-Retry, X-Stripe-External-Auth-Required,
+        X-Stripe-Privileged-Session-Required
+      Access-Control-Max-Age:
+      - '300'
+      Cache-Control:
+      - no-cache, no-store
+      Content-Security-Policy:
+      - base-uri 'none'; default-src 'none'; form-action 'none'; frame-ancestors 'none';
+        img-src 'self'; script-src 'self' 'report-sample'; style-src 'self'; upgrade-insecure-requests;
+        report-uri /csp-violation https://q.stripe.com/csp-violation?q=hMYCEG4AyyKWAS2crxhiTbG09xIq4C--hcgv5-F0rHhoMcDeA80T3h76cuTsaEvdDaBJd4SUmQ%3D%3D
+      Cross-Origin-Opener-Policy-Report-Only:
+      - same-origin; report-to="coop"
+      Idempotency-Key:
+      - a961dcd8-0738-489b-bd90-f6e333c89353
+      Original-Request:
+      - req_nVg6eRa3yBI2JI
+      Report-To:
+      - '{"group":"coop","max_age":8640,"endpoints":[{"url":"https://q.stripe.com/coop-report"}],"include_subdomains":true}'
+      Reporting-Endpoints:
+      - coop="https://q.stripe.com/coop-report"
+      Request-Id:
+      - req_nVg6eRa3yBI2JI
+      Stripe-Should-Retry:
+      - 'false'
+      Stripe-Version:
+      - 2024-10-28.acacia
+      Vary:
+      - Origin
+      X-Content-Type-Options:
+      - nosniff
+      X-Stripe-Priority-Routing-Enabled:
+      - 'true'
+      X-Stripe-Routing-Context-Priority-Tier:
+      - api-testmode
+      X-Wc:
+      - AB
+      Strict-Transport-Security:
+      - max-age=63072000; includeSubDomains; preload
+    body:
+      encoding: UTF-8
+      string: |-
+        {
+          "object": "customer_session",
+          "client_secret": "cuss_secret_RQFQ5qZJ1C2TwsX3iQnWA7rBGdNNquDz9rr73e8MpqYeZYn",
+          "components": {
+            "buy_button": {
+              "enabled": false
+            },
+            "payment_element": {
+              "enabled": true,
+              "features": {
+                "payment_method_allow_redisplay_filters": [
+                  "always"
+                ],
+                "payment_method_redisplay": "enabled",
+                "payment_method_redisplay_limit": 3,
+                "payment_method_remove": "disabled",
+                "payment_method_save": "disabled",
+                "payment_method_save_usage": null
+              }
+            },
+            "pricing_table": {
+              "enabled": false
+            }
+          },
+          "created": 1734534753,
+          "customer": "cus_RNzSxzNYWd2eZ4",
+          "expires_at": 1734536553,
+          "livemode": false
+        }
+  recorded_at: Wed, 18 Dec 2024 15:12:33 GMT
+recorded_with: VCR 6.3.1

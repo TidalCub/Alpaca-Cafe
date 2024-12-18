@@ -1,0 +1,162 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.stripe.com/v1/payment_intents/pi_3QXMmnFWpgsj4fDK2CNTkBBl/capture
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Stripe/v1 RubyBindings/13.1.2
+      Authorization:
+      - Bearer <stripe_secret>
+      X-Stripe-Client-Telemetry:
+      - '{"last_request_metrics":{"request_id":"req_zp6MYGvvXnd203","request_duration_ms":2}}'
+      Idempotency-Key:
+      - 8c8c2074-f0ab-4044-8de9-97782cc6f206
+      Stripe-Version:
+      - 2024-10-28.acacia
+      X-Stripe-Client-User-Agent:
+      - '{"bindings_version":"13.1.2","lang":"ruby","lang_version":"3.2.2 p53 (2023-03-30)","platform":"x86_64-darwin23","engine":"ruby","publisher":"stripe","uname":"Darwin
+        BTM-K4DW71QC57 23.5.0 Darwin Kernel Version 23.5.0: Wed May  1 20:12:58 PDT
+        2024; root:xnu-10063.121.3~5/RELEASE_ARM64_T6000 x86_64","hostname":"BTM-K4DW71QC57"}'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Wed, 18 Dec 2024 15:10:21 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '1673'
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Methods:
+      - GET, HEAD, PUT, PATCH, POST, DELETE
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - Request-Id, Stripe-Manage-Version, Stripe-Should-Retry, X-Stripe-External-Auth-Required,
+        X-Stripe-Privileged-Session-Required
+      Access-Control-Max-Age:
+      - '300'
+      Cache-Control:
+      - no-cache, no-store
+      Content-Security-Policy:
+      - base-uri 'none'; default-src 'none'; form-action 'none'; frame-ancestors 'none';
+        img-src 'self'; script-src 'self' 'report-sample'; style-src 'self'; upgrade-insecure-requests;
+        report-uri /csp-violation https://q.stripe.com/csp-violation?q=J2W-aWqP7Srk84IepM4wJHSOStJn5M_DEvs1cMv3FGOS9SRti810Mvp0dNfdgckGzJXTk3kaIQ%3D%3D
+      Cross-Origin-Opener-Policy-Report-Only:
+      - same-origin; report-to="coop"
+      Idempotency-Key:
+      - 8c8c2074-f0ab-4044-8de9-97782cc6f206
+      Original-Request:
+      - req_ThQ1ygT6v4jCUR
+      Report-To:
+      - '{"group":"coop","max_age":8640,"endpoints":[{"url":"https://q.stripe.com/coop-report"}],"include_subdomains":true}'
+      Reporting-Endpoints:
+      - coop="https://q.stripe.com/coop-report"
+      Request-Id:
+      - req_ThQ1ygT6v4jCUR
+      Stripe-Should-Retry:
+      - 'false'
+      Stripe-Version:
+      - 2024-10-28.acacia
+      Vary:
+      - Origin
+      X-Content-Type-Options:
+      - nosniff
+      X-Stripe-Priority-Routing-Enabled:
+      - 'true'
+      X-Stripe-Routing-Context-Priority-Tier:
+      - api-testmode
+      X-Wc:
+      - AB
+      Strict-Transport-Security:
+      - max-age=63072000; includeSubDomains; preload
+    body:
+      encoding: UTF-8
+      string: |-
+        {
+          "id": "pi_3QXMmnFWpgsj4fDK2CNTkBBl",
+          "object": "payment_intent",
+          "amount": 499,
+          "amount_capturable": 0,
+          "amount_details": {
+            "tip": {}
+          },
+          "amount_received": 499,
+          "application": null,
+          "application_fee_amount": null,
+          "automatic_payment_methods": {
+            "allow_redirects": "always",
+            "enabled": true
+          },
+          "canceled_at": null,
+          "cancellation_reason": null,
+          "capture_method": "manual",
+          "client_secret": "pi_3QXMmnFWpgsj4fDK2CNTkBBl_secret_OSNEyRowr0QnrXewdqsPbt34V",
+          "confirmation_method": "automatic",
+          "created": 1734526533,
+          "currency": "gbp",
+          "customer": "cus_RNzSxzNYWd2eZ4",
+          "description": null,
+          "invoice": null,
+          "last_payment_error": null,
+          "latest_charge": "ch_3QXMmnFWpgsj4fDK22m4nY0x",
+          "livemode": false,
+          "metadata": {},
+          "next_action": null,
+          "on_behalf_of": null,
+          "payment_method": "pm_1QVZkBFWpgsj4fDK1aUPwLEX",
+          "payment_method_configuration_details": {
+            "id": "pmc_1QUVA6FWpgsj4fDKbxDqhxKv",
+            "parent": null
+          },
+          "payment_method_options": {
+            "card": {
+              "installments": null,
+              "mandate_options": null,
+              "network": null,
+              "request_three_d_secure": "automatic"
+            },
+            "link": {
+              "persistent_token": null
+            },
+            "paypal": {
+              "preferred_locale": null,
+              "reference": null
+            }
+          },
+          "payment_method_types": [
+            "card",
+            "link",
+            "paypal"
+          ],
+          "processing": null,
+          "receipt_email": "customer@alpaca.com",
+          "review": null,
+          "setup_future_usage": "off_session",
+          "shipping": null,
+          "source": null,
+          "statement_descriptor": null,
+          "statement_descriptor_suffix": null,
+          "status": "succeeded",
+          "transfer_data": null,
+          "transfer_group": null
+        }
+  recorded_at: Wed, 18 Dec 2024 15:10:21 GMT
+recorded_with: VCR 6.3.1
