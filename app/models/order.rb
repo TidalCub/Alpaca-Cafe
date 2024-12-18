@@ -41,8 +41,12 @@ class Order < ApplicationRecord
       transitions from: %i[on_checkout], to: :requires_capture
     end
 
-    event :pay do
-      transitions from: :pending, to: :paid
+    event :check_in do
+      transitions from: :requires_capture, to: :paid
+      after do
+        stripe_payment_intent = StripePaymentintentService.new(nil, user, self)
+        stripe_payment_intent.capture
+      end
     end
 
     event :complete do

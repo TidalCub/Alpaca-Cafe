@@ -11,8 +11,11 @@
     .col-12.text-center.text-muted
       = "Order Reference ##{@order.id}"
     .col-12.d-flex.justify-content-center
-      button.btn.btn-warning
-        | Check In
+      = form_with url: order_path(@order), method: :patch do |f|
+        = hidden_field_tag "action_type", "check_in"
+
+        button.btn.btn-warning
+          | Check In
     .col-12.text-muted.text-center.pt-3.fine-print
       = "We will charge your card the order total: £#{@order.total} when you check in"
       br

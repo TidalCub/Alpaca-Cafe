@@ -41,10 +41,12 @@ class OrdersController < ApplicationController
   end
 
   def update
-    @order = current_user.basket
-    authorize! @order
-    @order.paid!
-    redirect_to @order
+    @order = Order.find(update_params["id"])
+    redirect_to index_path unless @order.user == current_user
+    if update_params["action_type"]
+      @order.check_in!
+    end
+    redirect_to order_path(@order)
   end
 
   def complete_order
@@ -62,5 +64,9 @@ class OrdersController < ApplicationController
 
   def payment_methods
     @payment_methods = PaymentMethodService.new(current_user).list
+  end
+
+  def update_params
+    params.permit(:action_type, :id)
   end
 end

@@ -26,6 +26,12 @@ class StripePaymentintentService
     ).status
   end
 
+  def capture
+    Stripe::PaymentIntent.capture(
+      @order.payment_intent
+    )
+  end
+
   private
 
   def retrieve
