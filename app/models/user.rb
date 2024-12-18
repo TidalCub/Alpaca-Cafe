@@ -8,8 +8,20 @@ class User < ApplicationRecord
   has_many :orders, dependent: :nullify
   has_many :user_roles, dependent: :destroy
   has_many :roles, through: :user_roles
+  after_create_commit :create_stripe_user
 
   def basket
     orders.pending.last || orders.create(state: :pending)
+  end
+
+  def create_stripe_user
+    # rubocop:disable Layout/FirstHashElementIndentation
+    customer = Stripe::Customer.create({
+      email: email,
+      metadata: {
+        user_id: id
+      }
+    })
+    self.stripe_id = customer.id
   end
 end

@@ -1,17 +1,23 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
+require 'vcr'
 
 RSpec.describe OrdersController, type: :controller do
-  let(:user) { create(:user) }
+  include Devise::Test::ControllerHelpers
+
+  before do
+    VCR.use_cassette('stripe_customer_create') do
+      @user = create(:user, stripe_id: 'cus_RNzSxzNYWd2eZ4')
+    end
+    sign_in @user
+  end
+
+  let(:user) { @user }
   let(:order) { create(:order, user:, state: 'paid') }
   let(:basket) { create(:order, user:, state: 'pending') }
   let(:product) { create(:product) }
-  let(:order_item) { create(:order_item, order: basket, product:) }
-
-  before do
-    sign_in user
-  end
+  let!(:order_item) { create(:order_item, order: basket, product:) }
 
   describe 'GET #index' do
     let(:store_manager_role) { create(:role, uuid: 'store:manager') }
@@ -35,7 +41,13 @@ RSpec.describe OrdersController, type: :controller do
     end
 
     context 'when the user does not own the order' do
-      let(:other_user) { create(:user) }
+      before do
+        VCR.use_cassette('stripe_customer_create') do
+          @another_user = create(:user)
+        end
+      end
+
+      let(:other_user) { @another_user }
       let(:other_order) { create(:order, user: other_user, state: 'paid') }
 
       it 'redirects to orders path with an alert' do
@@ -63,17 +75,25 @@ RSpec.describe OrdersController, type: :controller do
     end
 
     it 'assigns @order and @total' do
-      get :checkout
-      expect(assigns(:order)).to eq(basket)
-      expect(assigns(:total)).to eq(basket.order_items.sum(&:price))
+      VCR.use_cassette('order-checkout-stripe') do
+        VCR.use_cassette('customer-session') do
+          get :checkout
+          expect(assigns(:order)).to eq(basket)
+          expect(assigns(:total)).to eq(product.price)
+        end
+      end
     end
   end
 
   describe 'PATCH #update' do
+    let!(:order) { create(:order, state: 'requires_capture', user: user, payment_intent: 'pi_3QXMmnFWpgsj4fDK2CNTkBBl') }
+
     it 'updates the order state to paid' do
-      patch :update, params: { id: basket.id }
-      basket.reload
-      expect(basket.state).to eq('paid')
+      VCR.use_cassette('payment_capture') do
+        patch :update, params: { id: order.id, action_type: 'check_in' }
+        order.reload
+        expect(order.state).to eq('paid')
+      end
     end
   end
 end

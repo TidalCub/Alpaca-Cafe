@@ -1,0 +1,15 @@
+- if payment_method.type == "card"
+  .border.border-primary.border-4.rounded.p-1.payment-card.d-flex.flex-column.justify-content-between.shadow.bg-white
+    .row
+      h6 = payment_method.card.funding.capitalize
+    .row.p-3
+      .col-12.text-center.pt-2
+        h2.fw-bold = "**** **** **** #{payment_method.card.last4}"
+    .row
+      .col.text-start
+          | Exp:
+          br
+          span.fw-bold = "#{Date.new(payment_method.card.exp_year, payment_method.card.exp_month).strftime('%d/%y')}"
+      .col.d-flex.flex-column.justify-content-end
+        .text-end
+          i class="h3 fa-brands fa-cc-#{payment_method.card.brand.downcase}" style="line-height: 0"

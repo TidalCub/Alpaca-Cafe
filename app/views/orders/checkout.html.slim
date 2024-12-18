@@ -1,49 +1,80 @@
-.brand-font.ps-3.display-3 Checkout
-.d-flex.flex-row.justify-content-around.flex-wrap
-  .bg-light.col-11.col-md-11.col-lg-5.rounder.p-4.shadow
-    p Basket Id: #{@order.id}
 
-    h3 Items:
+/ .brand-font.ps-3.display-3 Checkout
+/ .d-flex.flex-row.justify-content-around.flex-wrap
+/   .bg-light.col-11.col-md-11.col-lg-5.rounder.p-4.shadow
+/     p Basket Id: #{@order.id}
+
+/     h3 Items:
+/     hr
+/     - @order.order_items.each do |item|
+/       .d-flex.gap-2
+/         h5 = item.product.name
+/         = button_to "x", order_item_path(item), method: :delete, class: "btn-none p-0 fw-bold"
+/       .col-12.d-flex.gap-2.text-muted
+/         - item.product_modifyers.each do |mod|
+/           div = mod.ingredient.name 
+/           | |
+      
+/   / .bg-light.col-11.col-md-11.col-lg-5.rounder
+/   /   = content_tag :div, '', data: { controller: 'stripe-elements', stripe_elements_client_secret: @order.client_secret, published_key: @public_key }
+/   /     div id="payment-element"
+      
+
+.col-12.d-flex.flex-wrap.flex-fill
+  .col-12.col-mg-12.col-lg-6.mb-3
+    .brand-font.display-3.ps-2 Checkout
+    .d-flex.flex-column.col-12.justify-content-center.mt-3
+      .col-12.d-flex.justify-content-center
+        .col-11.col-md-8.bg-white.p-3.rounded.shadow
+          .d-flex 
+            .brand-font.h1 Order Summary
+            p.text-muted.fst-italic ##{@order.id}
+          - @order.order_items.each do |item|
+            .d-flex.gap-2
+              h5 = item.product.name
+              = button_to "x", order_item_path(item), method: :delete, class: "btn-none p-0 fw-bold"
+            .col-12.d-flex.gap-2.text-muted
+              - item.product_modifyers.each do |mod|
+                div = mod.ingredient.name 
+                | |
+  .col-12.col-md-12.col-lg-6.bg-white.shadow.p-3 style="height:100%"
+    .brand-font.h1.text-center Order Details
     hr
-    - @order.order_items.each do |item|
-      .d-flex.gap-2
-        h5 = item.product.name
-        = button_to "x", order_item_path(item), method: :delete, class: "btn-none p-0 fw-bold"
-      .col-12.d-flex.gap-2.text-muted
-        - item.product_modifyers.each do |mod|
-          div = mod.ingredient.name 
-          | |
-      
-          
-          
-      
+    .col-12.text-center
+      h5 Pickup Store
+      .col-12.d-flex.justify-content-center
+        .border.rounded.p-2.col-11.col-md-5
+          h1 = @order.store.name
+          .text-muted.fst-italic.text-decoration-underline
+            | Change
+            
+    .col-12.d-flex.justify-content-center.position-relative.mt-3
+      = content_tag :div, '', data: { controller: 'stripe-elements', stripe_elements_client_secret: @order.client_secret, published_key: @public_key, customer_session_client_secret: @customer_session_client_secret }
+        .d-flex.flex-row.justify-content-center
+          .d-flex.flex-column.gap-2.justify-content-center.col-12.text-center
+            h4.lh-sm Select Payment Type
+            
+            div.p-2 id="payment-element"
+        .text-muted.text-center
+          | You can manage your payment methods in your account
+        
+        .text-muted.mt-5.text-center
+          | You will not be charged until you check into the store. By continuing and placing an order, you authorize us to charge your selected payment method.
+        hr
+        .col-12.d-flex.justify-content-between
+          h2 Total:
+          h2 = number_to_currency(@order.total, unit: "£")
+        hr
+        
+    
+        .col-12
+          .col-12.d-flex.justify-content-center
+            button.btn.btn-primary.btn-block.mt-3.col-12 data-action="click->stripe-elements#confirmPaymentIntent"
+              | Continue and Order
+          .col-12.d-flex.justify-content-center
+            .text-muted.text-center
+              | Payment powered by stripe, see strips T&C's
+              br
+              | Orders are subject to our T&Cs.
 
-  .col-11.col-md-11.col-lg-5.d-flex.align-items-center.justify-content-center.p-2.gap-3
-    form action="#{order_path(@order.id)}" method="post" class="col-12"
-      input type="hidden" name="_method" value="patch"
-      input type="hidden" name="authenticity_token" value="#{form_authenticity_token}"
-      h5 Chose Payment Method:
-      .col-12.bg-light.rounder.pb-4.shadow
-        .form-group.d-flex.flex-row-gap-3.d-flex.justify-content-center.align-items-center.gap-4
-          label.col-2
-            input type="radio" name="payment_method" value="google_pay" class="hidden-radio"
-            = image_tag "google-pay.svg", height: "100%"
-          label.col-3
-            input type="radio" name="payment_method" value="card" class="hidden-radio"
-            = image_tag "paypal.svg", height: "100%"
-          label.col-1
-            input type="radio" name="payment_method" value="paypal" class="hidden-radio"
-            = image_tag "card.svg", height: "50%"
-      h5.pt-2 Verify Details:
-      .col-12.bg-light.rounder.mt-3.rounder.p-4.shadow
-        h4 Delivery Method:
-        h2.col-12.text-center Pickup
-        hr
-        h4 Select Pickup Time:
-        .form-group.d-flex.flex-row-gap-3.d-flex.flex-column.justify-content-center.align-items-center
-          input type="time" name="pickup_time" value="#{Time.now.strftime('%H:%M')}" class="h2"
-        hr
-        h4 Total: 
-        h2.col-12.text-center £#{@total}
-      h5.pt-2 Pay:
-      input type="submit" value="Pay" class="btn btn-primary col-12 mt-3 shadow"
+

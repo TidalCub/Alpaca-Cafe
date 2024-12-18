@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_12_05_113128) do
+ActiveRecord::Schema[8.0].define(version: 2024_12_17_155123) do
   create_table "addresses", force: :cascade do |t|
     t.integer "number"
     t.string "street"
@@ -82,8 +82,18 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_05_113128) do
     t.integer "user_id", default: 0, null: false
     t.integer "users_id"
     t.integer "store_id"
+    t.string "payment_intent"
+    t.string "client_secret"
     t.index ["store_id"], name: "index_orders_on_store_id"
     t.index ["users_id"], name: "index_orders_on_users_id"
+  end
+
+  create_table "payments", force: :cascade do |t|
+    t.string "payment_method"
+    t.integer "order_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_id"], name: "index_payments_on_order_id"
   end
 
   create_table "product_modifyers", force: :cascade do |t|
@@ -161,6 +171,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_05_113128) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "stripe_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -174,6 +185,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_05_113128) do
   add_foreign_key "order_items", "products"
   add_foreign_key "orders", "stores"
   add_foreign_key "orders", "users"
+  add_foreign_key "payments", "orders"
   add_foreign_key "product_modifyers", "ingredients"
   add_foreign_key "product_modifyers", "order_items"
   add_foreign_key "products", "categories"

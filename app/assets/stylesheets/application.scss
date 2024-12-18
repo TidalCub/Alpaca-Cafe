@@ -18,16 +18,21 @@
 @import "bootstrap";
 @import "icons";
 
- body{
+body {
   background-color: #ffffff;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%23ee5c4a' fill-opacity='0.4' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");
- }
- .btn-primary {
+}
+
+.btn-primary {
   background-color: #ED6A5A !important;
   border-color: #ED6A5A !important;
- }
+}
 
- .btn-primary:hover {
+.border-primary {
+  border-color: #ED6A5A !important;
+}
+
+.btn-primary:hover {
   background-color: #EE5C4A !important;
   border-color: #EE5C4A !important;
 }
@@ -40,22 +45,22 @@
   background-color: #F4A259 !important;
 }
 
-.brand-font{
+.brand-font {
   font-family: 'Koulen', Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
-.normal-font{
+.normal-font {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.no-h-padding{
+.no-h-padding {
   padding-top: 0px !important;
   padding-bottom: 0px !important;
   line-height: 1 !important;
   margin: 0 !important;
 }
 
-.cart-icon{
+.cart-icon {
   font-size: 1.5em;
   color: #ED6A5A;
 }
@@ -65,7 +70,7 @@
 }
 
 
-.hidden-radio[type=radio]:checked + img {
+.hidden-radio[type=radio]:checked+img {
 
   background-color: #ED6A5A;
   color: white;
@@ -74,7 +79,7 @@
   border-radius: 5px;
 }
 
-.hidden-radio[type=radio]:checked + .btn {
+.hidden-radio[type=radio]:checked+.btn {
 
   background-color: #ED6A5A;
   border: #ED6A5A;
@@ -82,26 +87,27 @@
 
 
 
-.border-right{
+.border-right {
   border-right: 1px solid #000;
 }
 
-.shadow{
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25); 
+.shadow {
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
-.rounded-normal{
+.rounded-normal {
   border-radius: 15px;
 }
 
-.btn{
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25); 
+.btn {
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
-.fa-cart-shopping{
+
+.fa-cart-shopping {
   transform: scaleX(-1);
 }
 
-.decrease{
+.decrease {
   transition: all 0.3s;
   color: rgba(33, 37, 41, 0.75);
 }
@@ -110,7 +116,7 @@
   @extend .text-danger
 }
 
-.btn-none{
+.btn-none {
   background-color: transparent;
   border: none;
   color: #ED6A5A;
@@ -118,52 +124,80 @@
   padding-top: 6px;
 }
 
-.hero{
-  position:relative
-}
-.landing-image{
-  width:100%;
-  height:auto;
-  position: absolute;
-}
-.hero-img{
-  margin-top:-20px;
+.hero {
+  position: relative
 }
 
-.wav-devider{
+.landing-image {
+  width: 100%;
+  height: auto;
+  position: absolute;
+}
+
+.hero-img {
+  margin-top: -20px;
+}
+
+.wav-devider {
   margin-bottom: 0;
   position: absolute;
-  bottom:0;
-  width:100%;
+  bottom: 0;
+  width: 100%;
 }
 
-.wavy-devider-reverse{
+.wavy-devider-reverse {
   transform: scaley(-1);
-  margin-top:-10px;
+  margin-top: -10px;
 }
 
-.secondary-section{
-  margin-top:-300px;
+.secondary-section {
+  margin-top: -300px;
 }
 
-.bg-green{
+.bg-green {
   background-color: #519D54;
 }
 
-.btn-organge{
+.btn-organge {
   background-color: #F4A259;
   border-color: #F4A259;
 }
 
-.btn-organge:hover{
+.btn-organge:hover {
   background-color: #F4A259;
   border-color: #F4A259;
 }
 
-.buffer-zone{
-   padding-top:100px;
+.buffer-zone {
+  padding-top: 100px;
 }
 
-.blured{
+.blured {
   backdrop-filter: blur(50px);
+}
+
+.payment-card {
+  width: 400px;
+  height: 200px;
+  border-radius: 15px;
+  padding: 20px;
+}
+
+
+.hidden-radio {
+  display: none;
+}
+
+.payment-option {
+  cursor: pointer;
+}
+
+.hidden-radio:checked+.payment-option {
+  background-color: #F4A259; // Change to your desired color
+  border-color: #F4A259; // Change to your desired color
+  // Add any other styles you want to apply when the radio button is selected
+}
+
+.fine-print {
+  font-size: 0.6em
 }

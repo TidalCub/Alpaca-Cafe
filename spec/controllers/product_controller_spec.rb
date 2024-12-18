@@ -4,17 +4,19 @@ require 'rails_helper'
 
 RSpec.describe ProductController, type: :controller do
   describe 'POST #add_to_basket' do
-    let(:user) { create(:user) }
-    let(:product) { create(:product) }
-    let(:store) { create(:store) }
-    let(:ingredient_group) { IngredientGroup.first }
-    let(:ingredient) { Ingredient.first }
-
     before do
-      product
-      allow(controller).to receive(:current_user).and_return(user)
-      allow(user).to receive(:basket).and_return(Order.create(user: user, store: store))
+      VCR.use_cassette('stripe_customer_create') do
+        @user = create(:user)
+      end
+      sign_in @user
     end
+
+    let(:user) { @user }
+    let!(:product) { create(:product) }
+    let(:store) { create(:store) }
+    let(:ingredient_group) { product.ingredient_groups.first }
+    let(:ingredient) { ingredient_group.ingredients.first }
+    let!(:order) { create(:order, user: user, store: store) }
 
     context 'when adding a product to the basket' do
       it 'creates an order item' do
