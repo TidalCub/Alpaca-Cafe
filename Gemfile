@@ -84,6 +84,7 @@ end
 gem 'aasm', '~> 5.5'
 gem 'action_policy'
 gem 'bootstrap', '~> 5.0'
+gem 'bootstrap-email'
 gem 'devise', '~> 4.9'
 gem 'jquery-rails'
 gem 'kamal', require: false
@@ -94,4 +95,3 @@ gem 'slim-rails'
 gem 'stripe'
 gem 'vcr'
 gem 'webmock'
-gem 'bootstrap-email'

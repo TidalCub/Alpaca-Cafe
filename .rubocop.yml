@@ -8,6 +8,7 @@ AllCops:
     - "vendor/**/*"
     - "db/seed.rb"
     - "db/schema.rb"
+    - "config/*"
 Rails/ThreeStateBooleanColumn:
   Exclude:
     - "db/schema.rb"

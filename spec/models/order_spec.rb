@@ -3,12 +3,10 @@
 require 'rails_helper'
 
 RSpec.describe Order, type: :model do
-
-
   describe 'state transitions' do
     before do
       VCR.use_cassette('stripe_customer_create') do
-        @user =  create(:user)
+        @user = create(:user)
       end
     end
 
