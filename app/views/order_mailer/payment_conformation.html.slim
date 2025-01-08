@@ -1,0 +1,24 @@
+doctype html
+html
+  head
+    meta http-equiv="Content-Type" content="text/html; charset=utf-8"
+    style
+      | /* Add custom classes and styles that you want inlined here */
+  body.bg-light
+    .container
+      .card.my-10
+        .card-body
+          h1.h3.mb-2.text-center Payment Confirmed!
+          hr
+          p.text-center You have successfully paid for order #[Order ID]
+          h5.mt-4 Order Summary:
+          table.table.table-striped.thead-default
+              thead
+                tr
+                  th Product
+                  th Price
+              tbody
+                tr
+                - @order.order_items.each do |order_item|
+                  td = order_item.product.name
+                  td = order_item.product.price
