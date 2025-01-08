@@ -37,6 +37,9 @@ class Order < ApplicationRecord
 
     event :requires_capture do
       transitions from: %i[on_checkout], to: :requires_capture
+      after do
+        OrderMailer.order_confirmation(self).deliver_now!
+      end
     end
 
     event :check_in do

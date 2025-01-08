@@ -1,0 +1,38 @@
+doctype html
+html
+  head
+    meta http-equiv="Content-Type" content="text/html; charset=utf-8"
+    style
+      /* Add custom classes and styles that you want inlined here */
+  body.bg-light
+    .container
+      .card.my-10
+        .card-body
+          h1.h3.mb-2 Order Confirmation
+          p.text-muted You have not yet paid, this is not a receipt
+          hr
+          h2.text-teal-700.text-center.mt-2 Head to the Restaurant
+          hr
+          .space-y-3
+            p.text-gray-700.fw-600 Thank you for your recent order, we will start preparing it once you check into the restaurant.
+            p.text-muted
+              span.fw-900 You have not yet been charged.
+              =  "You will be charged #{@order.total} once you check into the restaurant to collect your order."
+            hr
+            h3 Order Summary:
+            table.table.table-striped.thead-default
+              thead
+                tr
+                  th Product
+                  th Price
+              tbody
+                tr
+                - @order.order_items.each do |order_item|
+                  td = order_item.product.name
+                  td = order_item.product.price
+
+            table.table.table-striped.thead-default
+              tr
+                th Total:
+                th = @order.total
+            p.text-muted This is not a receipt
