@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class ApplicationMailer < ActionMailer::Base
-  default from: 'from@example.com'
+  layout 'bootstrap-mailer'
+  default from: 'leon@leon-skinner.dev'
   layout 'mailer'
 end
