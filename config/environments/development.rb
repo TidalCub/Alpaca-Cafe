@@ -74,6 +74,24 @@ Rails.application.configure do
   # config.generators.apply_rubocop_autocorrect_after_generate!
   Stripe.api_key = Rails.application.credentials.dig(:development, :stripe, :secret_key)
   # Define a global variable for Stripe public key
+
+  #======= Mailer Configuration =======
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address: 'smtppro.zoho.eu',
+    port: 465,
+    domain: 'leon-skinner.dev',
+    user_name: Rails.application.credentials.dig(:development, :mail, :username),
+    password: Rails.application.credentials.dig(:development, :mail, :password),
+    authentication: 'plain',
+    enable_starttls: true,
+    open_timeout: 5,
+    read_timeout: 5,
+    ssl: true
+
+  }
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.perform_deliveries = true
 end
 
 Stripe.api_key = Rails.application.credentials.dig(:development, :stripe, :secret_key)

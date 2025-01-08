@@ -4,7 +4,7 @@
 # test suite. You never need to work with it otherwise. Remember that
 # your test database is "scratch space" for the test suite and is wiped
 # and recreated between test runs. Don't rely on the data there!
-Stripe.api_key = Rails.application.credentials.dig(:development, :stripe, :secret_key).nil? ? "TEST_KEY" : Rails.application.credentials.dig(:development, :stripe, :secret_key)
+Stripe.api_key = Rails.application.credentials.dig(:development, :stripe, :secret_key).nil? ? 'TEST_KEY' : Rails.application.credentials.dig(:development, :stripe, :secret_key)
 STRIPE_PUBLIC_KEY = 'Test_public_key'
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
@@ -58,5 +58,3 @@ Rails.application.configure do
     vcr_config.filter_sensitive_data('<stripe_secret>') { Stripe.api_key }
   end
 end
-
-

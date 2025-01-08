@@ -37,6 +37,9 @@ class Order < ApplicationRecord
 
     event :requires_capture do
       transitions from: %i[on_checkout], to: :requires_capture
+      after do
+        OrderMailer.order_confirmation(self).deliver_now!
+      end
     end
 
     event :check_in do
@@ -44,6 +47,7 @@ class Order < ApplicationRecord
       after do
         stripe_payment_intent = StripePaymentintentService.new(nil, user, self)
         stripe_payment_intent.capture
+        OrderMailer.payment_confirmation(self).deliver_now!
       end
     end
 

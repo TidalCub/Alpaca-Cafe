@@ -7,7 +7,6 @@ class PaymentMethodController < ApplicationController
     @payment_methods = Stripe::PaymentMethod.list({
                                                     customer: current_user.stripe_id
                                                   })
-    debugger
   end
 
   def new
