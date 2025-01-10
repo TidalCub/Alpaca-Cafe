@@ -3,7 +3,7 @@ require "json"
 require "googleauth"
 
 class GoogleRetailTagService
-  GOOGLE_API_URL = "https://retail.googleapis.com/v2/projects/957190680060/locations/global/catalogs/default_catalog/userEvents:write"
+  GOOGLE_API_URL = "https://retail.googleapis.com/v2/projects/aplaca-cafe/locations/global/catalogs/default_catalog/userEvents:write"
   SERVICE_ACCOUNT_JSON = Rails.root.join("config", "google_service_account.json")
 
   def initialize(user)
@@ -42,7 +42,6 @@ class GoogleRetailTagService
       userInfo: {
         userId: @user.id.to_s,
       },
-      dryRun: true
     }.compact.to_json
   end
 
