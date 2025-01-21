@@ -53,6 +53,11 @@ class Order < ApplicationRecord
 
     event :complete do
       transitions from: :paid, to: :completed
+      after do
+        order_items.each do |order_item|
+          GoogleRetailTagService.new(user).new_event('purchase-complete', order_item.product, 1)
+        end
+      end
     end
   end
 
