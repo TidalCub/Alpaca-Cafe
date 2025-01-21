@@ -5,6 +5,8 @@ class ProductController < ApplicationController
   before_action :set_store
   before_action :set_product, only: %i[show]
   before_action :authorize!
+  after_action :record_view_event, only: %i[show]
+  after_action :record_basket_add_event, only: %i[add_to_basket]
 
   def index
     @products = Product.all
@@ -53,5 +55,14 @@ class ProductController < ApplicationController
 
   def set_product
     @product = Product.find_by(slug: params[:product_name].parameterize)
+  end
+
+  def record_view_event
+    GoogleRetailTagService.new(current_user).new_event('detail-page-view', @product)
+  end
+
+  def record_basket_add_event
+    product = Product.find(add_to_basket_params[:product])
+    GoogleRetailTagService.new(current_user).new_event('add-to-cart', product, 1)
   end
 end

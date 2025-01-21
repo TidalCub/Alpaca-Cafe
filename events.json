@@ -1,0 +1,15 @@
+{"visitorId":"1","sessionId":"5a7fc342-4e5a-42dd-b9f0-a1d0369d5b4b","eventTime":"2024-11-02T06:22:57.000+00:00","userInfo":{"userId":"1"},"event_type":"home-page-view"}
+{"visitorId":"1","sessionId":"18348fb3-d5c2-4c68-ba76-d60d7ad342ba","eventTime":"2024-11-02T06:24:26.000+00:00","userInfo":{"userId":"1"},"event_type":"detail-page-view","productDetails":[{"product":{"id":"1"}}]}
+{"visitorId":"1","sessionId":"1f8c8de9-eec9-4a65-82d9-67f642a25372","eventTime":"2024-11-02T06:22:58.000+00:00","userInfo":{"userId":"1"},"event_type":"home-page-view"}
+{"visitorId":"1","sessionId":"87d667d3-5c46-454e-b030-c0f496f35014","eventTime":"2024-11-23T08:32:27.000+00:00","userInfo":{"userId":"1"},"event_type":"home-page-view"}
+{"visitorId":"1","sessionId":"16eb762b-5f7c-4622-89c2-16b7aeda73ee","eventTime":"2024-11-23T08:33:27.000+00:00","userInfo":{"userId":"1"},"event_type":"detail-page-view","productDetails":[{"product":{"id":"1"}}]}
+{"visitorId":"1","sessionId":"eb84f1ab-858a-4253-81df-a8aa0724a17b","eventTime":"2024-11-23T08:33:31.000+00:00","userInfo":{"userId":"1"},"event_type":"add-to-cart","productDetails":[{"product":{"id":"1"},"quantity":7}]}
+{"visitorId":"1","sessionId":"3d01c169-f509-4862-9254-2775cbf7f70a","eventTime":"2024-11-23T08:33:30.000+00:00","userInfo":{"userId":"1"},"event_type":"purchase-complete","productDetails":[{"product":{"id":"1"},"quantity":1}]}
+{"visitorId":"1","sessionId":"ac35871f-f2db-46bc-851d-573df685b38a","eventTime":"2024-12-09T02:25:24.000+00:00","userInfo":{"userId":"1"},"event_type":"home-page-view"}
+{"visitorId":"1","sessionId":"4a79249d-8606-490b-9af8-9d1b25c0519a","eventTime":"2024-12-09T02:28:42.000+00:00","userInfo":{"userId":"1"},"event_type":"detail-page-view","productDetails":[{"product":{"id":"1"}}]}
+{"visitorId":"1","sessionId":"55d1f497-92ff-4d41-8208-8609ddf19a5c","eventTime":"2024-12-09T02:25:56.000+00:00","userInfo":{"userId":"1"},"event_type":"add-to-cart","productDetails":[{"product":{"id":"1"},"quantity":4}]}
+{"visitorId":"1","sessionId":"993023d4-46dc-4566-8f17-24d306d3c269","eventTime":"2024-12-09T02:25:44.000+00:00","userInfo":{"userId":"1"},"event_type":"purchase-complete","productDetails":[{"product":{"id":"1"},"quantity":4}]}
+{"visitorId":"1","sessionId":"07fd8ae7-c3ec-4f13-806f-98d8250d3312","eventTime":"2024-12-04T19:40:42.000+00:00","userInfo":{"userId":"1"},"event_type":"home-page-view"}
+{"visitorId":"1","sessionId":"849d5b2f-797c-445b-aedd-575c8fe3f439","eventTime":"2024-11-22T07:29:12.000+00:00","userInfo":{"userId":"1"},"event_type":"home-page-view"}
+{"visitorId":"1","sessionId":"8eb2b647-bf40-475d-b3e0-9d30692bc1d8","eventTime":"2024-11-22T07:30:52.000+00:00","userInfo":{"userId":"1"},"event_type":"detail-page-view","productDetails":[{"product":{"id":"1"}}]}
+{"visitorId":"1","sessionId":"b553bdc3-054b-44b3-89cd-416c4512c13c","eventTime":"2024-11-22T07:30:27.000+00:00","userInfo":{"userId":"1"},"event_type":"add-to-cart","productDetails":[{"product":{"id":"1"},"quantity":7}]}

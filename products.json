@@ -1,0 +1,101 @@
+{"id":"701","categories":"Slow Roasted Coffee","title":"Latte","priceInfo":{"currencyCode":"GBP","price":"5.17"}}
+{"id":"702","categories":"Slow Roasted Coffee","title":"Cappuccino","priceInfo":{"currencyCode":"GBP","price":"4.7"}}
+{"id":"703","categories":"Slow Roasted Coffee","title":"Espresso Shot","priceInfo":{"currencyCode":"GBP","price":"5.43"}}
+{"id":"704","categories":"Slow Roasted Coffee","title":"Americano","priceInfo":{"currencyCode":"GBP","price":"4.42"}}
+{"id":"705","categories":"Slow Roasted Coffee","title":"Mocha","priceInfo":{"currencyCode":"GBP","price":"4.81"}}
+{"id":"706","categories":"Slow Roasted Coffee","title":"Macchiato","priceInfo":{"currencyCode":"GBP","price":"4.96"}}
+{"id":"707","categories":"Slow Roasted Coffee","title":"Flat White","priceInfo":{"currencyCode":"GBP","price":"4.67"}}
+{"id":"708","categories":"Pastries","title":"Croissant","priceInfo":{"currencyCode":"GBP","price":"5.76"}}
+{"id":"709","categories":"Pastries","title":"Chocolate Croissant","priceInfo":{"currencyCode":"GBP","price":"4.67"}}
+{"id":"710","categories":"Pastries","title":"Almond Croissant","priceInfo":{"currencyCode":"GBP","price":"4.79"}}
+{"id":"711","categories":"Pastries","title":"Cinnamon Roll","priceInfo":{"currencyCode":"GBP","price":"4.26"}}
+{"id":"712","categories":"Pastries","title":"Blueberry Muffin","priceInfo":{"currencyCode":"GBP","price":"5.98"}}
+{"id":"713","categories":"Pastries","title":"Banana Bread","priceInfo":{"currencyCode":"GBP","price":"4.08"}}
+{"id":"714","categories":"Pastries","title":"Scone","priceInfo":{"currencyCode":"GBP","price":"4.42"}}
+{"id":"715","categories":"Pastries","title":"Cheese Danish","priceInfo":{"currencyCode":"GBP","price":"4.84"}}
+{"id":"716","categories":"Pastries","title":"Apple Turnover","priceInfo":{"currencyCode":"GBP","price":"5.07"}}
+{"id":"717","categories":"Pastries","title":"Cherry Danish","priceInfo":{"currencyCode":"GBP","price":"4.63"}}
+{"id":"718","categories":"Pastries","title":"Eclair","priceInfo":{"currencyCode":"GBP","price":"4.97"}}
+{"id":"719","categories":"Pastries","title":"Lemon Tart","priceInfo":{"currencyCode":"GBP","price":"4.91"}}
+{"id":"720","categories":"Pastries","title":"Chocolate Tart","priceInfo":{"currencyCode":"GBP","price":"4.1"}}
+{"id":"721","categories":"Pastries","title":"Pecan Pie","priceInfo":{"currencyCode":"GBP","price":"5.81"}}
+{"id":"722","categories":"Pastries","title":"Macaron","priceInfo":{"currencyCode":"GBP","price":"4.78"}}
+{"id":"723","categories":"Teas","title":"Iced Tea","priceInfo":{"currencyCode":"GBP","price":"5.64"}}
+{"id":"724","categories":"Teas","title":"Breakfast Tea","priceInfo":{"currencyCode":"GBP","price":"4.49"}}
+{"id":"725","categories":"Teas","title":"Green Tea","priceInfo":{"currencyCode":"GBP","price":"5.49"}}
+{"id":"726","categories":"Teas","title":"Chai Tea","priceInfo":{"currencyCode":"GBP","price":"4.26"}}
+{"id":"727","categories":"Teas","title":"Earl Grey Tea","priceInfo":{"currencyCode":"GBP","price":"5.66"}}
+{"id":"728","categories":"Teas","title":"Peppermint Tea","priceInfo":{"currencyCode":"GBP","price":"5.05"}}
+{"id":"729","categories":"Teas","title":"Chamomile Tea","priceInfo":{"currencyCode":"GBP","price":"5.84"}}
+{"id":"730","categories":"Teas","title":"Jasmine Tea","priceInfo":{"currencyCode":"GBP","price":"5.69"}}
+{"id":"731","categories":"Iced Coffee","title":"Iced Latte","priceInfo":{"currencyCode":"GBP","price":"5.38"}}
+{"id":"732","categories":"Iced Coffee","title":"Iced Cappuccino","priceInfo":{"currencyCode":"GBP","price":"5.7"}}
+{"id":"733","categories":"Iced Coffee","title":"Iced Mocha","priceInfo":{"currencyCode":"GBP","price":"5.53"}}
+{"id":"734","categories":"Iced Coffee","title":"Iced Americano","priceInfo":{"currencyCode":"GBP","price":"4.89"}}
+{"id":"735","categories":"Iced Coffee","title":"Iced Caramel Macchiato","priceInfo":{"currencyCode":"GBP","price":"5.67"}}
+{"id":"736","categories":"Iced Coffee","title":"Iced Vanilla Latte","priceInfo":{"currencyCode":"GBP","price":"4.59"}}
+{"id":"737","categories":"Iced Coffee","title":"Iced Hazelnut Latte","priceInfo":{"currencyCode":"GBP","price":"4.95"}}
+{"id":"738","categories":"Iced Coffee","title":"Iced Chai Latte","priceInfo":{"currencyCode":"GBP","price":"5.87"}}
+{"id":"739","categories":"Iced Coffee","title":"Iced Matcha Latte","priceInfo":{"currencyCode":"GBP","price":"4.07"}}
+{"id":"740","categories":"Iced Coffee","title":"Iced Flat White","priceInfo":{"currencyCode":"GBP","price":"4.48"}}
+{"id":"741","categories":"Iced Coffee","title":"Cold Brew Coffee","priceInfo":{"currencyCode":"GBP","price":"5.79"}}
+{"id":"742","categories":"Hot Chocolate","title":"Classic Hot Chocolate","priceInfo":{"currencyCode":"GBP","price":"4.91"}}
+{"id":"743","categories":"Hot Chocolate","title":"White Hot Chocolate","priceInfo":{"currencyCode":"GBP","price":"5.1"}}
+{"id":"744","categories":"Hot Chocolate","title":"Premium Hot Chocolate","priceInfo":{"currencyCode":"GBP","price":"5.72"}}
+{"id":"745","categories":"Cold Drinks","title":"Sparkling Water","priceInfo":{"currencyCode":"GBP","price":"4.62"}}
+{"id":"746","categories":"Cold Drinks","title":"Lemonade","priceInfo":{"currencyCode":"GBP","price":"5.64"}}
+{"id":"747","categories":"Cold Drinks","title":"Iced Coconut Water","priceInfo":{"currencyCode":"GBP","price":"5.06"}}
+{"id":"748","categories":"Cold Drinks","title":"Milk Carton","priceInfo":{"currencyCode":"GBP","price":"5.17"}}
+{"id":"749","categories":"Cold Drinks","title":"Cola","priceInfo":{"currencyCode":"GBP","price":"4.56"}}
+{"id":"750","categories":"Cold Drinks","title":"Cola Max","priceInfo":{"currencyCode":"GBP","price":"4.8"}}
+{"id":"751","categories":"Cold Drinks","title":"Diet Cola","priceInfo":{"currencyCode":"GBP","price":"5.42"}}
+{"id":"752","categories":"Cold Drinks","title":"Cherry Cola","priceInfo":{"currencyCode":"GBP","price":"5.84"}}
+{"id":"753","categories":"Cold Drinks","title":"Chocolate Milk Carton","priceInfo":{"currencyCode":"GBP","price":"5.98"}}
+{"id":"754","categories":"Cold Drinks","title":"Still Water 400ml","priceInfo":{"currencyCode":"GBP","price":"4.42"}}
+{"id":"755","categories":"Cold Drinks","title":"Still Water 335ml","priceInfo":{"currencyCode":"GBP","price":"4.76"}}
+{"id":"756","categories":"Cold Drinks","title":"Still Water 1L","priceInfo":{"currencyCode":"GBP","price":"5.12"}}
+{"id":"757","categories":"Cold Drinks","title":"Dr. Cola","priceInfo":{"currencyCode":"GBP","price":"4.99"}}
+{"id":"758","categories":"Cold Drinks","title":"Cola Lite","priceInfo":{"currencyCode":"GBP","price":"4.73"}}
+{"id":"759","categories":"Cold Drinks","title":"Iced Banana Water","priceInfo":{"currencyCode":"GBP","price":"5.59"}}
+{"id":"760","categories":"Cold Drinks","title":"Strawberry Milk Carton","priceInfo":{"currencyCode":"GBP","price":"5.27"}}
+{"id":"761","categories":"Cold Drinks","title":"Orange Juice","priceInfo":{"currencyCode":"GBP","price":"4.75"}}
+{"id":"762","categories":"Milkshakes","title":"Chocolate Milkshake","priceInfo":{"currencyCode":"GBP","price":"4.08"}}
+{"id":"763","categories":"Milkshakes","title":"Vanilla Milkshake","priceInfo":{"currencyCode":"GBP","price":"4.37"}}
+{"id":"764","categories":"Milkshakes","title":"Banana Milkshake","priceInfo":{"currencyCode":"GBP","price":"5.83"}}
+{"id":"765","categories":"Milkshakes","title":"Strawberry Milkshake","priceInfo":{"currencyCode":"GBP","price":"4.32"}}
+{"id":"766","categories":"Milkshakes","title":"Caramel Milkshake","priceInfo":{"currencyCode":"GBP","price":"5.16"}}
+{"id":"767","categories":"Seasonal","title":"Pumpkin Spice Latte","priceInfo":{"currencyCode":"GBP","price":"4.69"}}
+{"id":"768","categories":"Seasonal","title":"Eggnog Latte","priceInfo":{"currencyCode":"GBP","price":"5.88"}}
+{"id":"769","categories":"Seasonal","title":"Gingerbread Latte","priceInfo":{"currencyCode":"GBP","price":"5.22"}}
+{"id":"770","categories":"Seasonal","title":"Peppermint Mocha","priceInfo":{"currencyCode":"GBP","price":"5.95"}}
+{"id":"771","categories":"Seasonal","title":"Hot Apple Cider","priceInfo":{"currencyCode":"GBP","price":"5.27"}}
+{"id":"772","categories":"Seasonal","title":"Maple Latte","priceInfo":{"currencyCode":"GBP","price":"4.06"}}
+{"id":"773","categories":"Seasonal","title":"Winter Blend Coffee","priceInfo":{"currencyCode":"GBP","price":"5.94"}}
+{"id":"774","categories":"Seasonal","title":"Chestnut Praline Latte","priceInfo":{"currencyCode":"GBP","price":"5.75"}}
+{"id":"775","categories":"Seasonal","title":"Toasted Marshmallow Hot Chocolate","priceInfo":{"currencyCode":"GBP","price":"4.96"}}
+{"id":"776","categories":"Seasonal","title":"Cranberry Punch","priceInfo":{"currencyCode":"GBP","price":"4.57"}}
+{"id":"777","categories":"Seasonal","title":"Pumpkin Chai Latte","priceInfo":{"currencyCode":"GBP","price":"4.47"}}
+{"id":"778","categories":"Seasonal","title":"Holiday Blend Coffee","priceInfo":{"currencyCode":"GBP","price":"4.85"}}
+{"id":"779","categories":"Seasonal","title":"Cinnamon Roll Latte","priceInfo":{"currencyCode":"GBP","price":"4.27"}}
+{"id":"780","categories":"Seasonal","title":"Apple Pie Latte","priceInfo":{"currencyCode":"GBP","price":"4.31"}}
+{"id":"781","categories":"Seasonal","title":"Peppermint Hot Chocolate","priceInfo":{"currencyCode":"GBP","price":"4.13"}}
+{"id":"782","categories":"Cakes","title":"Classic Chocolate Cake","priceInfo":{"currencyCode":"GBP","price":"4.67"}}
+{"id":"783","categories":"Cakes","title":"Vanilla Bean Cake","priceInfo":{"currencyCode":"GBP","price":"5.5"}}
+{"id":"784","categories":"Cakes","title":"Red Velvet Cake","priceInfo":{"currencyCode":"GBP","price":"4.44"}}
+{"id":"785","categories":"Cakes","title":"Carrot Cake","priceInfo":{"currencyCode":"GBP","price":"4.23"}}
+{"id":"786","categories":"Cakes","title":"Lemon Drizzle Cake","priceInfo":{"currencyCode":"GBP","price":"4.74"}}
+{"id":"787","categories":"Cakes","title":"Black Forest Cake","priceInfo":{"currencyCode":"GBP","price":"4.55"}}
+{"id":"788","categories":"Cakes","title":"Tiramisu Cake","priceInfo":{"currencyCode":"GBP","price":"5.0"}}
+{"id":"789","categories":"Cakes","title":"Strawberry Shortcake","priceInfo":{"currencyCode":"GBP","price":"5.3"}}
+{"id":"790","categories":"Cakes","title":"Funfetti Cake","priceInfo":{"currencyCode":"GBP","price":"5.22"}}
+{"id":"791","categories":"Cakes","title":"Banana Cake","priceInfo":{"currencyCode":"GBP","price":"4.8"}}
+{"id":"792","categories":"Cakes","title":"Coconut Cake","priceInfo":{"currencyCode":"GBP","price":"5.38"}}
+{"id":"793","categories":"Cakes","title":"Cheesecake","priceInfo":{"currencyCode":"GBP","price":"4.38"}}
+{"id":"794","categories":"Cakes","title":"Pineapple Upside-Down Cake","priceInfo":{"currencyCode":"GBP","price":"4.1"}}
+{"id":"795","categories":"Cakes","title":"Matcha Green Tea Cake","priceInfo":{"currencyCode":"GBP","price":"5.49"}}
+{"id":"796","categories":"Cakes","title":"Raspberry Almond Cake","priceInfo":{"currencyCode":"GBP","price":"4.36"}}
+{"id":"797","categories":"Cakes","title":"Opera Cake","priceInfo":{"currencyCode":"GBP","price":"4.8"}}
+{"id":"798","categories":"Cakes","title":"Pumpkin Spice Cake","priceInfo":{"currencyCode":"GBP","price":"4.65"}}
+{"id":"799","categories":"Cakes","title":"Mocha Cake","priceInfo":{"currencyCode":"GBP","price":"5.78"}}
+{"id":"800","categories":"Cakes","title":"Peanut Butter Chocolate Cake","priceInfo":{"currencyCode":"GBP","price":"4.29"}}
+{"id":"801","categories":"Cakes","title":"Angel Food Cake","priceInfo":{"currencyCode":"GBP","price":"5.21"}}

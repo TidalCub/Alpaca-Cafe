@@ -1,0 +1,67 @@
+[
+  {
+    "id": "105",
+    "categories": "Slow Roasted Coffee",
+    "title": "Latte"
+  },
+  {
+    "id": "106",
+    "categories": "Slow Roasted Coffee",
+    "title": "Cappuccino"
+  },
+  {
+    "id": "107",
+    "categories": "Iced Coffee",
+    "title": "Iced Latte"
+  },
+  {
+    "id": "108",
+    "categories": "Iced Coffee",
+    "title": "Iced Cappuccino"
+  },
+  {
+    "id": "109",
+    "categories": "Teas",
+    "title": "Iced Tea"
+  },
+  {
+    "id": "110",
+    "categories": "Teas",
+    "title": "Breakfast Tea"
+  },
+  {
+    "id": "111",
+    "categories": "Teas",
+    "title": "Green Tea"
+  },
+  {
+    "id": "112",
+    "categories": "Teas",
+    "title": "Chai Tea"
+  },
+  {
+    "id": "113",
+    "categories": "Slow Roasted Coffee",
+    "title": "Espresso Shot"
+  },
+  {
+    "id": "114",
+    "categories": "Slow Roasted Coffee",
+    "title": "Americano"
+  },
+  {
+    "id": "115",
+    "categories": "Slow Roasted Coffee",
+    "title": "Mocha"
+  },
+  {
+    "id": "116",
+    "categories": "Slow Roasted Coffee",
+    "title": "Macchiato"
+  },
+  {
+    "id": "117",
+    "categories": "Slow Roasted Coffee",
+    "title": "Flat White"
+  }
+]

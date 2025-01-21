@@ -135,16 +135,6 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_17_155123) do
     t.index ["uuid"], name: "index_roles_on_uuid", unique: true
   end
 
-  create_table "stocks", force: :cascade do |t|
-    t.integer "store_id", null: false
-    t.integer "ingredient_id", null: false
-    t.boolean "in_stock", default: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["ingredient_id"], name: "index_stocks_on_ingredient_id"
-    t.index ["store_id"], name: "index_stocks_on_store_id"
-  end
-
   create_table "stores", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -191,8 +181,6 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_17_155123) do
   add_foreign_key "products", "categories"
   add_foreign_key "recipes", "ingredient_groups"
   add_foreign_key "recipes", "products"
-  add_foreign_key "stocks", "ingredients"
-  add_foreign_key "stocks", "stores"
   add_foreign_key "user_roles", "roles"
   add_foreign_key "user_roles", "users"
 end
