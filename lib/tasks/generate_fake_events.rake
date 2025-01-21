@@ -1,3 +1,4 @@
+# rake events:generate
 namespace :events do
   desc 'Generate historic events'
   task generate: :environment do

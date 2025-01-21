@@ -17,13 +17,13 @@ Product.destroy_all
 Category.destroy_all
 Ingredient.destroy_all
 IngredientGroup.destroy_all
-
+q
 Role.destroy_all
 Role.create!(name: 'customer', uuid: 'customer')
 
 User.destroy_all
 User.create!(email: 'customer@alpaca.com', password: 'password', password_confirmation: 'password', stripe_id: 'cus_RNzSxzNYWd2eZ4')
-FactoryBot.build_list(:user, 40)
+FactoryBot.create_list(:user, 40)
 
 UserRole.destroy_all
 UserRole.create(user_id: User.first.id, role_id: Role.first.id)
