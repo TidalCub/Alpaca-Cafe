@@ -1,0 +1,7 @@
+.col-12.p-5.d-flex.justify-content-center
+  .grid-container
+    - @menu_items.each do |menu_item|
+      - if menu_item.available
+        = render 'menu/product_card', menu_item: menu_item
+      - else
+        = render 'menu/unavaliable_product_card', menu_item: menu_item

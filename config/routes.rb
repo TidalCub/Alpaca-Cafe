@@ -32,7 +32,11 @@ Rails.application.routes.draw do
   resources :store, only: %i[index show]
 
   scope ':store_name', as: 'store_name' do
-    resources :menu, only: %i[index]
+    resources :menu, only: %i[index] do
+      collection do
+        resources :category, only: %i[index show], param: :category_name
+      end
+    end
     resources :product, only: %i[show], param: :product_name
   end
 end

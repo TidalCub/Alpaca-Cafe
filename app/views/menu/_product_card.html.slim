@@ -1,11 +1,12 @@
-.bg-light.p-3.m-3.shadow.rounded-normal.col-11.col-sm-5.col-md-4.col-lg-2
+.bg-light.p-2.shadow.rounded.d-flex.flex-column
   = image_tag menu_item.product.image, class: "img-fluid rounded lazyload"
   h3.brand-font = menu_item.product.name
   p = "£#{menu_item.product.price}"
-  .brand-font.col-12
-    - if current_user
-      = button_to 'Add to Order', add_to_basket_url(product: menu_item.product), method: :post, class: "btn btn-primary col-12 mb-2"
-    = link_to store_name_product_path(store_name: current_user.basket.store.slug, product_name: menu_item.product.slug), class: "btn btn-secondary col-12" 
-      | view 
+  .brand-font.col-12.flex-grow-1.d-flex.flex-column.justify-content-end
+    div
       - if current_user
-          | & Customise
+        = button_to 'Add to Order', add_to_basket_url(product: menu_item.product), method: :post, class: "btn btn-primary col-12 mb-2"
+      = link_to store_name_product_path(store_name: current_user.basket.store.slug, product_name: menu_item.product.slug), class: "btn btn-secondary col-12" 
+        | view 
+        - if current_user
+            | & Customise

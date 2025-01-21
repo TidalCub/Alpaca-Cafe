@@ -1,12 +1,6 @@
-.col-12.d-flex.justify-content-center
-  .col-11.col-md-11.col-lg-11.text-center
-   - @categories.each do |category|
-      .h1.brand-font = category.name
-      .col-12.d-flex.flex-wrap.justify-content-center
-        - category.products.each do |product|
-          .bg-light.p-3.m-3.shadow.rounded-normal.col-11.col-sm-5.col-md-4.col-lg-2
-            = image_tag product.image, class: "img-fluid rounded lazyload"
-            h3.brand-font = product.name
-            p = "£#{product.price}"
-            .col-12
-              = link_to "Choose Store & Order", store_index_path(), class: "btn btn-secondary col-12"
+.col-12.p-5.d-flex.justify-content-center
+  .grid-container
+    - @categories.each do |category|
+      = link_to store_name_category_path(category_name: category.name), class: "text-dark text-decoration-none" do
+        .grid-item.bg-light.shadow.rounded
+          h4 = category.name
