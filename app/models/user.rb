@@ -16,12 +16,12 @@ class User < ApplicationRecord
 
   def create_stripe_user
     # rubocop:disable Layout/FirstHashElementIndentation
-    # customer = Stripe::Customer.create({
-    #   email: email,
-    #   metadata: {
-    #     user_id: id
-    #   }
-    # })
-    # self.stripe_id = customer.id
+    customer = Stripe::Customer.create({
+      email: email,
+      metadata: {
+        user_id: id
+      }
+    })
+    self.stripe_id = customer.id
   end
 end
