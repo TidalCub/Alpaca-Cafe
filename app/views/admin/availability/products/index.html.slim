@@ -1,6 +1,7 @@
 .col-12.d-flex.justify-content-center.mt-4
   .col-11.col-md-10.col-lg-10
-    = form_with url: store_name_products_path(store_name: @store.name), method: :patch do |f|
+    = form_with url: store_name_products_update_path(store_name: @store.name), method: :patch do |f| 
+      = f.hidden_field :store_id, value: @store.id     
       .col-12.d-flex.justify-content-end.p-2
         = f.submit "Update Availability", class: "btn btn-primary"
       table.table.table-striped
@@ -26,6 +27,6 @@
                   i.fa-solid.fa-arrow-up-right-from-square
                 td.text-center
                   - if menu_item.available
-                    = f.check_box :available, checked: true, class: "form-check-input", id: "product_#{menu_item.id}"
+                    = f.check_box "menu_items[#{menu_item.id}]", checked: true, class: "form-check-input", id: "product_#{menu_item.id}"
                   - else
-                    = f.check_box :available, class: "form-check-input", id: "product_#{menu_item.id}"
+                    = f.check_box "menu_items[#{menu_item.id}]", class: "form-check-input", id: "product_#{menu_item.id}"

@@ -19,5 +19,11 @@ RSpec.describe Admin::Availability::ProductsController, type: :controller do
   end
 
   describe 'PATCH #update' do
+    subject { patch :update, params: { store_name: store.name } }
+
+    it 'updates the availability of the product' do
+      subject
+      expect(menu.reload.available).to be_truthy
+    end
   end
 end
