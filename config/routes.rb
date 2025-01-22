@@ -50,6 +50,8 @@ Rails.application.routes.draw do
       scope 'availability' do
         resources :products, controller: 'admin/availability/products', only: %i[index update], param: :store_name
         patch 'products/update', to: 'admin/availability/products#update'
+        resources :ingredients, controller: 'admin/availability/ingredients', only: %i[index update], param: :store_name
+        patch 'ingredients/update', to: 'admin/availability/ingredients#update'
       end
     end
   end
