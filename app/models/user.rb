@@ -23,5 +23,6 @@ class User < ApplicationRecord
       }
     })
     self.stripe_id = customer.id
+    save
   end
 end
