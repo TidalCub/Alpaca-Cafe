@@ -17,7 +17,6 @@ Product.destroy_all
 Category.destroy_all
 Ingredient.destroy_all
 IngredientGroup.destroy_all
-q
 Role.destroy_all
 Role.create!(name: 'customer', uuid: 'customer')
 
@@ -74,42 +73,35 @@ IngredientGroup.find_or_create_by!([{
 Recipe.destroy_all
 Category.find_by(name: 'Slow Roasted Coffee').products.each do |product|
   IngredientGroup.find_each do |ingredient_group|
-    Recipe.create!(product_id: product.id, ingredient_group_id: ingredient_group.id)
+    Recipe.find_or_create_by!(product_id: product.id, ingredient_group_id: ingredient_group.id)
   end
 end
 
 Category.find_by(name: 'Iced Coffee').products.each do |product|
   IngredientGroup.find_each do |ingredient_group|
-    Recipe.create!(product_id: product.id, ingredient_group_id: ingredient_group.id)
+    Recipe.find_or_create_by!(product_id: product.id, ingredient_group_id: ingredient_group.id)
   end
 end
 
 Category.find_by(name: 'Hot Chocolate').products.each do |product|
   IngredientGroup.where.not(name: 'Blend').find_each do |ingredient_group|
-    Recipe.create!(product_id: product.id, ingredient_group_id: ingredient_group.id)
+    Recipe.find_or_create_by!(product_id: product.id, ingredient_group_id: ingredient_group.id)
   end
 end
 
 Category.find_by(name: 'Teas').products.each do |product|
-  Recipe.create!(product_id: product.id, ingredient_group_id: IngredientGroup.find_by(name: 'Milk').id)
-  Recipe.create!(product_id: product.id, ingredient_group_id: IngredientGroup.find_by(name: 'Blend').id)
+  Recipe.find_or_create_by!(product_id: product.id, ingredient_group_id: IngredientGroup.find_by(name: 'Milk').id)
+  Recipe.find_or_create_by!(product_id: product.id, ingredient_group_id: IngredientGroup.find_by(name: 'Blend').id)
 end
 
 Category.find_by(name: 'Milkshakes').products.each do |product|
-  Recipe.create!(product_id: product.id, ingredient_group_id: IngredientGroup.find_by(name: 'Syrup').id)
+  Recipe.find_or_create_by!(product_id: product.id, ingredient_group_id: IngredientGroup.find_by(name: 'Syrup').id)
 end
 
 Menu.destroy_all
 Product.find_each do |product|
   Store.find_each do |store|
-    Menu.create!(store_id: store.id, product_id: product.id, available: true)
-  end
-end
-
-IngredientStock.destroy_all
-Ingredient.find_each do |ingredient|
-  Store.find_each do |store|
-    IngredientStock.create!(store_id: store.id, ingredient_id: ingredient.id, available: true)
+    Menu.find_or_create_by!(store_id: store.id, product_id: product.id, available: true)
   end
 end
 
@@ -119,7 +111,8 @@ milk_options = [
   { name: 'Whole', is_default: false },
   { name: 'Oat', is_default: false },
   { name: 'Almond', is_default: false },
-  { name: 'Soy', is_default: false }
+  { name: 'Soy', is_default: false },
+  { name: 'Coconut', is_default: false }
 ]
 
 blend_options = [
@@ -150,21 +143,28 @@ syrup_options = [
 ]
 
 milk_options.each do |options|
-  IngredientGroup.find_by(name: 'Milk').ingredients.create!(options)
+  IngredientGroup.find_or_create_by!(name: 'Milk').ingredients.create!(options)
 end
 
 blend_options.each do |options|
-  IngredientGroup.find_by(name: 'Blend').ingredients.create!(options)
+  IngredientGroup.find_or_create_by!(name: 'Blend').ingredients.create!(options)
 end
 
 shots_options.each do |options|
-  IngredientGroup.find_by(name: 'Shots').ingredients.create!(options)
+  IngredientGroup.find_or_create_by!(name: 'Shots').ingredients.create!(options)
 end
 
 toppings_options.each do |options|
-  IngredientGroup.find_by(name: 'Toppings').ingredients.create!(options)
+  IngredientGroup.find_or_create_by!(name: 'Toppings').ingredients.create!(options)
 end
 
 syrup_options.each do |options|
-  IngredientGroup.find_by(name: 'Syrup').ingredients.create!(options)
+  IngredientGroup.find_or_create_by!(name: 'Syrup').ingredients.create!(options)
+end
+
+IngredientStock.destroy_all
+Ingredient.find_each do |ingredient|
+  Store.find_each do |store|
+    IngredientStock.find_or_create_by!(store_id: store.id, ingredient_id: ingredient.id, available: true)
+  end
 end

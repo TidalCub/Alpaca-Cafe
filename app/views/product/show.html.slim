@@ -1,28 +1,55 @@
-hr
-.col-12.d-flex.flex-row.flex-wrap.justify-content-between
-  .col-11.col-md-4.col-lg-4.m-auto.ps-3
-        = image_tag @product.image, class: "img-fluid rounded shadow"
+/ hr
+/ .col-12.d-flex.flex-row.flex-wrap.justify-content-between
+/   .col-11.col-md-4.col-lg-4.m-auto.ps-3
+/         = image_tag @product.image, class: "img-fluid rounded shadow"
 
-  .col-12.col-md-8.col-lg-8.text-center
-    h1.brand-font = @product.name
-    p = @product.description
-    h4 = "£#{@product.price}"
-    /i.blend-decaf
-    hr
+/   .col-12.col-md-8.col-lg-8.text-center
+/     h1.brand-font = @product.name
+/     p = @product.description
+/     h4 = "£#{@product.price}"
+/     /i.blend-decaf
+/     hr
     
-    .col-12.d-flex.justify-content-center.flex-wrap
-      .col-11.col-lg-4.col-md-11.flex-column.justify-content-center.shadow.p-3.bg-light
-        h4 Customise your product
-        = render "customize_form", product: @product, ingredients: @ingredients
-    .col-12.mt-4.d-flex.justify-content-center.align-items-center
-      .col-6
-        button.btn.btn-primary.brand-font onclick="submitform()"  
-          h3.pt-2 Save and Add to Basket
+/     .col-12.d-flex.justify-content-center.flex-wrap
+/       .col-11.col-lg-4.col-md-11.flex-column.justify-content-center.shadow.p-3.bg-light
+/         h4 Customise your product
+/         = render "customize_form", product: @product, ingredients: @ingredients
+/     .col-12.mt-4.d-flex.justify-content-center.align-items-center
+/       .col-6
+/         button.btn.btn-primary.brand-font onclick="submitform()"  
+/           h3.pt-2 Save and Add to Basket
 
+
+
+
+
+- if @ingredients.any?
+  .col-12.d-flex.justify-content-center.mt-5
+    .col-10.bg-light.shadow.rounded style="max-width:1000px"
+      .col-12.d-flex.flex-column.flex-md-row.flex-lg-row 
+        .col-12.col-md-5.col-lg-6.p-2.d-flex.flex-column.justify-content-center
+          = image_tag @product.image, class: "img-fluid rounded shadow"
+          .col-12.p-2.flex-grow
+            h1.text-center = @product.name
+            p.text-center = @product.description
+        .col-12.col-md-7.col-lg-6.p-2
+          = render "customize_form", product: @product, ingredients: @ingredients
+      .col-12.d-flex.justify-content-center.pb-3.flex-wrap
+        hr.col-11
+        button.btn.btn-primary.brand-font.col-8 onclick="submitform()"  
+          h4.pt-2 Save and Add to Basket
+- else
+  .col-12.d-flex.justify-content-center.mt-5
+    .col-10.col-md-5.col-lg-4.p-2.bg-light.shadow.rounded style="max-width:1000px"
+      = image_tag @product.image, class: "img-fluid rounded shadow"
+      .col-12.p-2.flex-grow
+        h1.text-center = @product.name
+        p.text-center = @product.description
+      .col-12.d-flex.justify-content-center.pb-3
+        = button_to add_to_basket_url(product: @product), method: :post, class: "btn btn-primary" do
+          h4 Add to Order
 
 javascript:
   function submitform(){
     document.getElementById("CustomizeForm").submit();
   }
-
-

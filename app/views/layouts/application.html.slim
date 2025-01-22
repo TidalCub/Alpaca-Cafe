@@ -16,7 +16,7 @@ html
     
   body
     = render "layouts/google_tag_body"
-    .d-flex.flex-column style="height: 100svh"
+    .d-flex.flex-column style="min-height: 100svh"
       - unless controller_name == 'orders' && action_name == 'index'
         / = if current_user.orders.find_by(state: "requires_capture").present?
         /   = link_to check_in_order_path(current_user.orders.find_by(state: "requires_capture")), class: "text-decoration-none"
@@ -32,8 +32,7 @@ html
         - if current_user.basket.order_items.count > 0
           = render 'layouts/basket'
     
-      
-
+    = render "layouts/footer"
   dialog#info-dialog class="bg-light rounded-3 border border-none"
     div class="modal-content"
       div class="modal-header d-flex justify-content-between"
@@ -41,6 +40,4 @@ html
         button type="button" class="btn-close" onclick="document.getElementById('info-dialog').close()" aria-label="Close"
       hr
       div class="modal-body" id="info-dialog-body"
-
-/ p.notice = notice 
-      / p.alery = alert
+  

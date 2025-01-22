@@ -5,8 +5,8 @@ class ProductController < ApplicationController
   before_action :set_store
   before_action :set_product, only: %i[show]
   before_action :authorize!
-  after_action :record_view_event, only: %i[show]
-  after_action :record_basket_add_event, only: %i[add_to_basket]
+  # after_action :record_view_event, only: %i[show]
+  # after_action :record_basket_add_event, only: %i[add_to_basket]
 
   def index
     @products = Product.all

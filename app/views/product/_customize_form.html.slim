@@ -5,7 +5,7 @@ form#CustomizeForm action="#{add_to_basket_url(product: @product)}" method="POST
       div.d-flex.align-items-center.justify-content-center
         h4.brand-font = category.name
     .col-12
-      .col-12.d-flex.flex-row.flex-wrap.justify-content-center.gap-1
+      .col-12.d-flex.flex-row.flex-wrap.justify-content-start.gap-1
         - ingredient_stocks.each do |ingredient_stock|
           label
             - if ingredient_stock.available
