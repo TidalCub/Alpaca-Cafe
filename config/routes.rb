@@ -45,10 +45,11 @@ Rails.application.routes.draw do
     resources :product, only: %i[show], param: :product_name
   end
 
-  scope 'admin' do
+  scope 'admin' do 
     scope ':store_name', as: 'store_name' do
       scope 'availability' do
-        resources :products, controller: 'admin/availability/products', only: %i[index update]
+        resources :products, controller: 'admin/availability/products', only: %i[index update], param: :store_name
+        patch 'products/update', to: 'admin/availability/products#update'
       end
     end
   end
