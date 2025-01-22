@@ -13,7 +13,7 @@
       .d-flex.flex-column.aling-items-end.justify-content-end
         - if current_user
           - if current_user.basket.present?
-            = link_to store_name_category_index_path(current_user.basket.store.slug), class: "text-decoration-none text-dark" do 
+            = link_to store_name_category_index_path(store_name: current_user.basket.store.name), class: "text-decoration-none text-dark" do 
               h5  Menu
         - else
           = link_to store_index_path, class: "text-decoration-none text-dark" do 

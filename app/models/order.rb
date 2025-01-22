@@ -17,7 +17,7 @@ class Order < ApplicationRecord
     state :pending, :on_checkout, :paid, :completed, :expired, :payment_failed, :requires_capture
 
     event :pending do
-      transitions from: %i[new_order pending checkout], to: :pending
+      transitions from: %i[new_order pending on_checkout], to: :pending
     end
 
     event :checkout do

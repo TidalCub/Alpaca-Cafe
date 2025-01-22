@@ -11,7 +11,7 @@ class User < ApplicationRecord
   after_create_commit :create_stripe_user
 
   def basket
-    orders.pending.last || orders.create(state: :pending)
+    orders.where(state: %i[pending on_checkout]).last || orders.create(state: :pending)
   end
 
   def create_stripe_user
