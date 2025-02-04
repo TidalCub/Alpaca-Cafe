@@ -56,7 +56,7 @@ The Stripe payment flow
 
 ## Infrastructure
 
-![Infrastructure](non-app-related/diagrams/Infrastructure.svg)
+![Infrastructure](non-app-related/diagrams/Infrastructure_2.svg)
 
 For redundancy, HaProxy will be used, with two instances of the application.
 
