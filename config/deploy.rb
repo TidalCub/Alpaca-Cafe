@@ -9,3 +9,14 @@ set :branch, "main"
 set :keep_releases, 5
 append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', '.bundle', 'public/system', 'public/uploads', 'storage'
 append :linked_files, 'config/master.key'
+
+namespace :deploy do
+  desc 'Restart Puma'
+  task :restart_puma do
+    on roles(:app) do
+      execute :sudo, "systemctl restart puma"
+    end
+  end
+end
+
+after "deploy:publishing", "deploy:restart_puma"
