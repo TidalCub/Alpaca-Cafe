@@ -29,7 +29,6 @@
 
 environment 'production'
 
-daemonize true
 stdout_redirect "/var/www/Alpaca_Cafe/log/puma.stdout.log", "/var/www/Alpaca_Cafe/log/puma.stderr.log", true
 
 threads_count = ENV.fetch('RAILS_MAX_THREADS', 3)
