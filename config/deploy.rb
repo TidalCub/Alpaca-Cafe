@@ -8,7 +8,7 @@ set :deploy_to, "/var/www/#{fetch(:application)}"
 set :branch, "main"
 set :keep_releases, 5
 append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', '.bundle', 'public/system', 'public/uploads', 'storage'
-append :linked_files, 'config/master.key'
+append :linked_files, 'config/master.key', 'db/production.sqlite3'
 
 namespace :deploy do
   desc 'Restart Puma'
