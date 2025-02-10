@@ -26,11 +26,17 @@
 # Any libraries that use a connection pool or another resource pool should
 # be configured to provide at least as many connections as the number of
 # threads. This includes Active Record's `pool` parameter in `database.yml`.
+
+environment 'production'
+
+daemonize true
+stdout_redirect "/var/www/Alpaca_Cafe/log/puma.stdout.log", "/var/www/Alpaca_Cafe/log/puma.stderr.log", true
+
 threads_count = ENV.fetch('RAILS_MAX_THREADS', 3)
 threads threads_count, threads_count
 
-bind "unix://#{shared_dir}/tmp/sockets/puma.sock"  # Make sure this matches your Nginx config
-stdout_redirect "#{shared_dir}/log/puma.stdout.log", "#{shared_dir}/log/puma.stderr.log", true
+bind "unix:/var/www/Alpaca_Cafe/shared/sockets/puma.sock"  # Make sure this matches your Nginx config
+
 # Specifies the `port` that Puma will listen on to receive requests; default is 3000.
 port ENV.fetch('PORT', 3000)
 
