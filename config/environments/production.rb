@@ -1,92 +1,98 @@
 # frozen_string_literal: true
 
 require 'active_support/core_ext/integer/time'
+require 'stripe'
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
-  # Code is not reloaded between requests.
-  config.enable_reloading = false
+  # Make code changes take effect immediately without server restart.
+  config.enable_reloading = true
 
-  # Eager load code on boot for better performance and memory savings (ignored by Rake tasks).
-  config.eager_load = true
+  # Do not eager load code on boot.
+  config.eager_load = false
 
-  # Full error reports are disabled.
-  config.consider_all_requests_local = false
+  # Show full error reports.
+  config.consider_all_requests_local = true
 
-  # Turn on fragment caching in view templates.
-  config.action_controller.perform_caching = true
+  # Enable server timing.
+  config.server_timing = true
 
-  # Cache assets for far-future expiry since they are all digest stamped.
-  config.public_file_server.headers = { 'cache-control' => "public, max-age=#{1.year.to_i}" }
+  # Enable/disable Action Controller caching. By default Action Controller caching is disabled.
+  # Run rails dev:cache to toggle Action Controller caching.
+  if Rails.root.join('tmp/caching-dev.txt').exist?
+    config.action_controller.perform_caching = true
+    config.action_controller.enable_fragment_cache_logging = true
+    config.public_file_server.headers = { 'cache-control' => "public, max-age=#{2.days.to_i}" }
+  else
+    config.action_controller.perform_caching = false
+  end
 
-  # Enable serving of images, stylesheets, and JavaScripts from an asset server.
-  # config.asset_host = "http://assets.example.com"
+  # Change to :null_store to avoid any caching.
+  config.cache_store = :memory_store
 
   # Store uploaded files on the local file system (see config/storage.yml for options).
   config.active_storage.service = :local
 
-  # Assume all access to the app is happening through a SSL-terminating reverse proxy.
-  config.assume_ssl = false
+  # Don't care if the mailer can't send.
+  config.action_mailer.raise_delivery_errors = false
 
-  # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  config.force_ssl = false
+  # Make template changes take effect immediately.
+  config.action_mailer.perform_caching = false
 
-  # Skip http-to-https redirect for the default health check endpoint.
-  # config.ssl_options = { redirect: { exclude: ->(request) { request.path == "/up" } } }
+  # Set localhost to be used by links generated in mailer templates.
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
-  # Log to STDOUT with the current request id as a default log tag.
-  config.log_tags = [:request_id]
-  config.logger   = ActiveSupport::TaggedLogging.logger($stdout)
+  # Print deprecation notices to the Rails logger.
+  config.active_support.deprecation = :log
 
-  # Change to "debug" to log everything (including potentially personally-identifiable information!)
-  config.log_level = ENV.fetch('RAILS_LOG_LEVEL', 'info')
+  # Raise an error on page load if there are pending migrations.
+  config.active_record.migration_error = :page_load
 
-  # Prevent health checks from clogging up the logs.
-  config.silence_healthcheck_path = '/up'
+  # Highlight code that triggered database queries in logs.
+  config.active_record.verbose_query_logs = true
 
-  # Don't log any deprecations.
-  config.active_support.report_deprecations = false
+  # Append comments with runtime information tags to SQL queries in logs.
+  config.active_record.query_log_tags_enabled = true
 
-  # Replace the default in-process memory cache store with a durable alternative.
-  # config.cache_store = :mem_cache_store
+  # Highlight code that enqueued background job in logs.
+  config.active_job.verbose_enqueue_logs = true
 
-  # Replace the default in-process and non-durable queuing backend for Active Job.
-  # config.active_job.queue_adapter = :resque
+  # Raises error for missing translations.
+  # config.i18n.raise_on_missing_translations = true
 
-  # Ignore bad email addresses and do not raise email delivery errors.
-  # Set this to true and configure the email server for immediate delivery to raise delivery errors.
-  # config.action_mailer.raise_delivery_errors = false
+  # Annotate rendered view with file names.
+  config.action_view.annotate_rendered_view_with_filenames = true
 
-  # Set host to be used by links generated in mailer templates.
-  config.action_mailer.default_url_options = { host: 'example.com' }
+  # Uncomment if you wish to allow Action Cable access from any origin.
+  # config.action_cable.disable_request_forgery_protection = true
 
-  # Specify outgoing SMTP server. Remember to add smtp/* credentials via rails credentials:edit.
-  # config.action_mailer.smtp_settings = {
-  #   user_name: Rails.application.credentials.dig(:smtp, :user_name),
-  #   password: Rails.application.credentials.dig(:smtp, :password),
-  #   address: "smtp.example.com",
-  #   port: 587,
-  #   authentication: :plain
-  # }
+  # Raise error when a before_action's only/except options reference missing actions.
+  config.action_controller.raise_on_missing_callback_actions = true
 
-  # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
-  # the I18n.default_locale when a translation cannot be found).
-  config.i18n.fallbacks = true
+  # Apply autocorrection by RuboCop to files generated by `bin/rails generate`.
+  # config.generators.apply_rubocop_autocorrect_after_generate!
+  Stripe.api_key = Rails.application.credentials.dig(:development, :stripe, :secret_key)
+  # Define a global variable for Stripe public key
 
-  # Do not dump schema after migrations.
-  config.active_record.dump_schema_after_migration = false
+  #======= Mailer Configuration =======
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address: 'smtppro.zoho.eu',
+    port: 465,
+    domain: 'leon-skinner.dev',
+    user_name: Rails.application.credentials.dig(:development, :mail, :username),
+    password: Rails.application.credentials.dig(:development, :mail, :password),
+    authentication: 'plain',
+    enable_starttls: true,
+    open_timeout: 5,
+    read_timeout: 5,
+    ssl: true
 
-  # Only use :id for inspections in production.
-  config.active_record.attributes_for_inspect = [:id]
-
-  # Enable DNS rebinding protection and other `Host` header attacks.
-  # config.hosts = [
-  #   "example.com",     # Allow requests from example.com
-  #   /.*\.example\.com/ # Allow requests from subdomains like `www.example.com`
-  # ]
-  #
-  # Skip DNS rebinding protection for the default health check endpoint.
-  # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
-  config.require_master_key = true
+  }
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.perform_deliveries = true
 end
+
+Stripe.api_key = Rails.application.credentials.dig(:development, :stripe, :secret_key)
+STRIPE_PUBLIC_KEY = Rails.application.credentials.dig(:development, :stripe, :published_key)
