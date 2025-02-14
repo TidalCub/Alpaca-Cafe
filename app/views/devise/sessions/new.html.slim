@@ -1,0 +1,27 @@
+
+.col-12.d-flex.justify-content-center
+  .col-11.col-md-6.col-lg-4.p-4
+    .card.shadow style="max-width: 32rem;"
+      h2.text-center.brand-font.pt-2 Log in
+      .card-body
+        = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+          .field
+            = f.label :email
+            br
+            = f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control"
+
+          .field
+            = f.label :password
+            br
+            = f.password_field :password, autocomplete: "current-password", class: "form-control"
+
+          - if devise_mapping.rememberable?
+            .field
+              = f.check_box :remember_me, class: "form-check-input"
+              = f.label :remember_me, class: "form-check-label ps-1"
+
+          .actions.col-12.d-flex.justify-content-end
+            = f.submit "Log in", class: "btn btn-primary"
+
+        = render "devise/shared/links"
+  

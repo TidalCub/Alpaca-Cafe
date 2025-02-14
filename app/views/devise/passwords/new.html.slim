@@ -1,0 +1,17 @@
+.col-12.d-flex.justify-content-center
+  .col-11.col-md-6.col-lg-4.p-4
+    .card.shadow style="max-width: 32rem;"
+      h2.text-center.brand-font.pt-2 Forgot your password?
+      .card-body
+        = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
+          = render "devise/shared/error_messages", resource: resource
+
+          .field
+            = f.label :email
+            br
+            = f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control"
+
+          .actions.col-12.d-flex.justify-content-end.mt-3
+            = f.submit "Send me reset password instructions", class: "btn btn-primary"
+
+        = render "devise/shared/links"

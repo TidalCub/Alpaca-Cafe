@@ -27,24 +27,26 @@
 # be configured to provide at least as many connections as the number of
 # threads. This includes Active Record's `pool` parameter in `database.yml`.
 
-environment 'production'
+if ENV['RAILS_ENV'] == 'production'
+  environment 'production'
 
-stdout_redirect "/var/www/Alpaca_Cafe/log/puma.stdout.log", "/var/www/Alpaca_Cafe/log/puma.stderr.log", true
+  stdout_redirect "/var/www/Alpaca_Cafe/log/puma.stdout.log", "/var/www/Alpaca_Cafe/log/puma.stderr.log", true
 
-threads_count = ENV.fetch('RAILS_MAX_THREADS', 3)
-threads threads_count, threads_count
+  threads_count = ENV.fetch('RAILS_MAX_THREADS', 3)
+  threads threads_count, threads_count
 
-bind "unix:/var/www/Alpaca_Cafe/shared/sockets/puma.sock"  # Make sure this matches your Nginx config
+  bind "unix:/var/www/Alpaca_Cafe/shared/sockets/puma.sock"  # Make sure this matches your Nginx config
 
-# Specifies the `port` that Puma will listen on to receive requests; default is 3000.
-port ENV.fetch('PORT', 3000)
+  # Specifies the `port` that Puma will listen on to receive requests; default is 3000.
+  port ENV.fetch('PORT', 3000)
 
-# Allow puma to be restarted by `bin/rails restart` command.
-plugin :tmp_restart
+  # Allow puma to be restarted by `bin/rails restart` command.
+  plugin :tmp_restart
 
-# Run the Solid Queue supervisor inside of Puma for single-server deployments
-plugin :solid_queue if ENV['SOLID_QUEUE_IN_PUMA']
+  # Run the Solid Queue supervisor inside of Puma for single-server deployments
+  plugin :solid_queue if ENV['SOLID_QUEUE_IN_PUMA']
 
-# Specify the PID file. Defaults to tmp/pids/server.pid in development.
-# In other environments, only set the PID file if requested.
-pidfile ENV['PIDFILE'] if ENV['PIDFILE']
+  # Specify the PID file. Defaults to tmp/pids/server.pid in development.
+  # In other environments, only set the PID file if requested.
+  pidfile ENV['PIDFILE'] if ENV['PIDFILE']
+end
