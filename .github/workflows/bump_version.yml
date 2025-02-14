@@ -94,11 +94,10 @@ jobs:
           mkdir -p ~/.ssh
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
+          ssh-keygen -R 178.79.141.148 || true
           ssh-keyscan -H 178.79.141.148 >> ~/.ssh/known_hosts
           eval "$(ssh-agent -s)"
           ssh-add ~/.ssh/id_rsa
-          echo "${{ secrets.KNOWN_HOSTS }}" > ~/.ssh/known_hosts
-          chmod 644 ~/.ssh/known_hosts
 
       - name: Test SSH Connection
         run: ssh -o StrictHostKeyChecking=no deploy@178.79.141.148 "echo 'SSH connection successful'"
