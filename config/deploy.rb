@@ -10,6 +10,12 @@ set :keep_releases, 5
 append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', '.bundle', 'public/system', 'public/uploads', 'storage'
 append :linked_files, 'config/master.key', 'db/production.sqlite3'
 
+set :ssh_options, {
+  forward_agent: true,
+  auth_methods: %w(publickey),
+  user: 'deploy'
+}
+
 namespace :deploy do
   desc 'Restart Puma'
   task :restart_puma do
