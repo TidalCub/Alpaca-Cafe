@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # rake product:export
 namespace :product do
   desc 'Export Products as json'

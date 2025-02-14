@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ProductExportService
   def export
     File.open('products.json', 'w') do |f|

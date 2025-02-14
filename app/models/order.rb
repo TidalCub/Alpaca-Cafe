@@ -11,8 +11,7 @@ class Order < ApplicationRecord
   def total
     order_items.sum { |item| item.product.price }
   end
-
-  aasm column: :state, enum: true do
+  aasm column: :state, enum: true do # rubocop:disable Metrics/BlockLength
     state :new_order, initial: true
     state :pending, :on_checkout, :paid, :completed, :expired, :payment_failed, :requires_capture
 

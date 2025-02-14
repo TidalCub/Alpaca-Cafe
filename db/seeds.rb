@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'faker'
 require 'factory_bot_rails'
 
@@ -22,12 +24,12 @@ IngredientGroup.destroy_all
 Role.destroy_all
 Role.create!(name: 'customer', uuid: 'customer')
 
-#User.destroy_all
-#User.create!(email: 'customer@alpaca.com', password: 'password', password_confirmation: 'password', stripe_id: 'cus_RNzSxzNYWd2eZ4')
-#FactoryBot.create_list(:user, 40)
+# User.destroy_all
+# User.create!(email: 'customer@alpaca.com', password: 'password', password_confirmation: 'password', stripe_id: 'cus_RNzSxzNYWd2eZ4')
+# FactoryBot.create_list(:user, 40)
 
-#`UserRole.destroy_all
-#UserRole.create(user_id: User.first.id, role_id: Role.first.id)
+# `UserRole.destroy_all
+# UserRole.create(user_id: User.first.id, role_id: Role.first.id)
 
 Store.destroy_all
 Store.create!(name: 'Colchester', slug: 'colchester')

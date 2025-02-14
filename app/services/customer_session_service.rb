@@ -7,6 +7,7 @@ class CustomerSessionService
     @user = user
   end
 
+  # rubocop:disable Metrics/MethodLength
   def create_session
     Stripe::CustomerSession.create({
                                      customer: @user.stripe_id,
@@ -20,4 +21,5 @@ class CustomerSessionService
                                      }
                                    })
   end
+  # rubocop:enable Metrics/MethodLength
 end

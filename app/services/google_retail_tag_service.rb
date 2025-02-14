@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'net/http'
 require 'json'
 require 'googleauth'
@@ -51,6 +53,7 @@ class GoogleRetailTagService
     }.compact.to_json
   end
 
+  # rubocop:disable Metrics/MethodLength
   def request_body(event_type, product, qty)
     {
       eventType: event_type,
@@ -66,6 +69,7 @@ class GoogleRetailTagService
       }
     }.compact.to_json
   end
+  # rubocop:enable Metrics/MethodLength
 
   def fetch_access_token
     scope = 'https://www.googleapis.com/auth/cloud-platform'

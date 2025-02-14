@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # rake events:generate
 namespace :events do
   desc 'Generate historic events'

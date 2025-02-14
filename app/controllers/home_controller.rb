@@ -9,7 +9,7 @@ class HomeController < ApplicationController
   private
 
   def record_event
-    return unless current_user.present?
+    return if current_user.blank?
 
     GoogleRetailTagService.new(current_user).home_event
   end
