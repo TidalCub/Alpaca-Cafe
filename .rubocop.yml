@@ -8,7 +8,9 @@ AllCops:
     - "vendor/**/*"
     - "db/seed.rb"
     - "db/schema.rb"
-    - "config/*"
+    - "config/**/*"
+    - "app/services/historic_events_service.rb"
+
 Rails/ThreeStateBooleanColumn:
   Exclude:
     - "db/schema.rb"

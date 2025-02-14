@@ -56,7 +56,7 @@ gem 'sassc-rails'
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'debug', platforms: %i[mri mingw x64_mingw]
-  
+
   gem 'rails-controller-testing'
   gem 'rspec-rails', '>= 3.9.0'
 end
@@ -71,9 +71,9 @@ group :development do
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
   gem 'capistrano', require: false
-  gem 'capistrano-rails', require: false
-  gem 'capistrano-rbenv', require: false  # Or `capistrano-rvm` if you use RVM
   gem 'capistrano-bundler', require: false
+  gem 'capistrano-rails', require: false
+  gem 'capistrano-rbenv', require: false # Or `capistrano-rvm` if you use RVM
 end
 
 group :test do
@@ -89,6 +89,10 @@ gem 'action_policy'
 gem 'bootstrap', '~> 5.0'
 gem 'bootstrap-email'
 gem 'devise', '~> 4.9'
+gem 'factory_bot_rails'
+gem 'faker'
+gem 'googleauth'
+gem 'google-cloud-retail'
 gem 'jquery-rails'
 gem 'kamal', require: false
 gem 'lazyload-rails'
@@ -98,7 +102,3 @@ gem 'slim-rails'
 gem 'stripe'
 gem 'vcr'
 gem 'webmock'
-gem 'googleauth'
-gem 'google-cloud-retail'
-gem 'faker'
-gem 'factory_bot_rails'

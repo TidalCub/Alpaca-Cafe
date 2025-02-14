@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 coffee_products = [
   { name: 'Latte', description: 'A latte is a coffee drink made with espresso and steamed milk.', image: 'latte_image.png' },
   { name: 'Cappuccino', description: 'A cappuccino is an espresso-based coffee drink that originated in Italy, and is traditionally prepared with steamed milk foam.', image: 'cappuccino_image.png' },

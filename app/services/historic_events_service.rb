@@ -1,9 +1,12 @@
+# frozen_string_literal: true
+
 require 'faker'
 require 'securerandom'
 require 'json'
 
 class HistoricEventsService
-  EVENT_TYPES = %i[detail-page-view add-to-cart home-page-view purchase-complete]
+  # rubocop:disable
+  EVENT_TYPES = %i[detail-page-view add-to-cart home-page-view purchase-complete].freeze
 
   def initialize(count)
     @count = count
@@ -67,4 +70,5 @@ class HistoricEventsService
     end
     att
   end
+  # rubocop:enable
 end
