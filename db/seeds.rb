@@ -25,7 +25,7 @@ Role.destroy_all
 Role.create!(name: 'customer', uuid: 'customer')
 
 # User.destroy_all
-# User.create!(email: 'customer@alpaca.com', password: 'password', password_confirmation: 'password', stripe_id: 'cus_RNzSxzNYWd2eZ4')
+User.create!(email: 'customer@alpaca.com', password: 'password', password_confirmation: 'password', stripe_id: 'cus_RNzSxzNYWd2eZ4')
 # FactoryBot.create_list(:user, 40)
 
 # `UserRole.destroy_all

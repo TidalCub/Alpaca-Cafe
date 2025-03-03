@@ -1,0 +1,142 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.stripe.com/v1/payment_methods
+    body:
+      encoding: UTF-8
+      string: type=card&card[token]=tok_visa&billing_details[name]=John+Doe
+    headers:
+      User-Agent:
+      - Stripe/v1 RubyBindings/13.3.1
+      Authorization:
+      - Bearer <stripe_secret>
+      X-Stripe-Client-Telemetry:
+      - '{"last_request_metrics":{"request_id":"req_4hYFVzbOoPW0Wq","request_duration_ms":3}}'
+      Idempotency-Key:
+      - 2a77c598-f39c-42c5-9a88-ecc92895eec7
+      Stripe-Version:
+      - 2024-12-18.acacia
+      X-Stripe-Client-User-Agent:
+      - '{"bindings_version":"13.3.1","lang":"ruby","lang_version":"3.2.3 p157 (2024-01-18)","platform":"x86_64-linux","engine":"ruby","publisher":"stripe","uname":"Linux
+        version 5.15.167.4-microsoft-standard-WSL2 (root@f9c826d3017f) (gcc (GCC)
+        11.2.0, GNU ld (GNU Binutils) 2.37) #1 SMP Tue Nov 5 00:21:55 UTC 2024","hostname":"DESKTOP-SBP666L"}'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Mon, 03 Mar 2025 17:28:49 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '1040'
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Methods:
+      - GET, HEAD, PUT, PATCH, POST, DELETE
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - Request-Id, Stripe-Manage-Version, Stripe-Should-Retry, X-Stripe-External-Auth-Required,
+        X-Stripe-Privileged-Session-Required
+      Access-Control-Max-Age:
+      - '300'
+      Cache-Control:
+      - no-cache, no-store
+      Content-Security-Policy:
+      - base-uri 'none'; default-src 'none'; form-action 'none'; frame-ancestors 'none';
+        img-src 'self'; script-src 'self' 'report-sample'; style-src 'self'; worker-src
+        'none'; upgrade-insecure-requests; report-uri https://q.stripe.com/csp-violation?q=ZfpvQ02TBcVaApq-z46rpOo9XN7XA1yQNFTDOtff2fU6F4ymhnKZJdHsJeiAKFGgcOjJzimnlqnIrVtX
+      Cross-Origin-Opener-Policy-Report-Only:
+      - same-origin; report-to="coop"
+      Idempotency-Key:
+      - 2a77c598-f39c-42c5-9a88-ecc92895eec7
+      Original-Request:
+      - req_MMPDBwhhNDuj5X
+      Report-To:
+      - '{"group":"coop","max_age":8640,"endpoints":[{"url":"https://q.stripe.com/coop-report"}],"include_subdomains":true}'
+      Reporting-Endpoints:
+      - coop="https://q.stripe.com/coop-report"
+      Request-Id:
+      - req_MMPDBwhhNDuj5X
+      Stripe-Should-Retry:
+      - 'false'
+      Stripe-Version:
+      - 2024-12-18.acacia
+      Vary:
+      - Origin
+      X-Stripe-Priority-Routing-Enabled:
+      - 'true'
+      X-Stripe-Routing-Context-Priority-Tier:
+      - api-testmode
+      X-Wc:
+      - AB
+      Strict-Transport-Security:
+      - max-age=63072000; includeSubDomains; preload
+    body:
+      encoding: UTF-8
+      string: |-
+        {
+          "id": "pm_1QycnNFWpgsj4fDKlNlhPukY",
+          "object": "payment_method",
+          "allow_redisplay": "unspecified",
+          "billing_details": {
+            "address": {
+              "city": null,
+              "country": null,
+              "line1": null,
+              "line2": null,
+              "postal_code": null,
+              "state": null
+            },
+            "email": null,
+            "name": "John Doe",
+            "phone": null
+          },
+          "card": {
+            "brand": "visa",
+            "checks": {
+              "address_line1_check": null,
+              "address_postal_code_check": null,
+              "cvc_check": "unchecked"
+            },
+            "country": "US",
+            "display_brand": "visa",
+            "exp_month": 3,
+            "exp_year": 2026,
+            "fingerprint": "p1KP3jjTyrsUuR3B",
+            "funding": "credit",
+            "generated_from": null,
+            "last4": "4242",
+            "networks": {
+              "available": [
+                "visa"
+              ],
+              "preferred": null
+            },
+            "regulated_status": "unregulated",
+            "three_d_secure_usage": {
+              "supported": true
+            },
+            "wallet": null
+          },
+          "created": 1741022929,
+          "customer": null,
+          "livemode": false,
+          "metadata": {},
+          "type": "card"
+        }
+  recorded_at: Mon, 03 Mar 2025 17:28:48 GMT
+recorded_with: VCR 6.3.1

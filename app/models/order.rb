@@ -47,6 +47,7 @@ class Order < ApplicationRecord
         stripe_payment_intent = StripePaymentintentService.new(nil, user, self)
         stripe_payment_intent.capture
         OrderMailer.payment_confirmation(self).deliver_now!
+        PrintReceiptService.new(self).send
       end
     end
 

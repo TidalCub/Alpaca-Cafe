@@ -302,6 +302,7 @@ GEM
     matrix (0.4.2)
     mini_mime (1.1.5)
     minitest (5.25.4)
+    mqtt (0.6.0)
     msgpack (1.7.5)
     multi_json (1.15.0)
     net-http (0.6.0)
@@ -575,6 +576,7 @@ DEPENDENCIES
   jquery-rails
   kamal
   lazyload-rails
+  mqtt
   pg (~> 1.5, >= 1.5.4)
   puma (~> 6.0)
   rails (~> 8.0)

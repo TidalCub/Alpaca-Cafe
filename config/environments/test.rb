@@ -57,4 +57,5 @@ Rails.application.configure do
     vcr_config.hook_into :webmock
     vcr_config.filter_sensitive_data('<stripe_secret>') { Stripe.api_key }
   end
+  CLIENT = "client"
 end
