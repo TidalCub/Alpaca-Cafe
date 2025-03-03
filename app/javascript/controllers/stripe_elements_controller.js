@@ -26,7 +26,7 @@ export default class extends Controller {
     this.stripe.confirmPayment({
       elements,
       confirmParams: {
-        return_url: 'http://localhost:3000/payments',
+        return_url: 'https://coffee.leon-skinner.dev/payments',
       },
     })
   }
@@ -37,7 +37,7 @@ export default class extends Controller {
     this.stripe.confirmSetup({
       elements,
       confirmParams: {
-        return_url: 'http://localhost:3000/payment_method',
+        return_url: 'https://coffee.leon-skinner.dev/payment_method',
         payment_method_data: {
           allow_redisplay: 'always',
         },
