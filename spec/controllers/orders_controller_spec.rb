@@ -90,7 +90,7 @@ RSpec.describe OrdersController, type: :controller do
     before do
       allow(PrintReceiptService).to receive(:new).and_return(double(send: true))
     end
-    
+
     it 'updates the order state to paid' do
       VCR.use_cassette('payment_capture') do
         patch :update, params: { id: order.id, action_type: 'check_in' }

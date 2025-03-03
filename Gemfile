@@ -96,10 +96,10 @@ gem 'google-cloud-retail'
 gem 'jquery-rails'
 gem 'kamal', require: false
 gem 'lazyload-rails'
+gem 'mqtt'
 gem 'pg', '~> 1.5', '>= 1.5.4', group: :production
 gem 'rubocop-rails', require: false
 gem 'slim-rails'
 gem 'stripe'
 gem 'vcr'
 gem 'webmock'
-gem 'mqtt'

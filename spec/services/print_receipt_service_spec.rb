@@ -1,7 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe PrintReceiptService, type: :service do
-
   describe '#send' do
     subject(:service) { described_class.new(order) }
 
@@ -9,7 +10,7 @@ RSpec.describe PrintReceiptService, type: :service do
       VCR.use_cassette('stripe_customer_create') do
         @user = create(:user, stripe_id: 'cus_RNzSxzNYWd2eZ4')
       end
-      CLIENT = instance_double('client')
+      CLIENT = instance_double('client') # rubocop:disable Lint/ConstantDefinitionInBlock
       allow(CLIENT).to receive(:publish)
     end
 
