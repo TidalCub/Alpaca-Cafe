@@ -1,0 +1,168 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.stripe.com/v1/payment_intents/pi_3QUVXeFWpgsj4fDK05NxCc94
+    body:
+      encoding: UTF-8
+      string: payment_method=pm_1QycnNFWpgsj4fDKlNlhPukY
+    headers:
+      User-Agent:
+      - Stripe/v1 RubyBindings/13.3.1
+      Authorization:
+      - Bearer <stripe_secret>
+      X-Stripe-Client-Telemetry:
+      - '{"last_request_metrics":{"request_id":"req_4hYFVzbOoPW0Wq","request_duration_ms":2}}'
+      Idempotency-Key:
+      - fe6600a1-a30c-46cb-b63c-d9df50aabbe9
+      Stripe-Version:
+      - 2024-12-18.acacia
+      X-Stripe-Client-User-Agent:
+      - '{"bindings_version":"13.3.1","lang":"ruby","lang_version":"3.2.3 p157 (2024-01-18)","platform":"x86_64-linux","engine":"ruby","publisher":"stripe","uname":"Linux
+        version 5.15.167.4-microsoft-standard-WSL2 (root@f9c826d3017f) (gcc (GCC)
+        11.2.0, GNU ld (GNU Binutils) 2.37) #1 SMP Tue Nov 5 00:21:55 UTC 2024","hostname":"DESKTOP-SBP666L"}'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Mon, 03 Mar 2025 17:29:21 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '1802'
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Methods:
+      - GET, HEAD, PUT, PATCH, POST, DELETE
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - Request-Id, Stripe-Manage-Version, Stripe-Should-Retry, X-Stripe-External-Auth-Required,
+        X-Stripe-Privileged-Session-Required
+      Access-Control-Max-Age:
+      - '300'
+      Cache-Control:
+      - no-cache, no-store
+      Content-Security-Policy:
+      - base-uri 'none'; default-src 'none'; form-action 'none'; frame-ancestors 'none';
+        img-src 'self'; script-src 'self' 'report-sample'; style-src 'self'; worker-src
+        'none'; upgrade-insecure-requests; report-uri https://q.stripe.com/csp-violation?q=pnybkuhtdsUaXED_VJXHh06ovSw7A0FuGuH9zagsX4bVkfDnQRQghUBMn07_ZimJTGUit5qj1Z_Gt3Qb
+      Cross-Origin-Opener-Policy-Report-Only:
+      - same-origin; report-to="coop"
+      Idempotency-Key:
+      - fe6600a1-a30c-46cb-b63c-d9df50aabbe9
+      Original-Request:
+      - req_nhXNqfCLbvlQOu
+      Report-To:
+      - '{"group":"coop","max_age":8640,"endpoints":[{"url":"https://q.stripe.com/coop-report"}],"include_subdomains":true}'
+      Reporting-Endpoints:
+      - coop="https://q.stripe.com/coop-report"
+      Request-Id:
+      - req_nhXNqfCLbvlQOu
+      Stripe-Should-Retry:
+      - 'false'
+      Stripe-Version:
+      - 2024-12-18.acacia
+      Vary:
+      - Origin
+      X-Stripe-Priority-Routing-Enabled:
+      - 'true'
+      X-Stripe-Routing-Context-Priority-Tier:
+      - api-testmode
+      X-Wc:
+      - AB
+      Strict-Transport-Security:
+      - max-age=63072000; includeSubDomains; preload
+    body:
+      encoding: UTF-8
+      string: |-
+        {
+          "id": "pi_3QUVXeFWpgsj4fDK05NxCc94",
+          "object": "payment_intent",
+          "amount": 1998,
+          "amount_capturable": 0,
+          "amount_details": {
+            "tip": {}
+          },
+          "amount_received": 0,
+          "application": null,
+          "application_fee_amount": null,
+          "automatic_payment_methods": {
+            "allow_redirects": "always",
+            "enabled": true
+          },
+          "canceled_at": null,
+          "cancellation_reason": null,
+          "capture_method": "automatic_async",
+          "client_secret": "pi_3QUVXeFWpgsj4fDK05NxCc94_secret_sl8a0nX9wXubwCWAzEsldI7Tw",
+          "confirmation_method": "automatic",
+          "created": 1733845206,
+          "currency": "gbp",
+          "customer": null,
+          "description": null,
+          "invoice": null,
+          "last_payment_error": null,
+          "latest_charge": null,
+          "livemode": false,
+          "metadata": {},
+          "next_action": null,
+          "on_behalf_of": null,
+          "payment_method": "pm_1QycnNFWpgsj4fDKlNlhPukY",
+          "payment_method_configuration_details": {
+            "id": "pmc_1QUVA6FWpgsj4fDKbxDqhxKv",
+            "parent": null
+          },
+          "payment_method_options": {
+            "afterpay_clearpay": {
+              "reference": null
+            },
+            "card": {
+              "installments": null,
+              "mandate_options": null,
+              "network": null,
+              "request_three_d_secure": "automatic"
+            },
+            "klarna": {
+              "preferred_locale": null
+            },
+            "link": {
+              "persistent_token": null
+            },
+            "paypal": {
+              "preferred_locale": null,
+              "reference": null
+            }
+          },
+          "payment_method_types": [
+            "card",
+            "afterpay_clearpay",
+            "klarna",
+            "link",
+            "paypal"
+          ],
+          "processing": null,
+          "receipt_email": "rolland_glover@monahan.test",
+          "review": null,
+          "setup_future_usage": null,
+          "shipping": null,
+          "source": null,
+          "statement_descriptor": null,
+          "statement_descriptor_suffix": null,
+          "status": "requires_confirmation",
+          "transfer_data": null,
+          "transfer_group": null
+        }
+  recorded_at: Mon, 03 Mar 2025 17:29:21 GMT
+recorded_with: VCR 6.3.1

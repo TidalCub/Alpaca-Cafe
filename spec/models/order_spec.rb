@@ -20,6 +20,7 @@ RSpec.describe Order, type: :model do
       it 'creates a payment_intent' do
         VCR.use_cassette('stripe_order_model') do
           order.checkout!
+
           expect(order.payment_intent).to eq 'pi_3QUVXeFWpgsj4fDK05NxCc94'
         end
       end
@@ -58,14 +59,39 @@ RSpec.describe Order, type: :model do
 
     context 'when transitioning to paid' do
       before do
+        VCR.use_cassette('stripe_order_model') do
+          order.checkout!
+        end
         order.update(state: 'requires_capture')
+        allow(PrintReceiptService).to receive(:new).and_return(double(send: true))
       end
 
-      it 'transitions from requires_capture to paid, captures payment, and sends payment confirmation email' do
-        expect(OrderMailer).to receive(:payment_confirmation).with(order).and_return(double(deliver_now!: true))
-        expect_any_instance_of(StripePaymentintentService).to receive(:capture)
-        order.check_in!
-        expect(order.state).to eq('paid')
+      it 'transitions from requires_capture to paid' do
+        VCR.use_cassette('stripe_capture_intent') do
+          order.check_in!
+          expect(order.state).to eq('paid')
+        end
+      end
+
+      it 'sends payment confirmation email' do
+        VCR.use_cassette('stripe_capture_intent') do
+          expect(OrderMailer).to receive(:payment_confirmation).with(order).and_return(double(deliver_now!: true))
+          order.check_in!
+        end
+      end
+
+      it 'captures the payment' do
+        VCR.use_cassette('stripe_capture_intent') do
+          expect_any_instance_of(StripePaymentintentService).to receive(:capture)
+          order.check_in!
+        end
+      end
+
+      it 'calls the PrintReceiptService' do
+        VCR.use_cassette('stripe_capture_intent') do
+          expect(PrintReceiptService).to receive(:new).with(order).and_return(double(send: true))
+          order.check_in!
+        end
       end
     end
 
