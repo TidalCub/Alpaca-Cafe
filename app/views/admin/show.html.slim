@@ -1,0 +1,8 @@
+h1.brand-font.text-center = "#{@store.name} Admin Panel"
+
+.col-12.d-flex.justify-content-center
+  .col-9.d-flex.justify-content-center.gap-3
+    = link_to store_name_product_availability_index_path(), class: "text-dark" do
+      h5 Product Availability 
+    = link_to store_name_ingredient_availability_index_path(), class: "text-dark" do
+      h5 Ingredient Availability 

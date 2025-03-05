@@ -28,7 +28,7 @@ Rails.application.routes.draw do
   resources :carts, only: %i[index]
   resources :manage, only: %i[index]
   resources :home, only: %i[index]
-  resources :admin
+  resources :admin, only: %i[index]
 
   scope 'admin' do
     resources :mqtt_log, only: %i[index]
@@ -47,10 +47,11 @@ Rails.application.routes.draw do
 
   scope 'admin' do 
     scope ':store_name', as: 'store_name' do
+      get '/', to: 'admin#show', as: :admin_show
       scope 'availability' do
-        resources :products, controller: 'admin/availability/products', only: %i[index update], param: :store_name
+        resources :products, controller: 'admin/availability/products', only: %i[index update], param: :store_name, as: :product_availability
         patch 'products/update', to: 'admin/availability/products#update'
-        resources :ingredients, controller: 'admin/availability/ingredients', only: %i[index update], param: :store_name
+        resources :ingredients, controller: 'admin/availability/ingredients', only: %i[index update], param: :store_name, as: :ingredient_availability
         patch 'ingredients/update', to: 'admin/availability/ingredients#update'
       end
     end
