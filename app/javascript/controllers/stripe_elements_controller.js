@@ -27,6 +27,9 @@ export default class extends Controller {
       elements,
       confirmParams: {
         return_url: 'https://coffee.leon-skinner.dev/payments',
+        payment_method_data: {
+          allow_redisplay: 'always',
+        },
       },
     })
   }
