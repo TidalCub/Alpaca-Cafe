@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class ProductController < ApplicationController
-  skip_before_action :verify_authenticity_token
   before_action :set_store
   before_action :set_product, only: %i[show]
   before_action :authorize!
