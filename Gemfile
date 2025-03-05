@@ -75,3 +75,6 @@ gem 'slim-rails'
 gem 'stripe'
 gem 'vcr'
 gem 'webmock'
+
+gem "opentelemetry-sdk", "~> 1.8"
+gem "opentelemetry-instrumentation-all", "~> 0.74.0"
