@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_12_17_155123) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_05_084414) do
   create_table "addresses", force: :cascade do |t|
     t.integer "number"
     t.string "street"
@@ -63,6 +63,16 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_17_155123) do
     t.datetime "updated_at", null: false
     t.index ["product_id"], name: "index_menus_on_product_id"
     t.index ["store_id"], name: "index_menus_on_store_id"
+  end
+
+  create_table "mqtt_logs", force: :cascade do |t|
+    t.string "topic", null: false
+    t.text "message"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "order_id"
+    t.index ["order_id"], name: "index_mqtt_logs_on_order_id"
+    t.index ["topic"], name: "index_mqtt_logs_on_topic"
   end
 
   create_table "order_items", force: :cascade do |t|
@@ -171,6 +181,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_17_155123) do
   add_foreign_key "ingredients", "ingredient_groups"
   add_foreign_key "menus", "products"
   add_foreign_key "menus", "stores"
+  add_foreign_key "mqtt_logs", "orders"
   add_foreign_key "order_items", "orders"
   add_foreign_key "order_items", "products"
   add_foreign_key "orders", "stores"

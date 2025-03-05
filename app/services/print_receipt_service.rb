@@ -1,12 +1,13 @@
 # frozen_string_literal: true
 
-class PrintReceiptService
-  def initialize(order)
+
+class PrintReceiptService < MqttService
+  def initialize(order) 
     @order = order
   end
 
   def send
-    CLIENT.publish('printer', payload, false)
+    super("printer", payload)
   end
 
   private
@@ -37,4 +38,5 @@ class PrintReceiptService
     }.to_json
   end
   # rubocop:enable Metrics/MethodLength, Metrics/AbcSize
-end
+end  
+
