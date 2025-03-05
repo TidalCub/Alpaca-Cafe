@@ -19,9 +19,9 @@ RSpec.describe Admin::Availability::IngredientsController, type: :controller do
   end
 
   describe 'PATCH #update' do
-    subject { patch :update, params: { store_name: store.name, store_id: store.id, ingredient_stocks: {ingredient_stock.id => available}  } }
+    subject { patch :update, params: { store_name: store.name, store_id: store.id, ingredient_stocks: { ingredient_stock.id => available } } }
 
-    context "when updating to available" do
+    context 'when updating to available' do
       let(:available) { 1 }
       it 'updates the availability of the ingredient' do
         subject
@@ -29,7 +29,7 @@ RSpec.describe Admin::Availability::IngredientsController, type: :controller do
       end
     end
 
-    context "when updating to unavailable" do
+    context 'when updating to unavailable' do
       let(:available) { 0 }
       it 'updates the availability of the ingredient' do
         subject
