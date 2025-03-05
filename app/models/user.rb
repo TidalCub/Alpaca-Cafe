@@ -16,6 +16,7 @@ class User < ApplicationRecord
 
   def create_stripe_user
     # rubocop:disable Layout/FirstHashElementIndentation
+    return if Rails.env.test?
     customer = Stripe::Customer.create({
       email: email,
       metadata: {
