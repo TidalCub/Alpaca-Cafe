@@ -6,7 +6,7 @@ require 'rails_helper'
 RSpec.describe StripePaymentintentService, type: :service do
   before do
     VCR.use_cassette('stripe_customer_create') do
-      @user = create(:user, email: 'test@example.com')
+      @user = create(:user, email: 'test@example.com', stripe_id: 'cus_RO4kYXL8E8Symo')
     end
   end
 

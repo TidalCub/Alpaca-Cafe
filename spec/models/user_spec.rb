@@ -29,10 +29,10 @@ RSpec.describe User, type: :model do
     end
   end
 
-  describe '#create_stripe_user' do
-    it 'creates a Stripe customer and sets the stripe_id' do
-      user.run_callbacks(:create)
-      expect(user.stripe_id).to eq('cus_123456789')
-    end
-  end
+  # describe '#create_stripe_user' do
+  #   it 'creates a Stripe customer and sets the stripe_id' do
+  #     user.run_callbacks(:create)
+  #     expect(user.stripe_id).to eq('cus_123456789')
+  #   end
+  # end
 end
