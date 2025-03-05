@@ -5,22 +5,22 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.2.3'
 
+gem 'activesupport', '~> 8.0'
+gem 'importmap-rails'
+gem 'jbuilder'
+gem 'puma', '~> 6.0'
 gem 'rails', '~> 8.0'
+gem 'redis', '~> 4.0'
 gem 'simplecov', require: false, group: :test
 gem 'sprockets-rails'
 gem 'sqlite3'
-gem 'activesupport', '~> 8.0'
-gem 'puma', '~> 6.0'
-gem 'importmap-rails'
-gem 'turbo-rails'
 gem 'stimulus-rails'
-gem 'jbuilder'
-gem 'redis', '~> 4.0'
+gem 'turbo-rails'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
-gem "stackprof"
-gem "sentry-ruby"
-gem "sentry-rails"
+gem 'sentry-rails'
+gem 'sentry-ruby'
+gem 'stackprof'
 
 gem 'bootsnap', require: false
 gem 'sassc-rails'
