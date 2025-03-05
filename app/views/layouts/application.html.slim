@@ -13,6 +13,7 @@ html
     script src="https://kit.fontawesome.com/7d7dff898e.js" crossorigin="anonymous"
     link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Koulen"
     script src="https://js.stripe.com/v3/"
+    script src="https://js-de.sentry-cdn.com/2bab2b8824a476017c74a74bedcc375a.min.js" crossorigin="anonymous"
     
   body
     = render "layouts/google_tag_body"
@@ -31,7 +32,6 @@ html
       - if current_user
         - if current_user.basket.order_items.count > 0
           = render 'layouts/basket'
-    
     = render "layouts/footer"
   dialog#info-dialog class="bg-light rounded-3 border border-none"
     div class="modal-content"

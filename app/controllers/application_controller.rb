@@ -10,4 +10,17 @@ class ApplicationController < ActionController::Base
   def allow_iframe_requests
     response.headers.delete('X-Frame-Options')
   end
+
+  # rescue_from StandardError do |exception|
+  #   handle_exception(exception)
+  #   #render 'errors/internal_server_error', status: :internal_server_error
+  # end
+
+  # private
+
+  # def handle_exception(exception)
+  #   Sentry.capture_exception(exception)
+  #   logger.error(exception.message)
+  #   logger.error(exception.backtrace.join("\n"))
+  # end
 end
