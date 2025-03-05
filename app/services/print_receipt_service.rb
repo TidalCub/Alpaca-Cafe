@@ -1,12 +1,13 @@
 # frozen_string_literal: true
 
-class PrintReceiptService
+class PrintReceiptService < MqttService
   def initialize(order)
     @order = order
+    super
   end
 
   def send
-    CLIENT.publish('printer', payload, false)
+    super('printer', payload, @order)
   end
 
   private

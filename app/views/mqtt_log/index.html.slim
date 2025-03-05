@@ -1,0 +1,14 @@
+.col-12
+  table.table.table-striped
+    thead
+      th Order
+      th Message
+      th Topic
+      th Time Stamps
+    tbody
+      = @logs.each do |log|
+        tr
+          td = log.order.id
+          td = log.message
+          td = log.topic
+          td = log.created_at

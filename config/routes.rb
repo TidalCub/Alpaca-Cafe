@@ -29,6 +29,11 @@ Rails.application.routes.draw do
   resources :manage, only: %i[index]
   resources :home, only: %i[index]
   resources :admin
+
+  scope 'admin' do
+    resources :mqtt_log, only: %i[index]
+  end
+
   resources :store, only: %i[index show]
 
   scope ':store_name', as: 'store_name' do

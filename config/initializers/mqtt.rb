@@ -1,4 +1,4 @@
-unless Rails.env.test?
+unless Rails.env.local?
   CLIENT = MQTT::Client.new(
     host: Rails.application.credentials.dig(Rails.env.to_sym, :mqtt, :host),
     port: Rails.application.credentials.dig(Rails.env.to_sym, :mqtt, :port),
