@@ -13,9 +13,17 @@ RSpec.describe MqttService, type: :service do
       allow(CLIENT).to receive(:publish)
     end
 
+    let(:order) {create(:order, user: @user)}
+
     it "calls the client" do
-      service.send("test", payload)
+      service.send("test", payload, order)
       expect(CLIENT).to have_received(:publish)
+    end
+
+    it "logs the mqtt" do
+      allow(MqttLog).to receive('log')
+      service.send("test", payload, order)
+      expect(MqttLog).to have_received('log').with("test", anything, order)
     end
   end
 end

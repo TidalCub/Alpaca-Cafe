@@ -7,7 +7,7 @@ class PrintReceiptService < MqttService
   end
 
   def send
-    super("printer", payload)
+    super("printer", payload, @order)
   end
 
   private
