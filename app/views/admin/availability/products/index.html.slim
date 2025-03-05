@@ -1,0 +1,32 @@
+.col-12.d-flex.justify-content-center.mt-4
+  .col-11.col-md-10.col-lg-10
+    = form_with url: store_name_products_update_path(store_name: @store.name), method: :patch do |f| 
+      = f.hidden_field :store_id, value: @store.id     
+      .col-12.d-flex.justify-content-end.p-2
+        = f.submit "Update Availability", class: "btn btn-primary"
+      table.table.table-striped
+        thead.thead-dark
+          tr
+            th Name
+            th Curr. Available
+            th.text-center Ingredients
+            th.text-center Actions
+        tbody
+          -@menus_by_category.each do |group|
+            tr
+              th.bg-secondary colspan="4"
+                h2.text-center = group.first.name
+            - group.second.each do |menu_item|
+              tr
+                td = menu_item.product.name
+                - if menu_item.available 
+                  td.bg-success.text-dark Available
+                - else
+                  td.bg-danger.text-white Out of Stock
+                td.text-center
+                  i.fa-solid.fa-arrow-up-right-from-square
+                td.text-center
+                  - if menu_item.available
+                    = f.check_box "menu_items[#{menu_item.id}]", checked: true, class: "form-check-input", id: "product_#{menu_item.id}"
+                  - else
+                    = f.check_box "menu_items[#{menu_item.id}]", class: "form-check-input", id: "product_#{menu_item.id}"

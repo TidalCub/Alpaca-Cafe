@@ -22,3 +22,6 @@ Metrics/BlockLength:
     - "db/schema.rb"
 Style/Documentation:
   Enabled: false
+
+Rails/I18nLocaleTexts:
+  Enabled: false
