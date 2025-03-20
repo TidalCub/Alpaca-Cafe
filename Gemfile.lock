@@ -102,6 +102,8 @@ GEM
       nokogiri (~> 1.6)
       premailer (~> 1.7)
       sass-embedded (~> 1.53)
+    brakeman (7.0.0)
+      racc
     builder (3.3.0)
     capistrano (3.19.2)
       airbrussh (>= 1.0.0)
@@ -765,6 +767,7 @@ DEPENDENCIES
   bootsnap
   bootstrap (~> 5.0)
   bootstrap-email
+  brakeman
   capistrano
   capistrano-bundler
   capistrano-rails
