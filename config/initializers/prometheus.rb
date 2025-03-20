@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # if ENV["PROMETHEUS_ENABLED"] == "1" && ENV["IN_PUMA_WORKER"] == "1" && !Rails.env.test?
-unless Rails.env.test?
+unless Rails.env.local?
   require "prometheus_exporter/instrumentation"
   require "prometheus_exporter/middleware"
 
