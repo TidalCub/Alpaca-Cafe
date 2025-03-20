@@ -549,6 +549,8 @@ GEM
       css_parser (>= 1.19.0)
       htmlentities (>= 4.0.0)
     prettyprint (0.2.0)
+    prometheus_exporter (2.2.0)
+      webrick
     psych (5.2.3)
       date
       stringio
@@ -744,6 +746,7 @@ GEM
       addressable (>= 2.8.0)
       crack (>= 0.3.2)
       hashdiff (>= 0.4.0, < 2.0.0)
+    webrick (1.9.1)
     websocket (1.2.11)
     websocket-driver (0.7.7)
       base64
@@ -790,6 +793,7 @@ DEPENDENCIES
   opentelemetry-instrumentation-all (~> 0.74.0)
   opentelemetry-sdk (~> 1.8)
   pg (~> 1.5, >= 1.5.4)
+  prometheus_exporter
   puma (~> 6.0)
   rails (~> 8.0)
   rails-controller-testing

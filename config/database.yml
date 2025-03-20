@@ -11,9 +11,9 @@ test:
   <<: *default
   database: db/test.sqlite3
 
-production:
-  <<: *default
-  database: db/production.sqlite3
+# production:
+#   <<: *default
+#   database: db/production.sqlite3
 
 # production:
 #   <<: *default
@@ -22,3 +22,24 @@ production:
 #   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 #   url: <%= ENV['DATABASE_URL'] %>
 
+production:
+  primary:
+    database: primary_database
+    username: root
+    password: <%= ENV['ROOT_PASSWORD'] %>
+    adapter: postgresql
+    encoding: unicode
+  primary_replica:
+    database: primary_database
+    username: root
+    password: <%= ENV['ROOT_READONLY'] %>
+    adapter: postgresql
+    replica: true
+    encoding: unicode
+  secondary_replica:
+    database: secondary_database
+    username: readonly_user
+    password: <%= ENV['SECONDARY_READONLY_PASSWORD'] %>
+    adapter: postgresql
+    replica: true
+    encoding: unicode
