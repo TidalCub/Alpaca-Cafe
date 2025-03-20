@@ -5,6 +5,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.2.3'
 
+gem 'prometheus_exporter'
+
 gem 'aasm', '~> 5.5'
 gem 'action_policy'
 gem 'activesupport', '~> 8.0'
@@ -48,19 +50,22 @@ group :development, :test do
 end
 
 group :development do
+  gem 'brakeman', require: false
   gem 'capistrano', require: false
   gem 'capistrano-bundler', require: false
   gem 'capistrano-rails', require: false
   gem 'capistrano-rbenv', require: false # Or `capistrano-rvm` if you use RVM
+  gem 'rack-mini-profiler'
   gem 'web-console'
 end
 
 group :test do
-  gem 'capybara'
-  gem 'capybara-screenshot'
   gem 'database_cleaner'
   gem 'selenium-webdriver'
   gem 'simplecov', require: false
   gem 'vcr'
   gem 'webmock'
 end
+
+gem 'opentelemetry-instrumentation-all', '~> 0.74.0'
+gem 'opentelemetry-sdk', '~> 1.8'
