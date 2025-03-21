@@ -5,6 +5,7 @@ class Order < ApplicationRecord
   belongs_to :user
   belongs_to :store
   has_many :order_items, dependent: :destroy
+  after_create :track_order_metrics
 
   enum :state, { new_order: 0, pending: 1, on_checkout: 2, requires_capture: 3, paid: 4, payment_failed: 5, completed: 6, expired: 7 }
 
@@ -63,5 +64,15 @@ class Order < ApplicationRecord
 
   def stripe_total_price
     (total * 100).to_i
+  end
+
+  def track_order_metrics
+    prometheus_client = PrometheusExporter::Client.default
+
+    prometheus_client.send_json(
+      type: "custom_order_metrics",
+      labels: { status: state, store: store.name, created_at: created_at },
+      creation_time: (Time.current - created_at).to_f
+    )
   end
 end

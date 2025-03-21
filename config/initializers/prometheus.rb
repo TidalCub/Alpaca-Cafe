@@ -1,13 +1,14 @@
 # frozen_string_literal: true
 
 # if ENV["PROMETHEUS_ENABLED"] == "1" && ENV["IN_PUMA_WORKER"] == "1" && !Rails.env.test?
-unless Rails.env.local?
+unless Rails.env.test?
   require "prometheus_exporter/instrumentation"
   require "prometheus_exporter/middleware"
+  require "prometheus_exporter/client"
 
   # This reports stats per request like HTTP status and timings
   Rails.application.middleware.unshift(PrometheusExporter::Middleware)
-  PrometheusExporter::Instrumentation::Puma.start
+
   # This reports per-process stats such as memory and GC info
   PrometheusExporter::Instrumentation::Process.start(type: "puma_worker")
   
@@ -17,6 +18,10 @@ unless Rails.env.local?
     config_labels: %i[database host]
   )
 
+  if defined?(PrometheusExporter::Server::Collector)
+    PrometheusExporter::Server::Collector.register_collector(PrometheusCustomCollector.new)
+  end
+  
   # Run prometheus `bundle exec prometheus_exporter --histogram` Or without `--histogram`
 
 end
