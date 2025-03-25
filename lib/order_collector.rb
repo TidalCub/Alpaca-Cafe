@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'prometheus_exporter'
+require 'prometheus_exporter/server'
 
 class OrderCollector < PrometheusExporter::Server::TypeCollector
   def initialize

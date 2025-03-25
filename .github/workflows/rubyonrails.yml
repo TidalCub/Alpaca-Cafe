@@ -43,6 +43,8 @@ jobs:
       # Add or replace test runners here
       - name: Check installed gems
         run: bundle list | grep prometheus_exporter
+      - name: Print Environment Variables
+        run: env
       - name: Run tests
         run: bundle exec rspec --fail-fast --backtrace
 
