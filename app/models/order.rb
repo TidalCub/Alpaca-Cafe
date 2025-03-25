@@ -67,10 +67,12 @@ class Order < ApplicationRecord
   end
 
   def track_order_metrics
+    return unless Rails.env.production?
+
     prometheus_client = PrometheusExporter::Client.default
 
     prometheus_client.send_json(
-      type: "custom_order_metrics",
+      type: 'custom_order_metrics',
       labels: { status: state, store: store.name, created_at: created_at },
       creation_time: (Time.current - created_at).to_f
     )

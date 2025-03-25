@@ -27,35 +27,34 @@
 # be configured to provide at least as many connections as the number of
 # threads. This includes Active Record's `pool` parameter in `database.yml`.
 
+if Rails.env.production?
+  stdout_redirect "/var/www/Alpaca_Cafe/log/puma.stdout.log", "/var/www/Alpaca_Cafe/log/puma.stderr.log", true
+
+  threads_count = ENV.fetch('RAILS_MAX_THREADS', 3)
+  threads threads_count, threads_count
+
+  bind "unix:/var/www/Alpaca_Cafe/shared/sockets/puma.sock" 
+
+  # Specifies the `port` that Puma will listen on to receive requests; default is 3000.
+  port ENV.fetch('PORT', 3000)
+
+  # Allow puma to be restarted by `bin/rails restart` command.
+  plugin :tmp_restart
+
+  # Run the Solid Queue supervisor inside of Puma for single-server deployments
+  plugin :solid_queue if ENV['SOLID_QUEUE_IN_PUMA']
+
+  # Specify the PID file. Defaults to tmp/pids/server.pid in development.
+  # In other environments, only set the PID file if requested.
+  pidfile ENV['PIDFILE'] if ENV['PIDFILE']
 
 
-environment 'production'
-
-stdout_redirect "/var/www/Alpaca_Cafe/log/puma.stdout.log", "/var/www/Alpaca_Cafe/log/puma.stderr.log", true
-
-threads_count = ENV.fetch('RAILS_MAX_THREADS', 3)
-threads threads_count, threads_count
-
-bind "unix:/var/www/Alpaca_Cafe/shared/sockets/puma.sock" 
-
-# Specifies the `port` that Puma will listen on to receive requests; default is 3000.
-port ENV.fetch('PORT', 3000)
-
-# Allow puma to be restarted by `bin/rails restart` command.
-plugin :tmp_restart
-
-# Run the Solid Queue supervisor inside of Puma for single-server deployments
-plugin :solid_queue if ENV['SOLID_QUEUE_IN_PUMA']
-
-# Specify the PID file. Defaults to tmp/pids/server.pid in development.
-# In other environments, only set the PID file if requested.
-pidfile ENV['PIDFILE'] if ENV['PIDFILE']
-
-
-after_worker_boot do
-  require 'prometheus_exporter/instrumentation'
-  # optional check, avoids spinning up and down threads per worker
-  if !PrometheusExporter::Instrumentation::Puma.started?
-    PrometheusExporter::Instrumentation::Puma.start
+  after_worker_boot do
+    require 'prometheus_exporter/instrumentation'
+    # optional check, avoids spinning up and down threads per worker
+    if !PrometheusExporter::Instrumentation::Puma.started?
+      PrometheusExporter::Instrumentation::Puma.start
+    end
   end
 end
+
