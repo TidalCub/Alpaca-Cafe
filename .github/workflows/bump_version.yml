@@ -1,5 +1,8 @@
 name: Version Bump
 
+env:
+  RAILS_ENV: test
+
 on:
   workflow_run:
     workflows: ["rubyonrails", "linting", "codeql"]

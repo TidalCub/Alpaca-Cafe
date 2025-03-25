@@ -11,6 +11,9 @@
 #
 name: "CodeQL Advanced"
 
+env:
+  RAILS_ENV: test
+
 on:
   push:
     branches: [ "main" ]
