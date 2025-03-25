@@ -7,6 +7,7 @@ set :repo_url, "https://github.com/TidalCub/Alpaca-Cafe"
 set :deploy_to, "/var/www/#{fetch(:application)}"
 set :branch, "main"
 set :keep_releases, 5
+set :rails_env, 'production'
 append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', '.bundle', 'public/system', 'public/uploads', 'storage'
 append :linked_files, 'config/master.key', 'db/production.sqlite3'
 
