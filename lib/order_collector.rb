@@ -1,5 +1,10 @@
 # frozen_string_literal: true
 
+require "prometheus_exporter/instrumentation"
+require "prometheus_exporter/middleware"
+require "prometheus_exporter/client"
+
+
 class OrderCollector < PrometheusExporter::Server::TypeCollector
   def initialize
     @order_counter = PrometheusExporter::Metric::Counter.new('orders_created', 'Number of orders created')
