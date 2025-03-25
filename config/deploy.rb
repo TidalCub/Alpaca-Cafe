@@ -4,6 +4,9 @@ lock "~> 3.19.2"
 set :application, "Alpaca_Cafe"
 set :repo_url, "https://github.com/TidalCub/Alpaca-Cafe"
 
+set :rails_env, 'production'
+set :puma_env, fetch(:rails_env)
+
 set :deploy_to, "/var/www/#{fetch(:application)}"
 set :branch, "main"
 set :keep_releases, 5
