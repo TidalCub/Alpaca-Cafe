@@ -13,15 +13,15 @@ require 'factory_bot_rails'
 # #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 # #   Character.create(name: "Luke", movie: movies.first)
 
-ProductModifyer.destroy_all
-OrderItem.destroy_all
-Order.destroy_all
-Recipe.destroy_all
-Product.destroy_all
-Category.destroy_all
-Ingredient.destroy_all
-IngredientGroup.destroy_all
-Role.destroy_all
+# ProductModifyer.destroy_all
+# OrderItem.destroy_all
+# Order.destroy_all
+# Recipe.destroy_all
+# Product.destroy_all
+# Category.destroy_all
+# Ingredient.destroy_all
+# IngredientGroup.destroy_all
+# Role.destroy_all
 Role.create!(name: 'customer', uuid: 'customer')
 
 # User.destroy_all
