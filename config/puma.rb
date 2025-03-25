@@ -27,7 +27,7 @@
 # be configured to provide at least as many connections as the number of
 # threads. This includes Active Record's `pool` parameter in `database.yml`.
 
-unless Rails.env.local?
+
   stdout_redirect "/var/www/Alpaca_Cafe/log/puma.stdout.log", "/var/www/Alpaca_Cafe/log/puma.stderr.log", true
 
   threads_count = ENV.fetch('RAILS_MAX_THREADS', 3)
@@ -56,5 +56,5 @@ unless Rails.env.local?
       PrometheusExporter::Instrumentation::Puma.start
     end
   end
-end
+
 
