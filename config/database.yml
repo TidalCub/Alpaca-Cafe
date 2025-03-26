@@ -11,16 +11,19 @@ test:
   <<: *default
   database: db/test.sqlite3
 
-production:
-  <<: *default
-  database: db/production.sqlite3
-
 # production:
 #   <<: *default
-#   adapter: postgresql
-#   encoding: unicode
-#   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-#   url: <%= ENV['DATABASE_URL'] %>
+#   database: db/production.sqlite3
+
+production:
+  <<: *default
+  adapter: postgresql
+  encoding: unicode
+  database: alpaca
+  username: <%= Rails.application.credentials.dig(:production, :database, :username) %>
+  password: <%= Rails.application.credentials.dig(:production, :database, :password) %>
+  host: localhost
+
 
 # production:
 #   primary:
