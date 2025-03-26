@@ -1,0 +1,13 @@
+.col-12.d-flex.justify-content-center.fixed-bottom
+  .col-12.bg-white.reverse-shadow.d-flex style="z-index: 1000; max-width:500px; max-height: 100px;"
+    .d-flex.col-12.justify-content-around.align-items-center.ps-4.pe-4.p-2
+      .d-flex.flex-column.justify-content-center.align-items-center
+        = link_to root_path, class: "text-decoration-none text-dark" do
+          .col-12.d-flex.justify-content-center
+            i.fa-solid.fa-home.display-4.no-h-padding
+          h3.text-dark.no-h-padding.brand-font.text-center Home
+      .d-flex.flex-column.justify-content-center.align-items-center
+        = link_to new_user_session_path, class: "text-decoration-none text-dark" do
+          .col-12.d-flex.justify-content-center
+            i.fa-solid.fa-user.display-4.no-h-padding
+          h3.text-dark.no-h-padding.brand-font Sign In

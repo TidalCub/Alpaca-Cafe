@@ -11,6 +11,7 @@ class HomeController < ApplicationController
   end
 
   def user_home
+    @product = Product.first
 
   end
 

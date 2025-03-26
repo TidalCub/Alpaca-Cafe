@@ -4,40 +4,10 @@
 /       h3.pe-2 Pickup at:
 /       h3 = current_user.basket.store.name
 .col-12.bg-primary.shadow.d-flex
-  .d-flex.gap-3
-    .p-2.flex-shrink
-      = link_to root_path, class: "text-white text-decoration-none" do
-        h1.text-white.no-h-padding.p-2.brand-font Alpaca Peruleon Cafe
+  .display-3.col-12.text-center.brand-font.text-white Alpaca Cafe
+- if current_user
+  = render "layouts/store_banner"
+  = render "layouts/bottom_navigation"
+- else
+  = render "layouts/navigation_guests"
 
-    .col.d-flex.gap-4.pb-1.brand-font.flex-fill
-      .d-flex.flex-column.aling-items-end.justify-content-end
-        - if current_user
-          - if current_user.basket && current_user.basket.store.present?
-            = link_to store_name_category_index_path(store_name: current_user.basket.store.name), class: "text-decoration-none text-dark" do 
-              h5  Menu
-          - else
-            = link_to store_index_path, class: "text-decoration-none text-dark" do 
-              h5  Menu
-        - else
-          = link_to store_index_path, class: "text-decoration-none text-dark" do 
-            h5  Menu
-      .d-flex.flex-column.aling-items-end.justify-content-end
-        - if current_user
-          = link_to account_path, class: "text-decoration-none text-dark" do 
-            h5  Account
-        - else 
-          = link_to user_session_path, class: "text-decoration-none text-dark" do
-            h5  Sign In
-  .d-flex.justify-content-end.flex-fill.pe-3.gap-3
-    .brand-font.d-flex.flex-column.aling-items-end.justify-content-end.pb-1
-      - if current_user
-        - unless current_user.basket.store.nil?
-          = link_to store_index_path, class: "text-decoration-none text-dark" do
-            h5
-              | Store: 
-              = current_user.basket.store.name
-              i.fa-solid.fa-caret-down.ps-2
-    .brand-font.d-flex.flex-column.aling-items-end.justify-content-end
-      = link_to checkout_path, class: "text-decoration-none text-dark" do
-        h2
-          i.fa-solid.fa-shopping-basket
