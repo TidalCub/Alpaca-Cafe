@@ -1,0 +1,28 @@
+.col-12.bg-secondary.shadow.d-flex.justify-content-between.p-2
+  .d-flex.justify-content-start.gap-4
+    = link_to root_path, class: "text-decoration-none text-dark" do
+      .col-12.d-flex.justify-content-center
+        i.h4.fa-solid.fa-home.no-h-padding
+        h3.no-h-padding.brand-font.ps-2 Home
+    
+    = link_to store_index_path, class: "text-decoration-none text-dark" do
+      .col-12.d-flex.justify-content-center
+        i.fa-solid.fa-location-dot.h4.no-h-padding
+        h3.no-h-padding.brand-font.ps-2 Find a Store
+
+    = link_to store_index_path, class: "text-decoration-none text-dark" do
+      .col-12.d-flex.justify-content-center
+        i.fa-solid.fa-store.h4.no-h-padding
+        h3.no-h-padding.brand-font.ps-2 Order Now
+
+  .d-flex.justify-content-end.gap-3
+    = link_to checkout_path, class: "text-decoration-none text-dark" do
+      .col-12.d-flex.justify-content-center
+        i.fa-solid.fa-shopping-basket.h3.no-h-padding
+
+    = link_to account_path, class: "text-decoration-none text-dark" do
+      .col-12.d-flex.justify-content-center
+        i.fa-solid.fa-user.h3.no-h-padding
+
+  
+    

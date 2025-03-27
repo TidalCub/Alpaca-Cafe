@@ -94,3 +94,63 @@
     height: 24px;
   }
 }
+.cup{
+  &-sm{
+    background-image: url('icons/coffee-cup.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+  }
+  &-md{
+    background-image: url('icons/coffee-cup.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    display: inline-block;
+    width: 48px;
+    height: 48px;
+  }
+  &-lg{
+    background-image: url('icons/coffee-cup.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    display: inline-block;
+    width: 72px;
+    height: 72px;
+  }
+  &-xlg{
+    background-image: url('icons/coffee-cup.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    display: inline-block;
+    width: 60px;
+    height: 96px;
+  }
+}
+.location{
+  &-sm{
+    background-image: url('icons/geo.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+  }
+  &-md{
+    background-image: url('icons/geo.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    display: inline-block;
+    width: 48px;
+    height: 48px;
+  }
+  &-lg{
+    background-image: url('icons/geo.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    display: inline-block;
+    width: 72px;
+    height: 72px;
+  }
+}

@@ -27,7 +27,8 @@ Rails.application.routes.draw do
   resources :order_items
   resources :carts, only: %i[index]
   resources :manage, only: %i[index]
-  resources :home, only: %i[index]
+  resources :home
+  get 'user_home', to: 'home#user_home', as: :user_home
   resources :admin, only: %i[index]
 
   scope 'admin' do

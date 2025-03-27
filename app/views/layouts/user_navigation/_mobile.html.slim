@@ -1,0 +1,25 @@
+.col-12.d-flex.justify-content-center.fixed-bottom
+  .col-12.bg-white.reverse-shadow.d-flex style="z-index: 1000; max-width:600px;"
+    .d-flex.col-12.justify-content-between.align-items-center.ps-4.pe-4.p-2
+      .d-flex.flex-column.justify-content-center.align-items-center
+        = link_to root_path, class: "text-decoration-none text-dark" do
+          .col-12.d-flex.justify-content-center
+            i.fa-solid.fa-home.display-4.no-h-padding
+          h3.text-dark.no-h-padding.brand-font Home
+      .d-flex.flex-column.justify-content-center.align-items-center
+        = link_to store_index_path, class: "text-decoration-none text-dark" do
+          .col-12.d-flex.justify-content-center
+            i.fa-solid.fa-store.display-4.no-h-padding
+          h3.text-dark.no-h-padding.brand-font Store
+      .d-flex.flex-column.justify-content-center.align-items-center
+        = link_to checkout_path, class: "text-decoration-none text-dark" do
+          .col-12.d-flex.justify-content-center
+            i.fa-solid.fa-shopping-basket.display-4.no-h-padding
+          h3.text-dark.no-h-padding.brand-font Checkout
+      .d-flex.flex-column.justify-content-center.align-items-center
+        = link_to account_path, class: "text-decoration-none text-dark" do
+          .col-12.d-flex.justify-content-center
+            i.fa-solid.fa-user.display-4.no-h-padding
+          h3.text-dark.no-h-padding.brand-font Account
+
+= render "layouts/store_banner"

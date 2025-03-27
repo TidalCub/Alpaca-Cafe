@@ -18,21 +18,13 @@ html
   body
     = render "layouts/google_tag_body"
     .d-flex.flex-column style="min-height: 100svh"
-      - unless controller_name == 'orders' && action_name == 'index'
-        / = if current_user.orders.find_by(state: "requires_capture").present?
-        /   = link_to check_in_order_path(current_user.orders.find_by(state: "requires_capture")), class: "text-decoration-none"
-        /     .fixed-bottom.bg-primary.d-flex.p-2.text-dark.justify-content-between
-        /       .fs-2.fw-bold You have not yet check in
-        /       .fs-2
-        /         | Go to Order
-        /         i.fa-solid.fa-arrow-right.ps-3
-        = render 'layouts/header'
+      = render 'layouts/header'
       
       = yield
-      - if current_user
-        - if current_user.basket.order_items.count > 0
-          = render 'layouts/basket'
+
     = render "layouts/footer"
+
+    
   dialog#info-dialog class="bg-light rounded-3 border border-none"
     div class="modal-content"
       div class="modal-header d-flex justify-content-between"

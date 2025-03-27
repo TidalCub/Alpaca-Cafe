@@ -1,9 +1,17 @@
 # frozen_string_literal: true
 
 class HomeController < ApplicationController
-  after_action :record_event
+  # after_action :record_event
+  before_action :authenticate_user!, only: [:user_home]
+
   def index
-    @recommended_products = Product.order('RANDOM()').limit(1)
+    return unless user_signed_in?
+
+    redirect_to user_home_path
+  end
+
+  def user_home
+    @product = Product.first
   end
 
   private

@@ -1,0 +1,5 @@
+- if current_user.basket.present?
+  .col-12.bg-secondary.p-1
+    .text-dark.brand-font.flex-column.d-flex.gap-2.justify-content-center.align-items-center
+        h6.no-h-padding Ordering for: 
+        h3.no-h-padding = current_user.basket.store.name
