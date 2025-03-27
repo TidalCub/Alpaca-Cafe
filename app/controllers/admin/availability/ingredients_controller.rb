@@ -22,7 +22,7 @@ module Admin
       private
 
       def set_store
-        @store = Store.find_by(name: params[:store_name])
+        @store = Store.find_by(slug: params[:store_name])
       end
     end
   end

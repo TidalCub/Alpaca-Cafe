@@ -1,4 +1,52 @@
-.col-12.d-flex.flex-row.justify-content-between
-  .h1 Oders
-    = @order.count
-   h3 Total:
+.col-12
+  h1.p-1.brand-font Tools
+  .col-12.d-flex.ps-2.pe-2.gap-2 style="overflow-x: auto;"
+    .card.col-3
+      .card-body
+        h3.card-title Stores
+        p.card-subtitle.text-muted Manage stores and their product / ingredient availability
+        = link_to 'Stores', admin_index_path, class: 'card-link'
+    .card.col-3
+      .card-body
+        h3.card-title Users
+        p.card-subtitle.text-muted Manage Users
+        = link_to 'Users', admin_index_path, class: 'card-link'
+
+    .card.col-3
+      .card-body
+        h3.card-title Products
+        p.card-subtitle.text-muted Manage Products for all stores.
+        p.card-text Add, change and remove products for the entire platform
+        = link_to 'products', admin_index_path, class: 'card-link'
+    
+    .card.col-3
+      .card-body
+        h3.card-title Ingredients
+        p.card-subtitle.text-muted Manage Ingredients for all stores.
+        p.card-text Add, change and remove ingredients for the entire platform
+        = link_to 'products', admin_index_path, class: 'card-link'
+
+
+hr 
+.col-12.d-flex.justify-content-center
+  .col-10.m-3.p-2.bg-white.rounded.shadow
+    h1.brand-font Stores
+    table.table.table-striped
+      thead
+        tr
+          th Store ID
+          th Store Name
+          th Address
+          th Orders Count
+          th Revenue
+          th Actions
+      tbody
+        - @stores.each do |store|
+          tr
+            td = store.id
+            td = store.name
+            td = "#{store.address.number} #{store.address.street}, #{store.address.city}, #{store.address.postcode}" 
+            td = store.orders.count
+            td 
+            td = link_to store_name_admin_show_path(store_name: store.slug), class: 'btn btn-primary' do
+              i.fas.fa-eye

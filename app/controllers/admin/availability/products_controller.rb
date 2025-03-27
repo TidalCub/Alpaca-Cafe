@@ -22,7 +22,7 @@ module Admin
       private
 
       def set_store
-        @store = Store.find_by(name: params[:store_name]) || Store.find(params[:store_id])
+        @store = Store.find_by(slug: params[:store_name]) || Store.find(params[:store_id])
         redirect_to root_path, notice: 'Store does not exist' if @store.nil? # Rubocop:disable Rails/I18nLocaleTexts
       end
     end

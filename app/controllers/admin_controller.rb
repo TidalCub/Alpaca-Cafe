@@ -2,10 +2,10 @@
 
 class AdminController < ApplicationController
   def index
-    @orders = Order.all
+    @stores = Store.all
   end
 
   def show
-    @store = Store.find_by(name: params[:store_name])
+    @store = Store.find_by(slug: params[:store_name])
   end
 end
