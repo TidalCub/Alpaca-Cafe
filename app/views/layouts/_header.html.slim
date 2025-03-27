@@ -6,8 +6,7 @@
 .col-12.bg-primary.shadow.d-flex
   .display-3.col-12.text-center.brand-font.text-white Alpaca Cafe
 - if current_user
-  = render "layouts/store_banner"
-  = render "layouts/bottom_navigation"
+  = render "layouts/user_navigation"
 - else
   = render "layouts/navigation_guests"
 
