@@ -49,6 +49,7 @@ Rails.application.routes.draw do
 
   scope 'admin' do 
     resources :users, only: %i[index]
+    resources :roles
     scope ':store_name', as: 'store_name' do
       get '/', to: 'admin#show', as: :admin_show
       scope 'availability' do
