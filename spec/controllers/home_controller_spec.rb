@@ -12,8 +12,8 @@ RSpec.describe HomeController, type: :controller do
       end
     end
 
-    context "when user is not signed in" do
-      it "renders the index template" do
+    context 'when user is not signed in' do
+      it 'renders the index template' do
         allow(controller).to receive(:user_signed_in?).and_return(false)
         get :index
         expect(response).to render_template(:index)
