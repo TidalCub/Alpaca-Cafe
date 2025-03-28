@@ -1,6 +1,6 @@
 module Admin
   module Availability
-    class IngredientsPolicy < ApplicationPolicy
+    class IngredientPolicy < ApplicationPolicy
       def index?
         user.roles.exists?(uuid: 'admin') || user.roles.exists?(uuid: 'store_manager')
       end
@@ -8,11 +8,6 @@ module Admin
       def update?
         user.roles.exists?(uuid: 'admin') || user.roles.exists?(uuid: 'store_manager')
       end
-
-      class Scope < Scope
-        def resolve
-          scope.all
-        end
-      end
     end
   end
+end

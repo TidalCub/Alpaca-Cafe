@@ -4,6 +4,8 @@ module Admin
   module Availability
     class ProductsController < ApplicationController
       before_action :set_store
+      before_action :authenticate_user!
+      before_action :authorize_products
 
       def index
         @menus_by_category = @store.menus.includes(product: :category).group_by { |menu| menu.product.category }
@@ -24,6 +26,10 @@ module Admin
       def set_store
         @store = Store.find_by(slug: params[:store_name]) || Store.find(params[:store_id])
         redirect_to root_path, notice: 'Store does not exist' if @store.nil? # Rubocop:disable Rails/I18nLocaleTexts
+      end
+
+      def authorize_products
+        authorize! :product, with: Admin::Availability::ProductPolicy
       end
     end
   end

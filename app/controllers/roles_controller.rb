@@ -1,6 +1,6 @@
 class RolesController < ApplicationController
   before_action :authenticate_user!
-  before_action :authorize_user!
+  before_action :authorize!
 
   def index
     @roles = Role.all
@@ -40,9 +40,5 @@ class RolesController < ApplicationController
 
   def make_UUID
     params[:role][:name].downcase
-  end
-
-  def authorize_user!
-    authorize! current_user
   end
 end

@@ -2,7 +2,7 @@
 
 class UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :authorize_user!
+  #before_action :authorize!, except: [:show]
 
   def index
     @users = User.all
@@ -30,9 +30,5 @@ class UsersController < ApplicationController
 
   def role_params
     params.permit(:role_id, :commit, :id)
-  end
-
-  def authorize_user!
-    authorize! current_user
   end
 end

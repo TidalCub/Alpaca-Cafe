@@ -1,19 +1,19 @@
 require 'rails_helper'
 
 RSpec.describe RolesController, type: :controller do
-  let(:user) { create(:user) } # Assuming you have a User model and factory
-  let(:role) { create(:role) } # Assuming you have a Role model and factory
+  let(:user) { create(:user, role_name: "admin") }
+  let(:role) { create(:role) }
+  let(:admin_role) { Role.find_by(uuid: "admin") }
 
   before do
-    sign_in user # Assuming Devise is used for authentication
+    sign_in user
   end
 
   describe 'GET #index' do
     it 'assigns all roles to @roles' do
-      role1 = create(:role)
       role2 = create(:role)
       get :index
-      expect(assigns(:roles)).to match_array([role1, role2])
+      expect(assigns(:roles)).to match_array([role, role2, admin_role])
     end
 
     it 'renders the index template' do
@@ -50,12 +50,12 @@ RSpec.describe RolesController, type: :controller do
     context 'with valid attributes' do
       it 'creates a new role' do
         expect {
-          post :create, params: { role: { name: 'Admin' } }
+          post :create, params: { role: { name: Faker::name } }
         }.to change(Role, :count).by(1)
       end
 
       it 'redirects to the roles index' do
-        post :create, params: { role: { name: 'Admin' } }
+        post :create, params: { role: { name: Faker::name } }
         expect(response).to redirect_to(roles_path)
       end
     end
