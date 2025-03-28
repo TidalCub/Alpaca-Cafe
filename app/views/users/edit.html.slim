@@ -27,7 +27,11 @@
         h3 Roles 
         hr.no-h-padding
         - @user.roles.each do |role|
-          span.badge.bg-primary.m-1 = role.name
+          span.badge.bg-primary.m-1
+            .col.d-flex
+              .btn-none.text-white.p-0
+                = role.name
+              = button_to "X", update_role_user_path(@user), method: :patch, params: { action: "remove", role_id: role.id, commit: "remove role" }, class: "btn-none text-white p-0 ps-2 fw-bold"
         button.badge.bg-primary.m-1 type="button" onclick="document.getElementById('role-dialog').showModal()" Add Role
               
     hr

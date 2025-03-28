@@ -21,7 +21,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     if params[:commit].downcase == 'add role'
       @user.add_role(params[:role_id])
-    elsif params[:action].downcase == 'remove role'
+    elsif params[:commit].downcase == 'remove role'
       @user.remove_role(params[:role_id])
     end
     redirect_to user_path(@user), notice: 'Role updated successfully'
