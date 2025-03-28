@@ -38,6 +38,6 @@ class RolesController < ApplicationController
   end
 
   def make_UUID
-    "role::#{params[:role][:name].downcase}"
+    params[:role][:name].downcase
   end
 end

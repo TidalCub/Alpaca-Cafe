@@ -27,4 +27,4 @@
             td 
               - user.roles.each do |role|
                 span.badge.bg-primary.m-1 = role.name
-            td
+            td = link_to 'Edit', edit_user_path(user), class: 'btn btn-primary'
