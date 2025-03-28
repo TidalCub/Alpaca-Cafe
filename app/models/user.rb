@@ -28,4 +28,16 @@ class User < ApplicationRecord
     save
     # rubocop:enable Layout/FirstHashElementIndentation
   end
+
+  def add_role(role)
+    return if roles.exists?(uuid: role)
+
+    user_roles.create(role: Role.find_by(uuid: role))
+  end
+
+  def remove_role(role)
+    return unless roles.exists?(uuid: role)
+
+    user_roles.where(role: Role.find_by(uuid: role)).destroy_all
+  end
 end
