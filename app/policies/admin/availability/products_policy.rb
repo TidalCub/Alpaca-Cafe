@@ -1,0 +1,18 @@
+module Admin
+  module Availability
+    class ProductPolicy < ApplicationPolicy
+      def index?
+        user.roles.exists?(uuid: 'admin') || user.roles.exists?(uuid: 'store_manager')
+      end
+
+      def update?
+        user.roles.exists?(uuid: 'admin') || user.roles.exists?(uuid: 'store_manager')
+      end
+
+      class Scope < Scope
+        def resolve
+          scope.all
+        end
+      end
+    end
+  end

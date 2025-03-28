@@ -44,4 +44,5 @@ class RolesController < ApplicationController
 
   def authorize_user!
     authorize! current_user
+  end
 end
