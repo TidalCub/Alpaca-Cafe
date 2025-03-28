@@ -48,7 +48,11 @@ Rails.application.routes.draw do
   end
 
   scope 'admin' do 
-    resources :users, only: %i[index edit update destroy]
+    resources :users, only: %i[index edit update destroy] do
+      member do
+      patch 'update_role', to: 'users#update_role', as: :update_role
+      end
+    end
     resources :roles
     scope ':store_name', as: 'store_name' do
       get '/', to: 'admin#show', as: :admin_show

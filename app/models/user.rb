@@ -30,14 +30,14 @@ class User < ApplicationRecord
   end
 
   def add_role(role)
-    return if roles.exists?(uuid: role)
+    return if roles.exists?(id: role)
 
-    user_roles.create(role: Role.find_by(uuid: role))
+    user_roles.create(role: Role.find_by(id: role))
   end
 
   def remove_role(role)
-    return unless roles.exists?(uuid: role)
+    return unless roles.exists?(id: role)
 
-    user_roles.where(role: Role.find_by(uuid: role)).destroy_all
+    user_roles.where(role: Role.find_by(id: role)).destroy_all
   end
 end

@@ -28,7 +28,7 @@
         hr.no-h-padding
         - @user.roles.each do |role|
           span.badge.bg-primary.m-1 = role.name
-        span.badge.bg-primary.m-1 Add Role
+        button.badge.bg-primary.m-1 type="button" onclick="document.getElementById('role-dialog').showModal()" Add Role
               
     hr
     .col-12
@@ -47,3 +47,20 @@
               td = order.state
               td = number_to_currency(order.total, :unit => "£")
               td = order.created_at.strftime("%B %d, %Y")
+
+dialog#role-dialog class="bg-light rounded-3 border border-none"
+  div class="modal-content"
+    div class="modal-header d-flex justify-content-between"
+      h2 class="modal-title" id="role-dialog-title"
+      button type="button" class="btn-close" onclick="document.getElementById('role-dialog').close()" aria-label="Close"
+    hr
+    div class="modal-body" id="role-dialog-body"
+      .col-12.p-3
+        h2.no-h-padding.brand-font Add Role To User
+        = form_with url: update_role_user_path(@user), method: :patch, local: true do |f|
+          = f.hidden_field :action, value: "add"
+          .mb-3
+            = f.label :role_id, "Select Role", class: "form-label"
+            = f.select :role_id, Role.all.collect { |role| [role.name, role.id] }, {}, class: "form-select shadow"
+          .d-flex.justify-content-center
+            = f.submit "Add Role", class: "btn btn-primary"
