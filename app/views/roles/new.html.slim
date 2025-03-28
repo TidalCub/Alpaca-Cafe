@@ -1,0 +1,9 @@
+.col-12.d-flex.justify-content-center
+  .col-sm-11.col-md-10.col-lg-4.p-2.bg-white.rounded.shadow.m-3
+    h1.brand-font.text-center New Role
+    = form_with model: @role, local: true do |form|
+      .form-group.mb-3
+        = form.label :name
+        = form.text_field :name, class: 'form-control shadow', placeholder: 'Role Name'
+      .form-group.mb-3
+        = form.submit 'Create Role', class: 'btn btn-primary'

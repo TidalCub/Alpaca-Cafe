@@ -1,0 +1,70 @@
+.col-12.p-3
+  .col-12.bg-white.rounded.shadow.p-3
+    p.no-h-padding.brand-font User Details
+    h1.no-h-padding = @user.email
+    hr
+    .d-flex.flex-wrap
+      .col-12.col-md-6.col-lg-4.p-3
+        .row
+          .col.mb-4
+            h6.no-h-padding Name
+            hr.no-h-padding
+            h6.fw-bold Place Holder Name
+          .col.mb-4
+            h6.no-h-padding Email
+            hr.no-h-padding
+            h6.fw-bold = @user.email
+        .row
+          .col.mb-4
+            h6.no-h-padding Joined at:
+            hr.no-h-padding
+            h6.fw-bold = @user.created_at.strftime("%B %d, %Y")
+          .col.mb-4
+            h6.no-h-padding Last login:
+            hr.no-h-padding
+            h6.fw-bold Place holder
+      .col-12.col-md-6.col-lg-8.p-3
+        h3 Roles 
+        hr.no-h-padding
+        - @user.roles.each do |role|
+          span.badge.bg-primary.m-1
+            .col.d-flex
+              .btn-none.text-white.p-0
+                = role.name
+              = button_to "X", update_role_user_path(@user), method: :patch, params: { action: "remove", role_id: role.id, commit: "remove role" }, class: "btn-none text-white p-0 ps-2 fw-bold"
+        button.badge.bg-primary.m-1 type="button" onclick="document.getElementById('role-dialog').showModal()" Add Role
+              
+    hr
+    .col-12
+      p.no-h-padding.brand-font Past Orders
+      table.table.table-striped
+        thead
+          tr
+            th Order ID
+            th Status
+            th Total
+            th Created at
+        tbody
+          - @user.orders.each do |order|
+            tr
+              td = order.id
+              td = order.state
+              td = number_to_currency(order.total, :unit => "£")
+              td = order.created_at.strftime("%B %d, %Y")
+
+dialog#role-dialog class="bg-light rounded-3 border border-none"
+  div class="modal-content"
+    div class="modal-header d-flex justify-content-between"
+      h2 class="modal-title" id="role-dialog-title"
+      button type="button" class="btn-close" onclick="document.getElementById('role-dialog').close()" aria-label="Close"
+    hr
+    div class="modal-body" id="role-dialog-body"
+      .col-12.p-3
+        h2.no-h-padding.brand-font Add Role To User
+        = form_with url: update_role_user_path(@user), method: :patch, local: true do |f|
+          = f.hidden_field :action, value: "add"
+          .mb-3
+            = f.label :role_id, "Select Role", class: "form-label"
+            = f.select :role_id, Role.all.collect { |role| [role.name, role.id] }, {}, class: "form-select shadow"
+          .d-flex.justify-content-center
+            = f.submit "Add Role", class: "btn btn-primary"

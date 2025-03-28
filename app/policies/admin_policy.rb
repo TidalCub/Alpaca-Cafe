@@ -1,19 +1,23 @@
 # frozen_string_literal: true
 
-class UserPolicy < ApplicationPolicy
+class AdminPolicy < ApplicationPolicy
   def index?
     user.roles.exists?(uuid: 'admin')
   end
 
   def show?
-    user == record
-  end
-
-  def edit?
     user.roles.exists?(uuid: 'admin')
   end
 
-  def update_role?
+  def create?
+    user.roles.exists?(uuid: 'admin')
+  end
+
+  def update?
+    user.roles.exists?(uuid: 'admin')
+  end
+
+  def destroy?
     user.roles.exists?(uuid: 'admin')
   end
 end

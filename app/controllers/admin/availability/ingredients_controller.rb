@@ -4,6 +4,8 @@ module Admin
   module Availability
     class IngredientsController < ApplicationController
       before_action :set_store
+      before_action :authenticate_user!
+      before_action :authorize_ingredients
 
       def index
         @ingredients_stock_by_group = @store.ingredient_stocks.includes(ingredient: :ingredient_group).group_by { |ingredient_stocks| ingredient_stocks.ingredient.ingredient_group }
@@ -22,7 +24,11 @@ module Admin
       private
 
       def set_store
-        @store = Store.find_by(name: params[:store_name])
+        @store = Store.find_by(slug: params[:store_name])
+      end
+
+      def authorize_ingredients
+        authorize! :ingredient, with: Admin::Availability::IngredientPolicy
       end
     end
   end

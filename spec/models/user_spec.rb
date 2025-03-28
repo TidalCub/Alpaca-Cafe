@@ -35,4 +35,42 @@ RSpec.describe User, type: :model do
   #     expect(user.stripe_id).to eq('cus_123456789')
   #   end
   # end
+
+  describe '#add_role' do
+    let!(:role) { create(:role, uuid: 'admin') }
+
+    context 'when the user does not already have the role' do
+      it 'adds the role to the user' do
+        expect { user.add_role(role.id) }.to change { user.roles.count }.by(1)
+        expect(user.roles.pluck(:uuid)).to include('admin')
+      end
+    end
+
+    context 'when the user already has the role' do
+      before { user.add_role(role.id) }
+
+      it 'does not add the role again' do
+        expect { user.add_role(role.id) }.not_to(change { user.roles.count })
+      end
+    end
+  end
+
+  describe '#remove_role' do
+    let!(:role) { create(:role, uuid: 'admin') }
+
+    context 'when the user has the role' do
+      before { user.add_role(role.id) }
+
+      it 'removes the role from the user' do
+        expect { user.remove_role(role.id) }.to change { user.roles.count }.by(-1)
+        expect(user.roles.pluck(:uuid)).not_to include('admin')
+      end
+    end
+
+    context 'when the user does not have the role' do
+      it 'does not change the roles count' do
+        expect { user.remove_role(role.id) }.not_to(change { user.roles.count })
+      end
+    end
+  end
 end
