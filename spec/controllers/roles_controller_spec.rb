@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe RolesController, type: :controller do
-  let(:user) { create(:user, role_name: "admin") }
+  let(:user) { create(:user, role_name: 'admin') }
   let(:role) { create(:role) }
-  let(:admin_role) { Role.find_by(uuid: "admin") }
+  let(:admin_role) { Role.find_by(uuid: 'admin') }
 
   before do
     sign_in user
@@ -49,13 +51,13 @@ RSpec.describe RolesController, type: :controller do
   describe 'POST #create' do
     context 'with valid attributes' do
       it 'creates a new role' do
-        expect {
-          post :create, params: { role: { name: Faker::name } }
-        }.to change(Role, :count).by(1)
+        expect do
+          post :create, params: { role: { name: Faker.name } }
+        end.to change(Role, :count).by(1)
       end
 
       it 'redirects to the roles index' do
-        post :create, params: { role: { name: Faker::name } }
+        post :create, params: { role: { name: Faker.name } }
         expect(response).to redirect_to(roles_path)
       end
     end

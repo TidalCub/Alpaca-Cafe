@@ -3,14 +3,13 @@
 require 'rails_helper'
 
 RSpec.describe Admin::Availability::IngredientsController, type: :controller do
-  let(:user) { create(:user, role_name: "admin") }
+  let(:user) { create(:user, role_name: 'admin') }
   let(:category) { create(:category) }
   let(:store) { create(:store) }
   let(:ingredient) { create(:ingredient) }
   let!(:ingredient_stock) { create(:ingredient_stock, store: store, ingredient: ingredient) }
   let(:ingredient_stock_group) { store.ingredient_stocks.includes(ingredient: :ingredient_group).group_by { |ingredient_stocks| ingredient_stocks.ingredient.ingredient_group } }
 
-  
   before do
     sign_in user
   end

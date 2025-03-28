@@ -9,7 +9,7 @@ FactoryBot.define do
 
     transient do
       role_name { 'customer' }
-      uuid { 'customer'}
+      uuid { 'customer' }
     end
 
     after(:create) do |user, evaluator|

@@ -8,8 +8,8 @@ RSpec.describe Admin::Availability::ProductsController, type: :controller do
   let(:store) { create(:store) }
   let!(:menu) { create(:menu, product: product, store: store) }
   let(:menu_group) { store.menus.includes(product: :category).group_by { |menu| menu.product.category } }
-  let(:user) { create(:user, role_name: "admin") }
-  
+  let(:user) { create(:user, role_name: 'admin') }
+
   before do
     sign_in user
   end

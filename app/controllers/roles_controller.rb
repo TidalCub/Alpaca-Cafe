@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RolesController < ApplicationController
   before_action :authenticate_user!
   before_action :authorize!
@@ -35,10 +37,10 @@ class RolesController < ApplicationController
   private
 
   def role_params
-    params.require(:role).permit(:name).merge(uuid: make_UUID)
+    params.expect(role: [:name]).merge(uuid: make_uuid)
   end
 
-  def make_UUID
+  def make_uuid
     params[:role][:name].downcase
   end
 end

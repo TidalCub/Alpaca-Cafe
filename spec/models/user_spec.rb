@@ -50,7 +50,7 @@ RSpec.describe User, type: :model do
       before { user.add_role(role.id) }
 
       it 'does not add the role again' do
-        expect { user.add_role(role.id) }.not_to change { user.roles.count }
+        expect { user.add_role(role.id) }.not_to(change { user.roles.count })
       end
     end
   end
@@ -69,7 +69,7 @@ RSpec.describe User, type: :model do
 
     context 'when the user does not have the role' do
       it 'does not change the roles count' do
-        expect { user.remove_role(role.id) }.not_to change { user.roles.count }
+        expect { user.remove_role(role.id) }.not_to(change { user.roles.count })
       end
     end
   end
