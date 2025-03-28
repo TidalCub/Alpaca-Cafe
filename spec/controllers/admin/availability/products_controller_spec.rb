@@ -10,7 +10,7 @@ RSpec.describe Admin::Availability::ProductsController, type: :controller do
   let(:menu_group) { store.menus.includes(product: :category).group_by { |menu| menu.product.category } }
 
   describe 'GET #index' do
-    subject { get :index, params: { store_name: store.name } }
+    subject { get :index, params: { store_name: store.slug } }
 
     it 'assigns all the product availabilities to @menu for a specific store' do
       subject

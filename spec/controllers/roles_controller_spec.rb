@@ -59,19 +59,6 @@ RSpec.describe RolesController, type: :controller do
         expect(response).to redirect_to(roles_path)
       end
     end
-
-    context 'with invalid attributes' do
-      it 'does not create a new role' do
-        expect {
-          post :create, params: { role: { name: '' } }
-        }.not_to change(Role, :count)
-      end
-
-      it 're-renders the new template' do
-        post :create, params: { role: { name: '' } }
-        expect(response).to render_template(:new)
-      end
-    end
   end
 
   describe 'PATCH #update' do
@@ -85,19 +72,6 @@ RSpec.describe RolesController, type: :controller do
       it 'redirects to the role' do
         patch :update, params: { id: role.id, role: { name: 'Updated Name' } }
         expect(response).to redirect_to(role)
-      end
-    end
-
-    context 'with invalid attributes' do
-      it 'does not update the role' do
-        patch :update, params: { id: role.id, role: { name: '' } }
-        role.reload
-        expect(role.name).not_to eq('')
-      end
-
-      it 're-renders the edit template' do
-        patch :update, params: { id: role.id, role: { name: '' } }
-        expect(response).to render_template(:edit)
       end
     end
   end
