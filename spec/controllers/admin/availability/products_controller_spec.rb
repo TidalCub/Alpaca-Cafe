@@ -6,8 +6,8 @@ RSpec.describe Admin::Availability::ProductsController, type: :controller do
   let(:category) { create(:category) }
   let(:product) { create(:product, category:) }
   let(:store) { create(:store) }
-  let!(:menu) { create(:menu, product: product, store: store) }
-  let(:menu_group) { store.menus.includes(product: :category).group_by { |menu| menu.product.category } }
+  let!(:menu) { create(:product_stock, product: product, store: store) }
+  let(:menu_group) { store.product_stocks.includes(product: :category).group_by { |menu| menu.product.category } }
   let(:user) { create(:user, role_name: 'admin') }
 
   before do
@@ -19,7 +19,7 @@ RSpec.describe Admin::Availability::ProductsController, type: :controller do
 
     it 'assigns all the product availabilities to @menu for a specific store' do
       subject
-      expect(assigns(:menus_by_category)).to eq(menu_group)
+      expect(assigns(:product_stocks_by_category)).to eq(menu_group)
     end
   end
 

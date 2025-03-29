@@ -4,7 +4,7 @@ class MenuController < ApplicationController
   before_action :authenticate_user!
   before_action :store
   def index
-    @products_by_category = @store.menus.group_by(&:category)
+    @products_by_category = @store.product_stocks.group_by(&:category)
   end
 
   private
