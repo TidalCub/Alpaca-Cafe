@@ -81,7 +81,7 @@ RSpec.describe OrdersController, type: :controller do
       end
     end
 
-    it "redirects to the cart if the basket is empty" do
+    it 'redirects to the cart if the basket is empty' do
       VCR.use_cassette('order-checkout-stripe') do
         VCR.use_cassette('customer-session') do
           create(:order, user:, state: 'pending')
