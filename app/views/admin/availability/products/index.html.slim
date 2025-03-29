@@ -12,7 +12,7 @@
             th.text-center Ingredients
             th.text-center Actions
         tbody
-          -@menus_by_category.each do |group|
+          -@product_stocks_by_category.each do |group|
             tr
               th.bg-secondary colspan="4"
                 h2.text-center = group.first.name

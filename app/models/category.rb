@@ -2,5 +2,5 @@
 
 class Category < ApplicationRecord
   has_many :products, dependent: :destroy
-  has_many :menus, through: :products
+  has_many :product_stocks, through: :products
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_05_084414) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_29_105217) do
   create_table "addresses", force: :cascade do |t|
     t.integer "number"
     t.string "street"
@@ -53,16 +53,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_05_084414) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["ingredient_group_id"], name: "index_ingredients_on_ingredient_group_id"
-  end
-
-  create_table "menus", force: :cascade do |t|
-    t.integer "store_id", null: false
-    t.integer "product_id", null: false
-    t.boolean "available", default: true
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["product_id"], name: "index_menus_on_product_id"
-    t.index ["store_id"], name: "index_menus_on_store_id"
   end
 
   create_table "mqtt_logs", force: :cascade do |t|
@@ -113,6 +103,16 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_05_084414) do
     t.datetime "updated_at", null: false
     t.index ["ingredient_id"], name: "index_product_modifyers_on_ingredient_id"
     t.index ["order_item_id"], name: "index_product_modifyers_on_order_item_id"
+  end
+
+  create_table "product_stocks", force: :cascade do |t|
+    t.integer "store_id", null: false
+    t.integer "product_id", null: false
+    t.boolean "available", default: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_product_stocks_on_product_id"
+    t.index ["store_id"], name: "index_product_stocks_on_store_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -179,8 +179,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_05_084414) do
   add_foreign_key "ingredient_stocks", "ingredients"
   add_foreign_key "ingredient_stocks", "stores"
   add_foreign_key "ingredients", "ingredient_groups"
-  add_foreign_key "menus", "products"
-  add_foreign_key "menus", "stores"
   add_foreign_key "mqtt_logs", "orders"
   add_foreign_key "order_items", "orders"
   add_foreign_key "order_items", "products"
@@ -189,6 +187,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_05_084414) do
   add_foreign_key "payments", "orders"
   add_foreign_key "product_modifyers", "ingredients"
   add_foreign_key "product_modifyers", "order_items"
+  add_foreign_key "product_stocks", "products"
+  add_foreign_key "product_stocks", "stores"
   add_foreign_key "products", "categories"
   add_foreign_key "recipes", "ingredient_groups"
   add_foreign_key "recipes", "products"

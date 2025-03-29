@@ -12,7 +12,7 @@ class CategoryController < ApplicationController
   def show
     @store = Store.find_by(slug: params[:store_name].downcase)
     @category = Category.find_by(name: params[:category_name])
-    @menu_items = @category.menus.where(store: @store)
+    @menu_items = @category.product_stocks.where(store: @store)
   end
 
   def new
