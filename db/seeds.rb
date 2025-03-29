@@ -102,10 +102,10 @@ Category.find_by(name: 'Milkshakes').products.each do |product|
   Recipe.find_or_create_by!(product_id: product.id, ingredient_group_id: IngredientGroup.find_by(name: 'Syrup').id)
 end
 
-Menu.destroy_all
+ProductStock.destroy_all
 Product.find_each do |product|
   Store.find_each do |store|
-    Menu.find_or_create_by!(store_id: store.id, product_id: product.id, available: true)
+    ProductStock.find_or_create_by!(store_id: store.id, product_id: product.id, available: true)
   end
 end
 
