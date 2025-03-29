@@ -70,16 +70,23 @@ RSpec.describe OrdersController, type: :controller do
   end
 
   describe 'GET #checkout' do
-    before do
-      allow(user).to receive(:basket).and_return(basket)
-    end
-
     it 'assigns @order and @total' do
       VCR.use_cassette('order-checkout-stripe') do
         VCR.use_cassette('customer-session') do
+          allow(user).to receive(:basket).and_return(basket)
           get :checkout
           expect(assigns(:order)).to eq(basket)
           expect(assigns(:total)).to eq(product.price)
+        end
+      end
+    end
+
+    it "redirects to the cart if the basket is empty" do
+      VCR.use_cassette('order-checkout-stripe') do
+        VCR.use_cassette('customer-session') do
+          create(:order, user:, state: 'pending')
+          get :checkout
+          expect(response).to redirect_to(cart_path)
         end
       end
     end
