@@ -29,11 +29,11 @@ class OrdersController < ApplicationController
   end
 
   def checkout
-    @order = current_user.orders.last
-    redirect_to order_path(@order) if @order.state == 'requires_capture'
+    @order = current_user.basket
+    authorize! @order
+    validate_basket(@order)
     @customer_session_client_secret = CustomerSessionService.new(current_user).create_session.client_secret
     @payment = Payment.new
-    authorize! @order
     @total = current_user.basket.total
     @order.checkout!
   end
@@ -60,5 +60,13 @@ class OrdersController < ApplicationController
 
   def update_params
     params.permit(:action_type, :id)
+  end
+
+  def validate_basket(basket)
+    if basket.order_items.empty?
+      redirect_to cart_path
+    elsif @order.state == 'requires_capture'
+      redirect_to order_path(@order)
+    end
   end
 end
