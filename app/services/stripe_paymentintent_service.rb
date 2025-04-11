@@ -44,7 +44,13 @@ class StripePaymentintentService
       customer: @order.user.stripe_id,
       automatic_payment_methods: { enabled: true },
       setup_future_usage: 'off_session',
-      capture_method: 'manual'
+      capture_method: 'manual',
+      metadata: {
+        order_id: @order.id,
+        user_id: @current_user.id,
+        store_id: @order.store.id,
+        order_items: "#{@order.order_items.map { |item| { product_id: item.product.id} }}"
+      }
     }.compact
   end
 
