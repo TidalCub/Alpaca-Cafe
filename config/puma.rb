@@ -27,8 +27,7 @@
 # be configured to provide at least as many connections as the number of
 # threads. This includes Active Record's `pool` parameter in `database.yml`.
 
-
-
+return unless ENV.fetch('PUMA_ENV', 'development') == 'production'
   environment 'production'
   stdout_redirect "/var/www/Alpaca_Cafe/log/puma.stdout.log", "/var/www/Alpaca_Cafe/log/puma.stderr.log", true
 
