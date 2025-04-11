@@ -7,14 +7,14 @@ class Order < ApplicationRecord
   has_many :order_items, dependent: :destroy
   after_create :track_order_metrics
 
-  enum :state, { new_order: 0, pending: 1, on_checkout: 2, requires_capture: 3, paid: 4, payment_failed: 5, completed: 6, expired: 7 }
+  enum :state, { new_order: 0, pending: 1, on_checkout: 2, requires_capture: 3, processing: 4, paid: 5, payment_failed: 6, completed: 7, expired: 8 }
 
   def total
     order_items.sum { |item| item.product.price }
   end
   aasm column: :state, enum: true do # rubocop:disable Metrics/BlockLength
     state :new_order, initial: true
-    state :pending, :on_checkout, :paid, :completed, :expired, :payment_failed, :requires_capture
+    state :pending, :on_checkout, :paid, :completed, :expired, :payment_failed, :requires_capture, :processing
 
     event :pending do
       transitions from: %i[new_order pending on_checkout], to: :pending
@@ -43,13 +43,17 @@ class Order < ApplicationRecord
     end
 
     event :check_in do
-      transitions from: :requires_capture, to: :paid
+      transitions from: :requires_capture, to: :processing
       after do
         stripe_payment_intent = StripePaymentintentService.new(nil, user, self)
         stripe_payment_intent.capture
         OrderMailer.payment_confirmation(self).deliver_now!
         PrintReceiptService.new(self).send
       end
+    end
+
+    event :captured do
+      transitions from: %i[requires_capture processing], to: :paid
     end
 
     event :complete do

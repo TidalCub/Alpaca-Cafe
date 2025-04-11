@@ -66,10 +66,10 @@ RSpec.describe Order, type: :model do
         allow(PrintReceiptService).to receive(:new).and_return(double(send: true))
       end
 
-      it 'transitions from requires_capture to paid' do
+      it 'transitions from requires_capture to processing' do
         VCR.use_cassette('stripe_capture_intent') do
           order.check_in!
-          expect(order.state).to eq('paid')
+          expect(order.state).to eq('processing')
         end
       end
 
@@ -92,6 +92,17 @@ RSpec.describe Order, type: :model do
           expect(PrintReceiptService).to receive(:new).with(order).and_return(double(send: true))
           order.check_in!
         end
+      end
+    end
+
+    context 'when transitioning to paid' do
+      before do
+        order.update(state: 'processing')
+      end
+
+      it 'transitions from processing to paid' do
+        order.captured!
+        expect(order.state).to eq('paid')
       end
     end
 
