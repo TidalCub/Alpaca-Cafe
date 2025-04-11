@@ -64,4 +64,7 @@ Rails.application.routes.draw do
       end
     end
   end
+  scope 'webhooks' do
+    post 'payment_intents', to: 'stripe_webhooks#payment_intents'
+  end
 end
