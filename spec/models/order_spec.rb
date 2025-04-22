@@ -122,7 +122,7 @@ RSpec.describe Order, type: :model do
         order.update(state: 'requires_capture')
       end
 
-      it "transitions from requires_capture to expired" do
+      it 'transitions from requires_capture to expired' do
         order.expire!
         expect(order.state).to eq('expired')
       end

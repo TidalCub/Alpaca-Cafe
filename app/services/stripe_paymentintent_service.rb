@@ -36,6 +36,7 @@ class StripePaymentintentService
 
   def retrieve; end
 
+  # rubocop:disable Metrics/MethodLength
   def create_params
     {
       amount: @amount,
@@ -49,10 +50,11 @@ class StripePaymentintentService
         order_id: @order.id,
         user_id: @current_user.id,
         store_id: @order.store.id,
-        order_items: "#{@order.order_items.map { |item| { product_id: item.product.id} }}"
+        order_items: (@order.order_items.map { |item| { product_id: item.product.id } }).to_s
       }
     }.compact
   end
+  # rubocop:enable Metrics/MethodLength
 
   def update_params
     {
