@@ -1,6 +1,12 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe StripeWebhooksController, type: :controller do
+  before do
+    allow_any_instance_of(StripeWebhooksController).to receive(:verify_stripe_signature).and_return(true)
+  end
+
   describe 'POST #payment_intents' do
     let(:valid_params) do
       {
@@ -34,9 +40,9 @@ RSpec.describe StripeWebhooksController, type: :controller do
 
         # Adjust the expectation to match the actual params passed to the service
         expected_params = ActionController::Parameters.new(valid_params.merge(
-          'controller' => 'stripe_webhooks',
-          'action' => 'payment_intents'
-        ))
+                                                             'controller' => 'stripe_webhooks',
+                                                             'action' => 'payment_intents'
+                                                           ))
 
         expect(StripeWebhooksService).to have_received(:new).with(expected_params)
         expect(service_double).to have_received(:process_event)

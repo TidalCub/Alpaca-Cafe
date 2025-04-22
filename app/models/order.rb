@@ -72,7 +72,6 @@ class Order < ApplicationRecord
     event :failed do
       transitions from: %i[on_checkout requires_capture processing], to: :payment_failed
     end
-    
   end
 
   def stripe_total_price
