@@ -116,5 +116,27 @@ RSpec.describe Order, type: :model do
         expect(order.state).to eq('completed')
       end
     end
+
+    context 'when transitioning to expired' do
+      before do
+        order.update(state: 'requires_capture')
+      end
+
+      it "transitions from requires_capture to expired" do
+        order.expire!
+        expect(order.state).to eq('expired')
+      end
+    end
+
+    context 'when transitioning to payment_failed' do
+      before do
+        order.update(state: 'on_checkout')
+      end
+
+      it 'transitions from on_checkout to payment_failed' do
+        order.failed!
+        expect(order.state).to eq('payment_failed')
+      end
+    end
   end
 end

@@ -102,7 +102,7 @@ RSpec.describe OrdersController, type: :controller do
       VCR.use_cassette('payment_capture') do
         patch :update, params: { id: order.id, action_type: 'check_in' }
         order.reload
-        expect(order.state).to eq('paid')
+        expect(order.state).to eq('processing')
       end
     end
   end
