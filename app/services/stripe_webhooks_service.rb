@@ -57,9 +57,7 @@ class StripeWebhooksService
     Rails.logger.info "PaymentIntent payment failed!"
   end
 
-  def payment_intent_canceled
-    Rails.logger.info "PaymentIntent was canceled!"
-  end
+# Removed duplicate definition of `payment_intent_canceled`.
 
   def payment_method_attached
     Rails.logger.info "Payment method was attached!"
