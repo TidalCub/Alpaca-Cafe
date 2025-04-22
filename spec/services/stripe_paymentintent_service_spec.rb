@@ -29,7 +29,7 @@ RSpec.describe StripePaymentintentService, type: :service do
         capture_method: 'manual',
         currency: 'gbp',
         customer: 'cus_RO4kYXL8E8Symo',
-        metadata: { order_id: 1, order_items: '[]', store_id: store.id, user_id: user.id },
+        metadata: { order_id: order.id, order_items: '[]', store_id: store.id, user_id: user.id },
         receipt_email: user.email,
         setup_future_usage: 'off_session'
       )
