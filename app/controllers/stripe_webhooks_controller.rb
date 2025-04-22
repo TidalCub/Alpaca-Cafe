@@ -1,6 +1,5 @@
 class StripeWebhooksController < ApplicationController
-  protect_from_forgery with: :null_session
-  skip_before_action :verify_authenticity_token
+  before_action :verify_stripe_signature
   before_action :log_webhooks
 
   def payment_intents
@@ -15,5 +14,17 @@ class StripeWebhooksController < ApplicationController
 
   def log_webhooks
     WebhookLog.create(event_params: params.to_json.to_S)
+  end
+
+  def verify_stripe_signature
+    payload = request.body.read
+    sig_header = request.env['HTTP_STRIPE_SIGNATURE']
+    endpoint_secret = ENV['STRIPE_ENDPOINT_SECRET']
+
+    begin
+      Stripe::Webhook.construct_event(payload, sig_header, endpoint_secret)
+    rescue Stripe::SignatureVerificationError
+      head :unauthorized
+    end
   end
 end

@@ -98,3 +98,4 @@ end
 
 Stripe.api_key = Rails.application.credentials.dig(:development, :stripe, :secret_key)
 STRIPE_PUBLIC_KEY = Rails.application.credentials.dig(:development, :stripe, :published_key)
+STRIPE_ENDPOINT_SECRET = Rails.application.credentials.dig(:development, :stripe, :webhook_secret)
