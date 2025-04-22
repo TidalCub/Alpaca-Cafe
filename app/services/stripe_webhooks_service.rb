@@ -8,7 +8,6 @@ class StripeWebhooksService
     @params = params.with_indifferent_access
     @event = Stripe::Event.retrieve(params[:id])
     @order = Order.find_by(payment_intent: @event.data.object.id)
-    print("event: #{@event.inspect} \n\n #{@event.type}\n\n")
   end
 
   def process_event
@@ -30,6 +29,10 @@ class StripeWebhooksService
     Rails.logger.info "PaymentIntent was successful!"
   end
 
+  def payment_intent_canceled
+    @order.expire!
+  end
+
   def charge_succeeded
     Rails.logger.info "Charge was successful!"
   end
@@ -38,8 +41,12 @@ class StripeWebhooksService
     @order.captured!
   end
 
+  def charge_expired
+    @order.expire!
+  end
+
   def charge_failed
-    Rails.logger.info "Charge failed!"
+    @order.failed!
   end
 
   def payment_intent_requires_action
@@ -52,5 +59,13 @@ class StripeWebhooksService
 
   def payment_intent_canceled
     Rails.logger.info "PaymentIntent was canceled!"
+  end
+
+  def payment_method_attached
+    Rails.logger.info "Payment method was attached!"
+  end
+
+  def payment_intent_amount_capturable_updated
+    Rails.logger.info "PaymentIntent amount capturable updated!"
   end
 end
