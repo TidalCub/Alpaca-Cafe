@@ -64,6 +64,15 @@ class Order < ApplicationRecord
         end
       end
     end
+
+    event :expire do
+      transitions from: %i[requires_capture processing], to: :expired
+    end
+
+    event :failed do
+      transitions from: %i[on_checkout requires_capture processing], to: :payment_failed
+    end
+    
   end
 
   def stripe_total_price
