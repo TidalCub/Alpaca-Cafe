@@ -32,6 +32,12 @@ class ProductController < ApplicationController
     redirect_back(fallback_location: categories_path)
   end
 
+  def export
+    file_path = Rails.root.join('products.json')
+    ProductExportService.new.export
+    send_file file_path, filename: 'products.json', type: 'application/json'
+  end
+
   private
 
   def product_modifyer(params, order_item)

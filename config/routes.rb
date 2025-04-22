@@ -48,6 +48,7 @@ Rails.application.routes.draw do
   end
 
   scope 'admin' do 
+    get 'export_catalogue', to: 'product#export', as: :export_catalogue
     resources :users, only: %i[index edit update destroy] do
       member do
       patch 'update_role', to: 'users#update_role', as: :update_role
