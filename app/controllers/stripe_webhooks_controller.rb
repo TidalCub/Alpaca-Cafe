@@ -13,7 +13,7 @@ class StripeWebhooksController < ApplicationController
   private
 
   def log_webhooks
-    WebhookLog.create(event_params: params.to_json.to_S)
+    WebhookLog.create(event_params: params.to_json.to_s)
   end
 
   def verify_stripe_signature
