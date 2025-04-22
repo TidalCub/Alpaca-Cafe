@@ -14,6 +14,6 @@ class StripeWebhooksController < ApplicationController
   private
 
   def log_webhooks
-    logger.info "Received webhook with params: #{params.inspect}"
+    WebhookLog.create(event_params: params.to_json.to_S)
   end
 end

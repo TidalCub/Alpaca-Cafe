@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_29_105217) do
+ActiveRecord::Schema[8.0].define(version: 2025_04_22_131428) do
   create_table "addresses", force: :cascade do |t|
     t.integer "number"
     t.string "street"
@@ -174,6 +174,12 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_29_105217) do
     t.string "stripe_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "webhook_logs", force: :cascade do |t|
+    t.string "event_params"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_foreign_key "ingredient_stocks", "ingredients"
