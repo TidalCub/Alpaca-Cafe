@@ -34,7 +34,7 @@ class PrintReceiptService < MqttService
         started_at_time: @order.created_at,
         last_updated_at_time: @order.updated_at,
         store: @order.store.name,
-        customer_name: @order.user.recipe_name,
+        customer_name: @order.user.recipe_name
       }
     }.to_json
   end
