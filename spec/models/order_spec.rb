@@ -115,6 +115,12 @@ RSpec.describe Order, type: :model do
         order.complete!
         expect(order.state).to eq('completed')
       end
+
+      it 'calls the google tag manager service' do
+        order.order_items << create(:order_item, product: create(:product))
+        expect(GoogleRetailTagService).to receive(:new).with(order.user).and_return(double(new_event: true))
+        order.complete!
+      end
     end
 
     context 'when transitioning to expired' do

@@ -2,16 +2,14 @@
 
 class Order < ApplicationRecord
   include AASM
+  include TrackableMetrics
+
   belongs_to :user
   belongs_to :store
   has_many :order_items, dependent: :destroy
-  after_create :track_order_metrics
 
   enum :state, { new_order: 0, pending: 1, on_checkout: 2, requires_capture: 3, processing: 4, paid: 5, payment_failed: 6, completed: 7, expired: 8 }
 
-  def total
-    order_items.sum { |item| item.product.price }
-  end
   aasm column: :state, enum: true do # rubocop:disable Metrics/BlockLength
     state :new_order, initial: true
     state :pending, :on_checkout, :paid, :completed, :expired, :payment_failed, :requires_capture, :processing
@@ -23,15 +21,7 @@ class Order < ApplicationRecord
     event :checkout do
       transitions from: %i[new_order pending on_checkout], to: :on_checkout
       after do
-        stripe_payment_intent = StripePaymentintentService.new(stripe_total_price, user, self)
-        if payment_intent.present? && client_secret.present?
-          stripe_payment_intent.update(payment_intent) if stripe_payment_intent.status != 'requires_capture'
-        else
-          payment_intent = stripe_payment_intent.create
-          self.payment_intent = payment_intent.id
-          self.client_secret = payment_intent.client_secret
-          save
-        end
+        StripePaymentService.new(self).create_or_update
       end
     end
 
@@ -45,8 +35,7 @@ class Order < ApplicationRecord
     event :check_in do
       transitions from: :requires_capture, to: :processing
       after do
-        stripe_payment_intent = StripePaymentintentService.new(nil, user, self)
-        stripe_payment_intent.capture
+        StripePaymentService.new(self).capture_payment
         OrderMailer.payment_confirmation(self).deliver_now!
         PrintReceiptService.new(self).send
       end
@@ -74,19 +63,11 @@ class Order < ApplicationRecord
     end
   end
 
-  def stripe_total_price
-    (total * 100).to_i
+  def total
+    order_items.sum { |item| item.product.price }
   end
 
-  def track_order_metrics
-    return unless Rails.env.production?
-
-    prometheus_client = PrometheusExporter::Client.default
-
-    prometheus_client.send_json(
-      type: 'custom_order_metrics',
-      labels: { status: state, store: store.name, created_at: created_at },
-      creation_time: (Time.current - created_at).to_f
-    )
+  def stripe_total_price
+    (total * 100).to_i
   end
 end
