@@ -1,12 +1,52 @@
-.col-12.d-flex.justify-content-center 
-  .col-3.bg-light.rounded.p-3.text-center
-    i.fa-regular.fa-check-circle.display-2
-    h3.pt-3.brand-font Your Order Number is:
-    .no-h-padding.brand-font.display-3 = @order.id
+.col-12.d-flex.justify-content-center.mt-3
+  .col-11.col-md-6.col-lg-4.bg-white.p-3.rounded.shadow
+    .col-12.text-center
+      i.fa-regular.fa-check-circle.display-2.text-center
+    h3.pt-3.brand-font.text-center Thank you for your order!
+
+    p.text-center
+      span.fw-bold We will call your name 
+      br
+      | (
+      = @order.user.recipe_name
+      | ) 
+      br
+      | when your order is ready for collection.
     hr
-    p We will call out you order number when it is ready
+    h2.text-center.brand-font Order Details
+    .col-12.d-flex.justify-content-center
+      .col-11.col-md-7.col-lg-7
+        table
+          tr
+            td Order Reference Number:
+            td.text-end = @order.id
+          tr
+            td Order Date:
+            td.text-end = @order.created_at.strftime("%B %d, %Y")
+          tr
+            td Order Time:
+            td.text-end = @order.created_at.strftime("%I:%M %p")
+          tr
+            td Store:
+            td.text-end = @order.store.name
+
+        h6.pt-2 Items Ordered:
+        hr.no-h-padding
+        - @order.order_items.each do |item|
+          div.pt-1.col-12.d-flex.justify-content-between
+            h6.ps-4 = item.product.name
+            h6.pe-4 = item.product.price
+          .col-12.d-flex.gap-2.text-muted
+            - item.product_modifyers.each do |mod|
+              div = mod.ingredient.name  
+              | |
+        hr.no-h-padding
+        .col-12.d-flex.justify-content-between
+          p Total:
+          p = @order.total
+        
+        p.text-muted.fine-print.text-center
+          | You have been charged the order amount to your payment method. 
     hr
     .d-flex.justify-content-center.gap-2
       = link_to "Back to Menu", categories_path, class: "btn btn-dark"
-      = link_to "Past Orders", orders_path, class: "btn btn-dark"
-

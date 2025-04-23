@@ -10,8 +10,15 @@ class User < ApplicationRecord
   has_many :roles, through: :user_roles
   after_create_commit :create_stripe_user
 
+  validates :first_name, presence: true
+  validates :last_name, presence: true
+
   def basket
     orders.where(state: %i[pending on_checkout]).last || orders.create(state: :pending)
+  end
+
+  def recipe_name
+    "#{first_name.capitalize} #{last_name[0].capitalize}."
   end
 
   def create_stripe_user
