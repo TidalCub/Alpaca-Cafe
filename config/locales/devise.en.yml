@@ -63,3 +63,7 @@ en:
       not_saved:
         one: "1 error prohibited this %{resource} from being saved:"
         other: "%{count} errors prohibited this %{resource} from being saved:"
+      registrations:
+        not_saved:
+          one: "Unable to create an account because of the following error:"
+          other: "Unable to create an account because of the following errors:"

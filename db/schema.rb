@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_04_22_131428) do
+ActiveRecord::Schema[8.0].define(version: 2025_04_23_115205) do
   create_table "addresses", force: :cascade do |t|
     t.integer "number"
     t.string "street"
@@ -172,6 +172,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_22_131428) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "stripe_id"
+    t.string "first_name", null: false
+    t.string "last_name", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
