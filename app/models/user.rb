@@ -17,6 +17,10 @@ class User < ApplicationRecord
     orders.where(state: %i[pending on_checkout]).last || orders.create(state: :pending)
   end
 
+  def recipe_name
+    "#{first_name.capitalize} #{last_name[0].capitalize}."
+  end
+
   def create_stripe_user
     # rubocop:disable Layout/FirstHashElementIndentation
     return if Rails.env.test?
