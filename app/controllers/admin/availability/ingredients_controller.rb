@@ -18,7 +18,7 @@ module Admin
           ingredient_stock_item.update(available: ingredient_stock_availability)
         end
         store = Store.find(params[:store_id])
-        redirect_to store_name_ingredient_availability_index_path(store_name: store.name), alert: 'Availability updated successfully.' # Rubocop:disable Rails/I18nLocaleTexts
+        redirect_to store_name_ingredient_availability_index_path(store_name: store.slug), alert: 'Availability updated successfully.' # Rubocop:disable Rails/I18nLocaleTexts
       end
 
       private
