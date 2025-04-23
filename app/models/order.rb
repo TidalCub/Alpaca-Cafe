@@ -2,10 +2,11 @@
 
 class Order < ApplicationRecord
   include AASM
+  include TrackableMetrics
+
   belongs_to :user
   belongs_to :store
   has_many :order_items, dependent: :destroy
-  after_create :track_order_metrics
 
   enum :state, { new_order: 0, pending: 1, on_checkout: 2, requires_capture: 3, processing: 4, paid: 5, payment_failed: 6, completed: 7, expired: 8 }
 
@@ -76,17 +77,5 @@ class Order < ApplicationRecord
 
   def stripe_total_price
     (total * 100).to_i
-  end
-
-  def track_order_metrics
-    return unless Rails.env.production?
-
-    prometheus_client = PrometheusExporter::Client.default
-
-    prometheus_client.send_json(
-      type: 'custom_order_metrics',
-      labels: { status: state, store: store.name, created_at: created_at },
-      creation_time: (Time.current - created_at).to_f
-    )
   end
 end
