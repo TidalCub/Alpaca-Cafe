@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module TrackableMetrics
   extend ActiveSupport::Concern
 

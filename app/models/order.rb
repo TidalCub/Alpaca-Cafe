@@ -21,7 +21,7 @@ class Order < ApplicationRecord
     event :checkout do
       transitions from: %i[new_order pending on_checkout], to: :on_checkout
       after do
-        payment_service = StripePaymentService.new(self).create_or_update
+        StripePaymentService.new(self).create_or_update
       end
     end
 
