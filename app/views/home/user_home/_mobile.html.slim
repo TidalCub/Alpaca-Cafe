@@ -2,10 +2,10 @@
   .col-12
     = image_tag "green-wavy-devider.svg", class: "wavy-devider", width: "100%", style: "max-hight: 50px;"
     .col-12.bg-green.d-flex.justify-content-center.align-items-center.flex-wrap
-      h5.text-white.font-brand.col-12.ps-2 Suggested for you
-      .m-2.bg-white.rounded.shadow.d-flex.p-2.col-11 style="max-width: 700px; min-width:300px;"
-        .col-5
-          = image_tag "iced_latte_image.png", class: "img-fluid rounded", width: "100%", height: "100%"
-        .text-center.flex-grow-1
-          h1 Iced Latte
+      h5.text-white.font-brand.col-12.ps-2.text-center Suggested for you
+      .col-8
+        = render "home/user_home/desktop_product_card"
     = image_tag "green-wavy-devider.svg", class: "wavy-devider flip-vertical", width:"100%" 
+  
+  .col-12.d-flex.justify-content-center
+    = render "home/user_home/stores_list"

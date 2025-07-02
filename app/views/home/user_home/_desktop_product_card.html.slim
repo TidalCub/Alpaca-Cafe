@@ -1,5 +1,5 @@
-.col-3.bg-white.rounded.shadow.p-2.m-2 
+.bg-white.rounded.shadow.p-2.m-2 
   .col-12.d-flex.justify-content-center.align-items-center
     = image_tag "iced_latte_image.png", class: "img-fluid rounded", width: "100%", height: "100%"
   h3.text-center Iced Latte
-  = button_to 'Add to Order', add_to_basket_url(product: @product), method: :post, class: "btn btn-primary col-12 mb-2"
+  = link_to 'Add to Order', store_index_path(redirect: Product.first), class: "btn btn-primary col-12 mb-2"
