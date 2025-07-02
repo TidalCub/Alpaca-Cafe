@@ -3,7 +3,7 @@
 require 'stripe'
 
 class StripePaymentintentService
-  def initialize(amount, current_user, order)
+  def initialize(amount = nil, current_user = nil, order)
     @amount = amount
     @current_user = current_user
     @order = order

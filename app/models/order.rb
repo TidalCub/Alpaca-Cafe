@@ -35,9 +35,26 @@ class Order < ApplicationRecord
     event :check_in do
       transitions from: :requires_capture, to: :processing
       after do
-        StripePaymentService.new(self).capture_payment
-        OrderMailer.payment_confirmation(self).deliver_now!
-        PrintReceiptService.new(self).send
+        begin
+          StripePaymentService.new(self).capture_payment
+          OrderMailer.payment_confirmation(self).deliver_now!
+          PrintReceiptService.new(self).send
+        rescue Stripe::InvalidRequestError => e
+          status = StripePaymentintentService.new(order = self).status
+          case status
+          when 'succeeded'
+            self.paid!
+            OrderMailer.payment_confirmation(self).deliver_now!
+          when 'requires_capture'
+            self.requires_capture!
+          when 'processing'
+            self.processing!
+          else
+            Rails.logger.error("Stripe error: #{e.message}")
+            self.failed!
+            OrderMailer.payment_failed(self).deliver_now!
+          end
+        end
       end
     end
 
