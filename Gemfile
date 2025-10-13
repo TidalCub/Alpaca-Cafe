@@ -9,28 +9,28 @@ gem 'prometheus_exporter'
 
 gem 'aasm', '~> 5.5'
 gem 'action_policy'
-gem 'activesupport', '~> 8.0'
+gem 'activesupport', '~> 8.0', '>= 8.0.2'
 gem 'bootsnap', require: false
 gem 'bootstrap', '~> 5.0'
 gem 'bootstrap-email'
 gem 'devise', '~> 4.9'
-gem 'factory_bot_rails'
+gem 'factory_bot_rails', '>= 6.5.0'
 gem 'faker'
-gem 'googleauth'
-gem 'google-cloud-retail'
-gem 'importmap-rails'
-gem 'jbuilder'
+gem 'googleauth', '>= 1.14.0'
+gem 'google-cloud-retail', '>= 1.11.0'
+gem 'importmap-rails', '>= 2.2.0'
+gem 'jbuilder', '>= 2.14.0'
 gem 'jquery-rails'
-gem 'kamal', require: false
+gem 'kamal', '>= 2.5.0', require: false
 gem 'lazyload-rails'
 gem 'mqtt'
 gem 'pg', '~> 1.5', '>= 1.5.4', group: :production
 gem 'puma', '~> 6.0'
-gem 'rails', '~> 8.0'
+gem 'rails', '~> 8.0', '>= 8.0.2'
 gem 'redis', '~> 4.0'
 gem 'sassc-rails'
 gem 'stackprof'
-gem 'sentry-rails'
+gem 'sentry-rails', '>= 5.23.0'
 gem 'sentry-ruby'
 gem 'slim-rails'
 gem 'sprockets-rails'
@@ -38,7 +38,7 @@ gem 'sqlite3'
 gem 'stackprof'
 gem 'stimulus-rails'
 gem 'stripe'
-gem 'turbo-rails'
+gem 'turbo-rails', '>= 2.0.12'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 group :development, :test do
@@ -46,8 +46,8 @@ group :development, :test do
   gem 'debug', platforms: %i[mri mingw x64_mingw]
 
   gem 'rails-controller-testing'
-  gem 'rspec-rails', '>= 3.9.0'
-  gem 'rubocop-rails', require: false
+  gem 'rspec-rails', '>= 7.1.1'
+  gem 'rubocop-rails', '>= 2.30.0', require: false
 end
 
 group :development do
@@ -56,7 +56,7 @@ group :development do
   gem 'capistrano-bundler', require: false
   gem 'capistrano-rails', require: false
   gem 'capistrano-rbenv', require: false # Or `capistrano-rvm` if you use RVM
-  gem 'rack-mini-profiler'
+  gem 'rack-mini-profiler', '>= 4.0.0'
   gem 'web-console'
 end
 
