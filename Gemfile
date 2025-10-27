@@ -20,7 +20,7 @@ gem 'googleauth'
 gem 'google-cloud-retail'
 gem 'importmap-rails'
 gem 'jbuilder'
-gem 'jquery-rails'
+gem 'jquery-rails', '>= 4.6.1'
 gem 'kamal', require: false
 gem 'lazyload-rails'
 gem 'mqtt'
