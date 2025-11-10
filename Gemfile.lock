@@ -285,7 +285,8 @@ GEM
     marcel (1.0.4)
     mini_mime (1.1.5)
     minitest (5.25.4)
-    mqtt (0.6.0)
+    mqtt (0.7.0)
+      logger
     msgpack (1.7.5)
     multi_json (1.15.0)
     net-http (0.6.0)
@@ -768,7 +769,7 @@ DEPENDENCIES
   jquery-rails
   kamal
   lazyload-rails
-  mqtt
+  mqtt (>= 0.7.0)
   opentelemetry-instrumentation-all (~> 0.74.0)
   opentelemetry-sdk (~> 1.8)
   pg (~> 1.5, >= 1.5.4)

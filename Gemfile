@@ -23,7 +23,7 @@ gem 'jbuilder'
 gem 'jquery-rails'
 gem 'kamal', require: false
 gem 'lazyload-rails'
-gem 'mqtt'
+gem 'mqtt', '>= 0.7.0'
 gem 'pg', '~> 1.5', '>= 1.5.4', group: :production
 gem 'puma', '~> 6.0'
 gem 'rails', '~> 8.0'
