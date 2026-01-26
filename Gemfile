@@ -13,7 +13,7 @@ gem 'activesupport', '~> 8.0'
 gem 'bootsnap', require: false
 gem 'bootstrap', '~> 5.0'
 gem 'bootstrap-email'
-gem 'devise', '~> 4.9'
+gem 'devise', '~> 5.0', '>= 5.0.0'
 gem 'factory_bot_rails'
 gem 'faker'
 gem 'googleauth'
